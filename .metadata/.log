@@ -8,3 +8,54 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/alice
 
 !ENTRY org.eclipse.core.net 1 0 2015-04-03 13:26:05.659
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:02:34.389
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:02:39.749
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:03:09.285
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-03 14:03:13.069
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.run(KinomaDebugConnector.java:128)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:03:13.081
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:03:20.261
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:03:23.623
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:03:46.412
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:05:03.775
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:05:05.879
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:05:12.039
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:07:41.738
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-03 14:09:40.982
+!MESSAGE Debug listener stopped...
