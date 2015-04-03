@@ -36,6 +36,21 @@ Handler.bind("/delay", {
     }
 });
 
+/*   	
+var msg = new Message("/changeDeviceColor");
+msg.requestText = JSON.stringify({target:"self", color:"green"});
+application.invoke(msg);
+*/
+Handler.bind("/changeDeviceColor", {
+	onInvoke: function(handler, message){
+		var myObject = JSON.parse(message.requestText);
+    	var msg = new Message(deviceURL + "changeColor");
+  
+    	msg.requestText = JSON.stringify({target:myObject.target, color:myObject.color});
+        handler.invoke(msg, Message.JSON);
+    },
+});
+
 var whiteSkin = new Skin({ fill:"white" });
 var tabButtonLabelStyle = new Style({font:"20px", color:"black"});
 
@@ -46,7 +61,6 @@ var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
-      trace(button.name + " was tapped.\n");
       if (button.name == "Progress") {
       	// TODO: Show progress screen
       } else if (button.name == "Buddy") {

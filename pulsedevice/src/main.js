@@ -21,15 +21,45 @@ Handler.bind("/getStatus", Behavior({
 	},
 }));
 
+Handler.bind("/changeColor", Behavior({
+	onInvoke: function(handler, message){
+		var myObject = JSON.parse(message.requestText);
+    	var target;
+    	
+    	if (myObject.target == "self") {
+    		target = progress;
+    	} else if (myObject.target == "buddy") {
+    		target = buddyProgress;
+    	}
+    	
+    	if (myObject.color == "red") {
+    		target.skin = redSkin;
+    	} else if (myObject.color == "yellow") {
+    		target.skin = yellowSkin;
+    	} else if (myObject.color == "green") {
+    		target.skin = greenSkin;
+    	}
+		message.status = 200;
+	},
+}));
+
 var whiteSkin = new Skin({ fill:"white" });
+var redSkin = new Skin({ fill:"red" });
+var yellowSkin = new Skin({ fill:"yellow" });
+var greenSkin = new Skin({ fill:"green" });
+
 var labelStyle = new Style({font:"20px", color:"black"});
 var heartBeatLabel = new Label({left:0, right:0, height:50, string:heartBeat, style:labelStyle})
+var progress = new Line({left:0, right:0, top:0, bottom:0, skin: redSkin});
+var buddyProgress = new Line({left:0, right:0, top:0, bottom:0, skin: yellowSkin});
 
 var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,
   contents:[
     heartBeatLabel,
+    progress,
+    buddyProgress,
   ],
   behavior: Object.create(Behavior.prototype, {
 		onAnalogValueChanged: {value:  function(content, result){
