@@ -1,6 +1,41 @@
 var THEME = require('themes/flat/theme');
 var BUTTONS = require('controls/buttons');
 
+deviceURL = "";
+
+Handler.bind("/discover", Behavior({
+	onInvoke: function(handler, message){
+		deviceURL = JSON.parse(message.requestText).url;
+		// Uncomment if we want to get constant heartbeat data from device. 
+		// application.invoke(new Message("/getStatus"));
+	}
+}));
+
+Handler.bind("/forget", Behavior({
+	onInvoke: function(handler, message){
+		deviceURL = "";
+	}
+}));
+
+Handler.bind("/getStatus", {
+    onInvoke: function(handler, message){
+        handler.invoke(new Message(deviceURL + "getStatus"), Message.JSON);
+    },
+    onComplete: function(handler, message, json){
+    	trace(json.heartBeat + "\n");
+    	handler.invoke( new Message("/delay"));
+    }
+});
+
+Handler.bind("/delay", {
+    onInvoke: function(handler, message){
+        handler.wait(1000); //will call onComplete after 1 second
+    },
+    onComplete: function(handler, message){
+        handler.invoke(new Message("/getStatus"));
+    }
+});
+
 var whiteSkin = new Skin({ fill:"white" });
 var tabButtonLabelStyle = new Style({font:"20px", color:"black"});
 
@@ -37,4 +72,14 @@ var mainColumn = new Column({
   ]
 });
 
+var ApplicationBehavior = Behavior.template({
+	onDisplayed: function(application) {
+		application.discover("pulsedevice");
+	},
+	onQuit: function(application) {
+		application.forget("pulsedevice");
+	},
+})
+
+application.behavior = new ApplicationBehavior();
 application.add(mainColumn);
