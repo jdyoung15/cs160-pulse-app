@@ -3,6 +3,7 @@ var BUTTONS = require('controls/buttons');
 var KEYBOARD = require('mobile/keyboard');
 var CONTROL = require('mobile/control');
 var BUDDY = require('buddy');
+var FORUM = require('forum');
 
 deviceURL = "";
 
@@ -71,6 +72,7 @@ var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
       	BUDDY.switchToBuddyScreen(mainColumn);
       } else if (button.name == "Forum") {
       	// TOOD: Show forum screen
+      	FORUM.addMainContainer(mainColumn);
       }
     }}
   })
