@@ -1,5 +1,6 @@
 var THEME = require('themes/flat/theme');
 var BUTTONS = require('controls/buttons');
+var BUDDY = require('buddy');
 
 deviceURL = "";
 
@@ -65,6 +66,7 @@ var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
       	// TODO: Show progress screen
       } else if (button.name == "Buddy") {
       	// TODO: Show buddy screen
+      	BUDDY.switchToBuddyScreen(mainColumn);
       } else if (button.name == "Forum") {
       	// TOOD: Show forum screen
       }
@@ -76,7 +78,8 @@ var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,
   contents:[
-    new Line({left:0, right:0, top:0, bottom:0, skin: whiteSkin,
+  	new Container({left:0, right:0, top:0, bottom:0}),
+    new Line({left:0, right:0, height:50, skin: whiteSkin,
       contents:[
         new TabButtonTemplate({textForLabel:"Progress"}),
         new TabButtonTemplate({textForLabel:"Buddy"}),
