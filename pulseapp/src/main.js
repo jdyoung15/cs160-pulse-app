@@ -1,5 +1,7 @@
 var THEME = require('themes/flat/theme');
 var BUTTONS = require('controls/buttons');
+var KEYBOARD = require('mobile/keyboard');
+var CONTROL = require('mobile/control');
 var BUDDY = require('buddy');
 
 deviceURL = "";
