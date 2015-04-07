@@ -2,8 +2,11 @@ var THEME = require('themes/flat/theme');
 var BUTTONS = require('controls/buttons');
 var KEYBOARD = require('mobile/keyboard');
 var CONTROL = require('mobile/control');
+var SCROLLER = require('mobile/scroller');
+var SCREEN = require('mobile/screen');
 var BUDDY = require('buddy');
 var FORUM = require('forum');
+var NEWPOST = require('newpost');
 
 deviceURL = "";
 
@@ -69,10 +72,10 @@ var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
       	// TODO: Show progress screen
       } else if (button.name == "Buddy") {
       	// TODO: Show buddy screen
-      	BUDDY.switchToBuddyScreen(mainColumn);
+      	BUDDY.switchToBuddyScreen();
       } else if (button.name == "Forum") {
       	// TOOD: Show forum screen
-      	FORUM.addMainContainer(mainColumn);
+      	FORUM.addMainContainer();
       }
     }}
   })

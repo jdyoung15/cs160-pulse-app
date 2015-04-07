@@ -1,5 +1,3 @@
-var FIELD_THEME = require('themes/sample/theme');
-
 var whiteSkin = new Skin({ fill: "white" });
 var fieldInputSkin = new Skin({ borders: { left:2, right:2, top:2, bottom:2 }, stroke: 'gray' });
 var labelStyle = new Style({ font: "16px", color: "black" });
@@ -8,11 +6,6 @@ var fieldHintStyle = new Style({ color: '#aaa', font: '24px', horizontal: 'left'
 
 // True if user is currently assigned an exercise buddy.
 var hasCurrentBuddy = false;
-
-// The outermost container for the app.
-//   mainColumn[0] should be the current screen, to be swapped out with other screensa
-//	 mainColumn[1] should be the bottom tab bar 
-var mainColumn = null;
 
 var ButtonTemplate = BUTTONS.Button.template(function($){ return{
   left:$.left, right:$.right, bottom:$.bottom, height:$.height,
@@ -28,7 +21,7 @@ var FieldTemplate = Container.template(function($) { return {
       left: 4, right: 4, top: 4, bottom: 4, active: true,
       behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
         Label($, { 
-          left: 0, top: 0, bottom: 0, skin: FIELD_THEME.fieldLabelSkin, style: fieldStyle, anchor: 'NAME', name: "fieldLabel",
+          left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: fieldStyle, anchor: 'NAME', name: "fieldLabel",
           editable: true, string: $.name,
          	behavior: Object.create( CONTROL.FieldLabelBehavior.prototype, {
          		onEdited: { value: function(label){
@@ -56,7 +49,7 @@ var findBuddyButton = new ButtonTemplate({
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value: function(button){
       hasCurrentBuddy = true;
-      switchScreen(currentBuddyScreen);
+	  mainColumn.replace(mainColumn[0], currentBuddyScreen);
     }}
   }),
 });
@@ -145,8 +138,7 @@ var currentBuddyScreen = new Container({
 var buddyScreens = [findBuddyScreen, currentBuddyScreen];
 
 // Switch to Buddy screen from another section of the app
-var switchToBuddyScreen = function(container) {
-  mainColumn = container;
+var switchToBuddyScreen = function() {
   currentScreen = mainColumn[0];
 	
   if (buddyScreens.indexOf(currentScreen) >= 0) {
@@ -154,18 +146,10 @@ var switchToBuddyScreen = function(container) {
   }
 	
   if (!hasCurrentBuddy) {
-	switchScreen(findBuddyScreen);
+  	mainColumn.replace(mainColumn[0], findBuddyScreen);
   } else {
-	switchScreen(currentBuddyScreen);
+  	mainColumn.replace(mainColumn[0], currentBuddyScreen);
   }
 };
-
-var switchScreen = function(newScreen) {
-  mainColumn.replace(mainColumn[0], newScreen);
-};
-
-
-// Declaring "exports.VARIABLE_NAME" allows VARIABLE_NAME to be accessed 
-// outside this file.
    
 exports.switchToBuddyScreen = switchToBuddyScreen;

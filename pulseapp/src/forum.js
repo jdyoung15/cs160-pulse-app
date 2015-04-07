@@ -1,6 +1,7 @@
 var KEYBOARD = require('mobile/keyboard');
 var CONTROL = require('mobile/control');
 var SCROLLER = require('mobile/scroller');
+var SCREEN = require('mobile/screen');
 
 //MIO
 var backgrondSkin = new Skin({ fill: 'white',});
@@ -131,6 +132,7 @@ global.behavior.myButtonAction2  = function(){
 }
 
 addComment.behavior.myButtonAction  = function(){
+	NEWPOST.addMainContainer();
 }
 
 //Forum Container elements
@@ -142,7 +144,7 @@ var scroller = SCROLLER.VerticalScroller.template(function($){ return{
 var separatorSkin = new Skin({ fill: 'silver',});
 var itemNameStyle = new Style({ font: 'bold 14px Arial, ', horizontal: 'null', vertical: 'null', lines: 1, });
 
-var ListItemLine = Line.template(function($) { return { left: 0, right: 0, skin: whiteSkin,  name: $.name, 
+var ListItemLine = Line.template(function($) { return { left: 0, right: 0, skin: whiteSkin, name: $.name, 
 	contents: [
 		Column($, { left: 0, right: 0, contents: [
 			Line($, { left: 0, right: 0, height: 1, skin: separatorSkin, }),
@@ -156,21 +158,12 @@ var ListItemLine = Line.template(function($) { return { left: 0, right: 0, skin:
 			],}),		
 	
 		],
-		/*
-		behavior: Behavior({
-			onTouchEnded: function(content){
-				trace("You tapped here \n");
-			}
-		})	
-		*/
 	  }),
 	], 
 }});
-	
-
 
 //Forum Container
-var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: backgrondSkin, 
+var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: backgrondSkin,
 	contents:[    	
 		/*new scroller({ name: "forumScroller", left:0, right:0, top: 0, bottom: 0, skin: whiteSkin,
     		contents: [
@@ -180,8 +173,18 @@ var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: backgr
 		new ListItemLine({name:"Maria Powell", picture:"gavatar1", date:"1 hr ago", text: "What are your favorite walking shoes?"}),
         new ListItemLine({name:"Andy Lee", picture:"mavatar1", date:"3 hr ago", text: "Anyone has a good morning exercises?"}), 
         new ListItemLine({name:"Mike Jones", picture:"mavatar2", date:"3 hr ago", text: "Favorite music to listen to on a run?"}),   				
-	
-	]
+	],
+});
+
+var forumContainer = new Container({ left:0, right:0, top:0, bottom:0, skin:backgrondSkin, active: true,
+	contents:[
+		forumColumn,
+	],
+	behavior: Object.create(Container.prototype, {
+    	onTouchEnded: { value: function(content){
+      		mainColumn.replace(mainColumn[0], mainContainer2);
+      	}}
+    })
 });
 
 
@@ -228,6 +231,7 @@ var mainContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: backgr
 });
 
 back.behavior.myButtonAction2  = function(){
+	mainColumn.replace(mainColumn[0], mainContainer);
 }
 
 //Forum Container
@@ -256,13 +260,13 @@ var repplyContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: backg
 function repplyAction() {
 }
 
-exports.addMainContainer = function(mainColumn) {
+mainContainer.add(forumContainer);
+mainContainer2.add(forumContainer2);
+
+exports.addMainContainer = function() {
 	if (mainColumn[0] == mainContainer) {
+		// Already on forum screen. Can't replace with itself.
 		return;
-	}
-	
-	if (mainContainer.last != forumContainer) {
-		mainContainer.add(forumContainer);
 	}
 	
 	mainColumn.replace(mainColumn[0], mainContainer);
