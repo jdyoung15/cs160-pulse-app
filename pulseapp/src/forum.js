@@ -182,7 +182,7 @@ var forumContainer = new Container({ left:0, right:0, top:0, bottom:0, skin:back
 	],
 	behavior: Object.create(Container.prototype, {
     	onTouchEnded: { value: function(content){
-      		mainColumn.replace(mainColumn[0], mainContainer2);
+    		switchScreens(mainContainer2);
       	}}
     })
 });
@@ -231,7 +231,7 @@ var mainContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: backgr
 });
 
 back.behavior.myButtonAction2  = function(){
-	mainColumn.replace(mainColumn[0], mainContainer);
+    switchScreens(mainContainer);
 }
 
 //Forum Container
@@ -269,5 +269,5 @@ exports.addMainContainer = function() {
 		return;
 	}
 	
-	mainColumn.replace(mainColumn[0], mainContainer);
+	switchScreens(mainContainer);
 }

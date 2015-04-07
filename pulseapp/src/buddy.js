@@ -49,7 +49,7 @@ var findBuddyButton = new ButtonTemplate({
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value: function(button){
       hasCurrentBuddy = true;
-	  mainColumn.replace(mainColumn[0], currentBuddyScreen);
+      switchScreens(currentBuddyScreen);
     }}
   }),
 });
@@ -146,9 +146,9 @@ var switchToBuddyScreen = function() {
   }
 	
   if (!hasCurrentBuddy) {
-  	mainColumn.replace(mainColumn[0], findBuddyScreen);
+  	switchScreens(findBuddyScreen);
   } else {
-  	mainColumn.replace(mainColumn[0], currentBuddyScreen);
+  	switchScreens(currentBuddyScreen);
   }
 };
    

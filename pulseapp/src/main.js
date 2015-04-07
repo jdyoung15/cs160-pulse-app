@@ -81,6 +81,16 @@ var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
   })
 }});
 
+// Switch from current screen to new screen. Screen does not include the
+// tab bar or top header bar.
+var switchScreens = function(newScreen) {
+	// Implementation assumes that screen is the first element in mainColumn.
+	var currentScreen = mainColumn[0];
+	if (currentScreen != newScreen) {
+		mainColumn.replace(mainColumn[0], newScreen);
+	}
+}
+
 var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,

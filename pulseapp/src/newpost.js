@@ -186,5 +186,5 @@ var mainContainer = new Container( {
 
 
 exports.addMainContainer = function() {
-	mainColumn.replace(mainColumn[0], mainContainer);
+	switchScreens(mainContainer);
 }
