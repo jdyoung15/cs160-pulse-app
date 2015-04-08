@@ -7,6 +7,7 @@ var SCREEN = require('mobile/screen');
 var BUDDY = require('buddy');
 var FORUM = require('forum');
 var NEWPOST = require('newpost');
+var STYLE = require('styles');
 
 deviceURL = "";
 
@@ -58,11 +59,16 @@ Handler.bind("/changeDeviceColor", {
     },
 });
 
-var whiteSkin = new Skin({ fill:"white" });
 var tabButtonLabelStyle = new Style({font:"20px", color:"black"});
 
+function traceObject(obj) {
+	for (property in obj) {
+		trace(property + ': ' + obj[property] + "\n");
+	}
+}
+
 var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
-  bottom:0, left:0, right:0, name:$.textForLabel,
+  bottom:0, left:0, right:0, name:$.textForLabel, skin:whiteSkin,
   contents:[
     new Label({left:0, right:0, height:50, string:$.textForLabel, style:tabButtonLabelStyle})
   ],
@@ -70,12 +76,22 @@ var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
     onTap: { value:  function(button){
       if (button.name == "Progress") {
       	// TODO: Show progress screen
+      	
+      	progressTabButton.skin = blueSkin;
+      	buddyTabButton.skin = whiteSkin;
+      	forumTabButton.skin = whiteSkin,
       } else if (button.name == "Buddy") {
-      	// TODO: Show buddy screen
       	BUDDY.switchToBuddyScreen();
+      	
+      	progressTabButton.skin = whiteSkin;
+      	buddyTabButton.skin = blueSkin;
+        forumTabButton.skin = whiteSkin,
       } else if (button.name == "Forum") {
-      	// TOOD: Show forum screen
       	FORUM.addMainContainer();
+      	
+      	progressTabButton.skin = whiteSkin;
+      	buddyTabButton.skin = whiteSkin;
+      	forumTabButton.skin = blueSkin,
       }
     }}
   })
@@ -91,6 +107,11 @@ var switchScreens = function(newScreen) {
 	}
 }
 
+var progressTabButton = new TabButtonTemplate({textForLabel:"Progress"});
+progressTabButton.skin = blueSkin;
+var buddyTabButton = new TabButtonTemplate({textForLabel:"Buddy"});
+var forumTabButton = new TabButtonTemplate({textForLabel:"Forum"});
+
 var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,
@@ -98,9 +119,9 @@ var mainColumn = new Column({
   	new Container({left:0, right:0, top:0, bottom:0}),
     new Line({left:0, right:0, height:50, skin: whiteSkin,
       contents:[
-        new TabButtonTemplate({textForLabel:"Progress"}),
-        new TabButtonTemplate({textForLabel:"Buddy"}),
-        new TabButtonTemplate({textForLabel:"Forum"}),
+        progressTabButton,
+        buddyTabButton,
+        forumTabButton,
       ]
     }),
   ]

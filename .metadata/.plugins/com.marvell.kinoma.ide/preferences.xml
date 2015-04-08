@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Preferences>
-   <Usage eclipseInstanceId="4afc8c7b-e4dc-4333-bef0-47ff017f6578" visitCount="1" lastVisit="150403132612-0700" firstVisit="150403132612-0700"></Usage>
+   <SDKContainer>
+      <SDK plugin="true" editable="false" name="Kinoma Built-in SDK" location="com.marvell.kinoma.sdk:sdk"></SDK>
+   </SDKContainer>
+   <Usage eclipseInstanceId="4afc8c7b-e4dc-4333-bef0-47ff017f6578" visitCount="3" lastVisit="150407180255-0700" firstVisit="150403132612-0700"></Usage>
    <RemoteDeviceManager>
       <UserDevices/>
    </RemoteDeviceManager>
+   <Editor>
+      <Validation auto="true"></Validation>
+      <ContentAssist autoActivationDelay="250" autoActivation="true" insertSingleProposalAutomatically="true"></ContentAssist>
+      <XML>
+         <Formatting clearBlank="false" alignEndBrackets="false" useSpaces="true" formatComments="true" tabWidth="4" endTagSpace="true" splitAttributes="false" preserveContent="false" lineWidth="72" joinCommentLines="true"></Formatting>
+      </XML>
+      <ThemeStyles/>
+      <Folding enabled="true"></Folding>
+   </Editor>
+   <KPR defaultSimulator="com.marvell.kinoma.create.device"></KPR>
 </Preferences>
