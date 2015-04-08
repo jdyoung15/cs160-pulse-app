@@ -68,7 +68,7 @@ function traceObject(obj) {
 }
 
 var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
-  bottom:0, left:0, right:0, name:$.textForLabel, skin:whiteSkin,
+  bottom:0, left:0, right:0, name:$.textForLabel, skin:greySkin,
   contents:[
     new Label({left:0, right:0, height:50, string:$.textForLabel, style:tabButtonLabelStyle})
   ],
@@ -78,19 +78,19 @@ var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
       	// TODO: Show progress screen
       	
       	progressTabButton.skin = blueSkin;
-      	buddyTabButton.skin = whiteSkin;
-      	forumTabButton.skin = whiteSkin,
+      	buddyTabButton.skin = greySkin;
+      	forumTabButton.skin = greySkin,
       } else if (button.name == "Buddy") {
       	BUDDY.switchToBuddyScreen();
       	
-      	progressTabButton.skin = whiteSkin;
+      	progressTabButton.skin = greySkin;
       	buddyTabButton.skin = blueSkin;
-        forumTabButton.skin = whiteSkin,
+        forumTabButton.skin = greySkin,
       } else if (button.name == "Forum") {
       	FORUM.addMainContainer();
       	
-      	progressTabButton.skin = whiteSkin;
-      	buddyTabButton.skin = whiteSkin;
+      	progressTabButton.skin = greySkin;
+      	buddyTabButton.skin = greySkin;
       	forumTabButton.skin = blueSkin,
       }
     }}
@@ -116,6 +116,7 @@ var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,
   contents:[
+  	header,
   	new Container({left:0, right:0, top:0, bottom:0}),
     new Line({left:0, right:0, height:50, skin: whiteSkin,
       contents:[
