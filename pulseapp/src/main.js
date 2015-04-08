@@ -61,18 +61,7 @@ Handler.bind("/changeDeviceColor", {
 
 var tabButtonLabelStyle = new Style({font:"20px", color:"black"});
 
-function traceObject(obj) {
-	for (property in obj) {
-		trace(property + ': ' + obj[property] + "\n");
-	}
-}
-
-var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
-  bottom:0, left:0, right:0, name:$.textForLabel, skin:greySkin,
-  contents:[
-    new Label({left:0, right:0, height:50, string:$.textForLabel, style:tabButtonLabelStyle})
-  ],
-  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+var tabButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
       if (button.name == "Progress") {
       	// TODO: Show progress screen
@@ -94,8 +83,7 @@ var TabButtonTemplate = BUTTONS.Button.template(function($){ return{
       	forumTabButton.skin = blueSkin,
       }
     }}
-  })
-}});
+});
 
 // Switch from current screen to new screen. Screen does not include the
 // tab bar or top header bar.
@@ -107,10 +95,9 @@ var switchScreens = function(newScreen) {
 	}
 }
 
-var progressTabButton = new TabButtonTemplate({textForLabel:"Progress"});
-progressTabButton.skin = blueSkin;
-var buddyTabButton = new TabButtonTemplate({textForLabel:"Buddy"});
-var forumTabButton = new TabButtonTemplate({textForLabel:"Forum"});
+var progressTabButton = new ButtonTemplate({textForLabel:"Progress", skin:blueSkin, behavior:tabButtonBehavior});
+var buddyTabButton = new ButtonTemplate({textForLabel:"Buddy", skin:greySkin, behavior:tabButtonBehavior});
+var forumTabButton = new ButtonTemplate({textForLabel:"Forum", skin:greySkin, behavior:tabButtonBehavior});
 
 var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,

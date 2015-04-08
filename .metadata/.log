@@ -1167,3 +1167,80 @@ java.io.IOException: Broken pipe
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:14:16.610
 !MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:15:09.113
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:21:55.444
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:22:43.550
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:22:48.652
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:22:51.013
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:22:53.028
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:22:58.163
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:23:00.041
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:23:03.412
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:25:38.565
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-07 20:25:49.022
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-07 20:25:49.065
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-07 20:25:49.121
+!MESSAGE Debug listener stopped...
