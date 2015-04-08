@@ -103,7 +103,6 @@ var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,
   contents:[
-  	header,
   	new Container({left:0, right:0, top:0, bottom:0}),
     new Line({left:0, right:0, height:50, skin: whiteSkin,
       contents:[
