@@ -95,9 +95,9 @@ var switchScreens = function(newScreen) {
 	}
 }
 
-var progressTabButton = new ButtonTemplate({textForLabel:"Progress", skin:blueSkin, behavior:tabButtonBehavior});
-var buddyTabButton = new ButtonTemplate({textForLabel:"Buddy", skin:greySkin, behavior:tabButtonBehavior});
-var forumTabButton = new ButtonTemplate({textForLabel:"Forum", skin:greySkin, behavior:tabButtonBehavior});
+var progressTabButton = new ButtonTemplate({left:0, right:0, height:50, height:50, textForLabel:"Progress", skin:blueSkin, behavior:tabButtonBehavior});
+var buddyTabButton = new ButtonTemplate({left:0, right:0, height:50, textForLabel:"Buddy", skin:greySkin, behavior:tabButtonBehavior});
+var forumTabButton = new ButtonTemplate({left:0, right:0, height:50, height:50, textForLabel:"Forum", skin:greySkin, behavior:tabButtonBehavior});
 
 var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
