@@ -103,7 +103,12 @@ var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,
   contents:[
-  	new Container({left:0, right:0, top:0, bottom:0}),
+  	new Column({left:0, right:0, top:0, bottom:0,
+  	  contents:[
+   	    new HeaderTemplate({title: "Progress"}),
+   	    new Container({left:0, right:0, top:0, bottom:0}),   
+  	  ]
+  	}),
     new Line({left:0, right:0, height:50, skin: whiteSkin,
       contents:[
         progressTabButton,
