@@ -2,6 +2,7 @@ var THEME = require('themes/flat/theme');
 var BUTTONS = require('controls/buttons');
 var CONTROL = require('mobile/control');
 var KEYBOARD = require('mobile/keyboard');
+var STYLES = require('styles');
 
 //skins
 var topSkin = new Skin({fill:"blue"});
@@ -9,6 +10,7 @@ var whiteSkin = new Skin({fill:"white"});
 //label styles
 var topLabel = new Style( { font: "bold 30px", color:"white"});
 var buttonLabel = new Style( {font: "20px", color:"black"});
+var whiteButtonLabel = new Style( {font: "20px", color:"white"});
 var textStyle = new Style({font: "24px", color:"black"});
 var nameInputSkin = new Skin({ borders: { left:2, right:2, top:2, bottom:2 }, stroke: 'gray',});
 var fieldStyle = new Style({ color: 'black', font: '24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5, });
@@ -19,7 +21,7 @@ var localPost = true
 
 //button template
 var backButton = BUTTONS.Button.template(function($){ return{
-  width: 70, height:35, left:10,
+  width: 70, height:35, left:10, skin: greySkin,
   contents:[
     new Label({left:0, right:0, height:30, string:$.textForLabel, style:buttonLabel})
   ],
@@ -31,41 +33,16 @@ var backButton = BUTTONS.Button.template(function($){ return{
   })
 }});
 
-//local button
-var localButton = BUTTONS.Button.template(function($){ return{
-  width: 70, height:35, right:5, left:5,
-  contents:[
-    new Label({left:0, right:0, height:30, string:$.textForLabel, style:buttonLabel})
-  ],
-  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-    onTap: { value:  function(button){
-      //function - change to local
-    }}
-  })
-}});
-
-//global button
-var globalButton = BUTTONS.Button.template(function($){ return{
-  width: 70, height:35, right:10, left:5,
-  contents:[
-    new Label({left:0, right:0, height:30, string:$.textForLabel, style:buttonLabel})
-  ],
-  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-    onTap: { value:  function(button){
-      //function - change to global
-    }}
-  })
-}});
 
 //submit button
 var submitButton = BUTTONS.Button.template(function($){ return{
-  width: 100, height:35, top:10,
+  width: 100, height:35, top:10, skin:orangeSkin,
   contents:[
     new Label({left:0, right:0, height:30, string:$.textForLabel, style:buttonLabel})
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
-      //send info to new post
+      FORUM.addMainContainer(mainColumn);
     }}
   })
 }});
@@ -121,12 +98,13 @@ var largeField = Container.template(function($) { return {
 
 // Radio group template
 
-var MyRadioGroup = BUTTONS.RadioGroup.template(function($){ return{
-  top:0, bottom:0, right:0, left:0,
-  behavior: Object.create(BUTTONS.RadioGroupBehavior.prototype, {
-    onRadioButtonSelected: { value: function(buttonName){
-      trace("Radio button with name " + buttonName + " was selected.\n");
-  }}})
+var HorizontalRadioGroup = Line.template(function($) { return {
+    top:0, bottom:0, left:10, right:0,
+    active: true,
+    behavior: Object.create(BUTTONS.RadioGroupBehavior.prototype, {
+        onRadioButtonSelected: { value: function(buttonName){
+            //trace("Radio button with name " + buttonName + " was selected.\n");
+    }}})
 }});
 
 
@@ -154,30 +132,26 @@ var mainContainer = new Container( {
 	
 	contents:[
 	new Column({left:0, right:0, top:0, bottom:0, skin: new Skin({fill:"green"}), contents:[
-	
-		new Line({name: 'topBar', height: 60, left:0, right:0, top:0, skin: topSkin, contents:[
-			new backButton({left:10, textForLabel: "Back", }),
-			
-			new Label({left:0, right:0, style:topLabel, string:"New Post"}),
-			new Container({width:70}), //placeholder for button
-		]}),
-		new Line({left:0, right:0, top:0, bottom:0, skin: new Skin({fill:"white"}), contents:[
+		new HeaderTemplate({leftItem: new backButton({left:10, textForLabel: "Back", }), title:"New Post", 
+			rightItem: new Container({width:70})
+		
+		
+		}),
+		new Line({left:0, right:0, height: 60, skin: new Skin({fill:"white"}), contents:[
 			//title
-			new Label({left:25, right:0, width:50, style: textStyle, string:"Title:"}),
+			new Label({left:25, style: textStyle, string:"Title:"}),
 			new MyField({name:"", left:0, right:0}),
 		]}),
-		new Line({left:0, right:0, top:0, bottom:0, skin: new Skin({fill:"white"}), contents:[
+		new Line({left:0, right:0, height:60, skin: new Skin({fill:"white"}), contents:[
 			//post to local or global
-			new Label({left:25, right:5, width: 50, style: textStyle, string:"Post to:"}),
-			//new MyRadioGroup({ buttonNames: "Local,Global" }),
-			new localButton({left:0, right:0, top:0, textForLabel: "Local", }),
-			new globalButton({left:0, right:0, top:0, textForLabel: "Global", }),
+			new Label({left:25, style: textStyle, string:"Post to:"}),
+			new HorizontalRadioGroup({ buttonNames: "Local,Global" }),
 		]}),
 		new Column({left:0, right:0, top:0, bottom:0, height:150, skin: new Skin({fill:"white"}), contents:[
-			new Label({left:25, bottom:5, style: textStyle, string:"Description:"}),
+			new Label({left:25, bottom:10, style: textStyle, string:"Description:"}),
 			new largeField({name:"", left:0, right:0, top:20, }),
 
-			new submitButton({left:0, right:0, top:20, textForLabel: "Submit", }),
+			new submitButton({left:0, right:0, top:15, textForLabel: "Submit", }),
 		]}),
 
 	]}),
