@@ -1298,3 +1298,6 @@ java.io.IOException: Broken pipe
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-04-08 14:11:41.645
 !MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-08 14:14:00.118
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
