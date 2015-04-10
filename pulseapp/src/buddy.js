@@ -6,8 +6,9 @@ var chatBoxSkin = new Skin({
   stroke:"#efefef"
 });
 
-var labelStyle = new Style({ font: "16px", color: "black", horizontal: "left" });
+var labelStyle = new Style({ font: "20px", color: "black", horizontal: "left" });
 var largeButtonStyle = new Style({font:"24px", color:"white"});
+var medButtonStyle = new Style({font:"20px", color:"white"});
 var smallButtonStyle = new Style({font:"16px", color:"white"});
 var buddyNameStyle = new Style({ font: "16px", color: "black"});
 var fieldStyle = new Style({ color: 'black', font: 'bold 24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
@@ -40,7 +41,7 @@ var FieldTemplate = Container.template(function($) { return {
   ]
 }});
 
-var findBuddyText = new Text({left:10, right:10, height:50,
+var findBuddyText = new Text({left:10, right:10, height:70,
   skin: lightGreySkin, 
   style: labelStyle,
   string:
@@ -90,6 +91,17 @@ var findBuddyScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: 
   ],
 });
 
+var deleteBuddyButton = new ButtonTemplate({
+  left:0, right:0, height:50, style: medButtonStyle,
+  textForLabel: "Unbuddy",
+  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+	onTap: { value:  function(button){
+	  hasCurrentBuddy = false;
+	  switchScreens(findBuddyScreen);
+    }}
+  })
+});	
+
 var chatBox = new Text({
   left:10, right:10, top:10, height:115, skin: whiteSkin, style: labelStyle, string: 
   "Me: You're almost there, Jean-Paul!\n" + 
@@ -116,7 +128,7 @@ var currentBuddyScreen = new Container({
 	new Column({
 	  left:0, right:0, top:0, bottom:0, 
 	  contents: [
-	  	new HeaderTemplate({title: "Buddy"}),
+	  	new HeaderTemplate({title: "Buddy", leftItem: new Container({left:0, right:0, top:0, bottom:0}), rightItem: deleteBuddyButton}),
 	  	new Container({left:0, right:0, top:0, bottom:0, skin: lightGreySkin,
 	  	  contents: [
 	    	new Label({left:10, right:10, height: 30, string: "Countdown: 6 days left", style: labelStyle}),
