@@ -9,8 +9,8 @@ var topSkin = new Skin({fill:"blue"});
 var whiteSkin = new Skin({fill:"white"});
 //label styles
 var topLabel = new Style( { font: "bold 30px", color:"white"});
-var buttonLabel = new Style( {font: "20px", color:"black"});
-var whiteButtonLabel = new Style( {font: "20px", color:"white"});
+var buttonLabel = new Style( {font: "20px", color:"white"});
+var whiteButtonLabel = new Style( {font: "24px", color:"white"});
 var textStyle = new Style({font: "24px", color:"black"});
 var nameInputSkin = new Skin({ borders: { left:2, right:2, top:2, bottom:2 }, stroke: 'gray',});
 var fieldStyle = new Style({ color: 'black', font: '24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5, });
@@ -21,7 +21,7 @@ var localPost = true
 
 //button template
 var backButton = BUTTONS.Button.template(function($){ return{
-  width: 70, height:35, left:10, skin: greySkin,
+  width: 70, height:35, left:10, skin: blueSkin,
   contents:[
     new Label({left:0, right:0, height:30, string:$.textForLabel, style:buttonLabel})
   ],
@@ -36,9 +36,9 @@ var backButton = BUTTONS.Button.template(function($){ return{
 
 //submit button
 var submitButton = BUTTONS.Button.template(function($){ return{
-  width: 100, height:35, top:10, skin:orangeSkin,
+  width: 150, height:50, top:10, skin:orangeSkin,
   contents:[
-    new Label({left:0, right:0, height:30, string:$.textForLabel, style:buttonLabel})
+    new Label({left:0, right:0, height:30, string:$.textForLabel, style:whiteButtonLabel})
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
