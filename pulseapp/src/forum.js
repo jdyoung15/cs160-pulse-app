@@ -10,6 +10,7 @@ var spaceSkin = new Skin({ fill: '#F0F0F0',});
 var whiteSkin = new Skin({ fill: 'white',});
 var fieldLabelSkin,
 var smallButtonStyle = new Style({font:"bold 16px", color:"white"});
+var smallButtonStyle1 = new Style({font:"bold 16px", color:"black"});
 var appName1 = new Style( { font:"bold 22px Arial, Gadget, sans-serif", color:"white", align: "left", lines: "1"} );
 var appName2 = new Style( { font:"16px Arial, Helvetica, sans-serif", color:"white", align: "left", lines: "1"} );
 var appName3 = new Style( { font:"bold 22px Arial, Gadget, sans-serif", color:"black", align: "left", lines: "1"} );
@@ -62,6 +63,21 @@ var myButtonTemplate2 = BUTTONS.Button.template(function($){ return{
         }}
     })
 }});
+
+
+var myButtonTemplate1 = BUTTONS.Button.template(function($){ return{
+	left:10, top:2, bottom:2, width: 94,  height: 30, name:$.textForLabel, skin: spaceSkin, style: smallButtonStyle1,
+  	contents:[
+    	new Label({left:0, right:0, height:16, string:$.textForLabel})
+  	],
+    behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+        onTap: { value:  function(button){
+           button.behavior.myButtonAction2(); 
+        }}
+    })
+}});
+
+
 
 //Send button
 var sendButton = new ButtonTemplate({
@@ -141,8 +157,8 @@ var mainContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSk
 		new Line({left:0, right:0, top:0, height:36,  skin: whiteSkin,
 			contents:[			
 				global = new myButtonTemplate2({textForLabel:"Global"}),	
-				local = new myButtonTemplate2({textForLabel:"Local"}),
-				self = new myButtonTemplate2({textForLabel:"Self"}),
+				local = new myButtonTemplate1({textForLabel:"Local"}),
+				self = new myButtonTemplate1({textForLabel:"Self"}),
         		
 			]
 		}),
