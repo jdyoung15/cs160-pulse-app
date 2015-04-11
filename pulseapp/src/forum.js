@@ -52,7 +52,7 @@ var back = new ButtonTemplate({
 
 //Button: Local/Global
 var myButtonTemplate2 = BUTTONS.Button.template(function($){ return{
-	left:20, top:2, bottom:2, right:20, height: 30, name:$.textForLabel, skin: orangeSkin, style: smallButtonStyle,
+	left:10, top:2, bottom:2, width: 94,  height: 30, name:$.textForLabel, skin: orangeSkin, style: smallButtonStyle,
   	contents:[
     	new Label({left:0, right:0, height:16, string:$.textForLabel})
   	],
@@ -63,9 +63,20 @@ var myButtonTemplate2 = BUTTONS.Button.template(function($){ return{
     })
 }});
 
-//Search button
+//Send button
 var sendButton = new ButtonTemplate({
-  left:0, width:60, height:36, skin: orangeSkin, style: smallButtonStyle,
+  left:5, width:60, height:36, skin: orangeSkin, style: smallButtonStyle,
+  textForLabel: "Send",
+  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+	onTap: { value:  function(button){
+	  	sendBuddy();
+    }}
+  })
+});	
+
+//Search button
+var searchButton = new ButtonTemplate({
+  left:8, width:60, height:36, skin: orangeSkin, style: smallButtonStyle,
   textForLabel: "Search",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
@@ -115,13 +126,12 @@ var mainContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSk
 	}), 
 	contents:[
 		new HeaderTemplate({title: "Forum", leftItem: new Container({left:0, right:0, top:0, bottom:0}), rightItem: addComment}),
-		new Line({top:0, height:50, skin: whiteSkin,
+		new Line({left:0, right:0, top:0, skin: whiteSkin,
 			contents:[				
 				search,
-				//searchButton,
+				searchButton,
 			]
-		}),
-		
+		}),		
 		new Line({left:0, right:0, top:0, skin: spaceSkin,
 			contents:[				
 				new Label({left:20, height: 3, top:0, string: "", style: labelStyle}),
@@ -141,6 +151,9 @@ var mainContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSk
 });
 
 function searchBuddy() {
+}
+
+function sendBuddy() {
 }
 
 local.behavior.myButtonAction2  = function(){
@@ -228,8 +241,6 @@ var mainContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 		new Line({top:0, left:0, right: 0, height:60, skin: rowH,
 			contents:[
 				new HeaderTemplate({title: "Thread", rightItem: new Container({left:0, right:0, top:0, bottom:0}), leftItem: back}),
-				
-
 			]
 		}),
 		
@@ -261,7 +272,7 @@ var forumContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: white
 			]
 		}),
         
-        new Line({left:0, right:0, top:0, skin: blackSkin,
+        new Line({left:0, right:0, top:0, skin: whiteSkin,
 			contents:[				
 				dataSend,
 				sendButton,
@@ -274,7 +285,7 @@ var repply = new FieldTemplate({name: "", texto:"Repply here..."});
 
 var repplyContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, 
 	contents:[    	
-		new Line({left:0, right:0, top:0, skin: blackSkin,
+		new Line({left:0, right:0, top:0, skin: whiteSkin,
 			contents:[				
 				new Label({left:20, height: 2, top:0, string: "", style: labelStyle}),
 			]
