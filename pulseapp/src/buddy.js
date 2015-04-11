@@ -12,13 +12,13 @@ var medButtonStyle = new Style({font:"20px", color:"white"});
 var smallButtonStyle = new Style({font:"16px", color:"white"});
 var buddyNameStyle = new Style({ font: "16px", color: "black"});
 var fieldStyle = new Style({ color: 'black', font: 'bold 24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
-var fieldHintStyle = new Style({ color: '#aaa', font: '24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
+var fieldHintStyle = new Style({ color: '#aaa', font: '20px', horizontal: 'left' });
 
 // True if user is currently assigned an exercise buddy.
 var hasCurrentBuddy = false;
 
 var FieldTemplate = Container.template(function($) { return { 
-  width: 250, height: 30, skin: chatBoxSkin, contents: [
+  width: 250, height: 35, skin: chatBoxSkin, contents: [
     Scroller($, { 
       left: 4, right: 4, top: 4, bottom: 4, active: true,
       behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
@@ -49,7 +49,7 @@ var findBuddyText = new Text({left:10, right:10, height:70,
     "complete your goals, you'll each earn double the points!"
 });
 
-var findBuddyButton = new ButtonTemplate({left:0, right:0, height:50,
+var findBuddyButton = new ButtonTemplate({left:0, right:0, height:40,
   textForLabel: "Find a Buddy!", 
   skin: orangeSkin, 
   style: largeButtonStyle,
@@ -81,9 +81,9 @@ var findBuddyScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: 
 	    }),
 		new Line({left:0, right:0, top:0, bottom:50, skin: whiteSkin,
 		  contents: [
-		    new Content({top:0, bottom:0, width:50, skin: whiteSkin}),
+		    new Content({top:0, bottom:0, width:70, skin: whiteSkin}),
 			findBuddyButton,
-			new Content({top:0, bottom:0, width:50, skin: whiteSkin}),
+			new Content({top:0, bottom:0, width:70, skin: whiteSkin}),
 		  ]
 		})
 	  ],
@@ -111,7 +111,7 @@ var chatBox = new Text({
 var chatField = new FieldTemplate({name:""});
 
 var chatSendButton = new ButtonTemplate({
-  left:0, right:0, bottom:0, height:30, skin: orangeSkin, style: smallButtonStyle,
+  left:0, right:0, bottom:0, height:35, skin: orangeSkin, style: smallButtonStyle,
   textForLabel: "Send",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
