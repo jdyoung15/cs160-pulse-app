@@ -106,12 +106,7 @@ var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,
   contents:[
-  	new Column({left:0, right:0, top:0, bottom:0,
-  	  contents:[
-   	    new HeaderTemplate({title: "Progress"}),
-   	    new Container({left:0, right:0, top:0, bottom:0}),   
-  	  ]
-  	}),
+  	new Container({left:0, right:0, top:0, bottom:0}),
     new Line({left:0, right:0, height:50, skin: whiteSkin,
       contents:[
         progressTabButton,
@@ -121,6 +116,12 @@ var mainColumn = new Column({
     }),
   ]
 });
+
+PROGRESS.switchToProgressScreen();
+
+progressTabButton.skin = blueSkin;
+buddyTabButton.skin = greySkin;
+forumTabButton.skin = greySkin,
 
 var ApplicationBehavior = Behavior.template({
 	onDisplayed: function(application) {
