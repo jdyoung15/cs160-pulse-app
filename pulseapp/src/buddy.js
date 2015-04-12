@@ -92,7 +92,7 @@ var findBuddyScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: 
 });
 
 var deleteBuddyButton = new ButtonTemplate({
-  left:0, right:0, height:50, style: medButtonStyle,
+  left:0, right:0, height:50, style: headerButtonLabelStyle,
   textForLabel: "Unbuddy",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){

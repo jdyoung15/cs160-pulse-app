@@ -18,7 +18,6 @@ var fieldHintStyle = new Style({ color: '#aaa', font: '24px', horizontal: 'left'
 
 var localPost = true
 
-
 //button template
 var backButton = BUTTONS.Button.template(function($){ return{
   width: 70, height:35, left:10, skin: blueSkin,
@@ -32,7 +31,6 @@ var backButton = BUTTONS.Button.template(function($){ return{
     }}
   })
 }});
-
 
 //submit button
 var submitButton = BUTTONS.Button.template(function($){ return{

@@ -15,12 +15,12 @@ var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: wh
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0, 
 	  contents: [
-	  	new HeaderTemplate1({title: "Progress", leftItem: new Picture({width: 50, height:50, left:0, url: "assets/profile.jpg"}),}),
+	  	new HeaderTemplate({title: "Progress", leftItem: new Picture({width: 50, height:50, left:0, url: "assets/profile.jpg"}),}),
 	  	new Text({left: 0, right:0, height:50,
   			skin: lightGreySkin,
   			style: labelStyle,
   			string:
-    			"Create a Goal! You do not have a goal yet! Start by creating one!"
+    			"You do not have a goal yet! Start by creating one!"
 			}),
 		
 		new ButtonTemplate({height:30, top: 30,
@@ -40,116 +40,77 @@ var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: wh
 });
 
 var submitGoalButton = new ButtonTemplate({
-  top:0, height:40, right:0, style: smallButtonStyle,
+  height:60, style: headerButtonLabelStyle,
   textForLabel: "Submit",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
-		switchScreens(zeroProgressScreen)	
-		// CHANGES TO RED  
+	  switchScreens(zeroProgressScreen);
     }}
   })
 });	
 
 var editButton = new ButtonTemplate({
-  bottom: 35, height:40, right:0, style: smallButtonStyle,
+  height:60, style: headerButtonLabelStyle,
   textForLabel: "Edit",
-  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-	onTap: { value:  function(button){
-		switchScreens(startProgressScreen)	 
-		// CHANGES TO BLUE 
-    }}
-  })
 });
-
-var nextButton = new ButtonTemplate({
-  bottom: 35, height:40, right:0, style: smallButtonStyle,
-  textForLabel: "",
-  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-	onTap: { value:  function(button){
-		switchScreens(fiftyProgressScreen)	
-		// CHANGES TO ORANGE/YELLOW  
-    }}
-  })
-});
-
-var nextButton1 = new ButtonTemplate({
-  bottom: 35, height:40, right:0, style: smallButtonStyle,
-  textForLabel: "",
-  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-	onTap: { value:  function(button){
-		switchScreens(doneProgressScreen)	
-		// CHANGES TO GREEN  
-    }}
-  })
-});
-
-var nextButton2 = new ButtonTemplate({
-  bottom: 35, height:40, right:0, style: smallButtonStyle,
-  textForLabel: "",
-  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-	onTap: { value:  function(button){
-		switchScreens(startProgressScreen)	  
-    }}
-  })
-});
-
-
 
 var startProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0, 
 	  contents: [
-	  	new HeaderTemplate({title: "Progress", leftItem: new Picture({width: 50, left: 0,height:50, url: "assets/profile.jpg"}), rightItem: submitGoalButton}),
+	  	new HeaderTemplate({title: "Progress", leftItem: new Picture({left:0, width: 50, height:50, url: "assets/profile.jpg"}), rightItem: submitGoalButton}),
 	  	new Picture({url: "assets/defaultGoal.png", width: 300, height:300, top:5})
 	  ],
 	}),
   ],
 });
 
+var index = 0;
+var image = new Picture({url: "assets/zeroProgress.png", top:-30, width:320});
+var imageContainer = new Container({top:0, active:true,
+	  contents: [
+	  	image
+	  ],
+	  behavior: Object.create(Container.prototype, {
+		onTouchEnded: { value: function(content){
+			index = (index + 1)%3;
+			var msg = new Message("/changeDeviceColor");
+			switch (index) {
+				case 0:
+					image.url = "assets/zeroProgress.png";
+					
+					msg.requestText = JSON.stringify({target:"self", color:"red"});
+					break;
+				case 1:
+					image.url = "assets/fiftyProgress.png";
+					
+					msg.requestText = JSON.stringify({target:"self", color:"yellow"});
+					break;
+				case 2:
+					image.url = "assets/doneProgress.png";
+					
+					msg.requestText = JSON.stringify({target:"self", color:"green"});
+					break;
+					
+			}
+			application.invoke(msg);
+		}}
+	}), 
+}),
+
 var zeroProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
-	new Column({left:0, right:0, top:0, bottom:0, 
+	new Column({left:0, right:0, top:0, bottom:0,
 	  contents: [
-	  	new HeaderTemplate2({title: "Progress", skin: redSkin, leftItem: new Picture({width: 50, left: 0,height:50, url: "assets/profile.jpg"}), rightItem: nextButton}),
-	  	new Picture({url: "assets/zeroProgress.png", width: 300, height:300, top:5})
+	  	new HeaderTemplate({title: "Progress", leftItem: new Picture({left:0, width: 50, height:50, url: "assets/profile.jpg"}), rightItem: editButton}),
+	  	imageContainer,
 	  ],
 	}),
   ],
 });
-
-var fiftyProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
-  contents: [
-	new Column({left:0, right:0, top:0, bottom:0, 
-	  contents: [
-	  	new HeaderTemplate3({title: "Progress",  leftItem: new Picture({width: 50, left: 0,height:50, url: "assets/profile.jpg"}), rightItem: nextButton1}),
-	  	new Picture({url: "assets/fiftyProgress.png", width: 340, height: 370,top:5})
-	  ],
-	}),
-  ],
-});
-
-var doneProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
-  contents: [
-	new Column({left:0, right:0, top:0, bottom:0, 
-	  contents: [
-	  	new HeaderTemplate4({title: "Progress", leftItem: new Picture({width: 50, left: 0,height:50, url: "assets/profile.jpg"}), rightItem: nextButton2}),
-	  	new Picture({url: "assets/doneProgress.png", width: 340, height:370, top:5})
-	  ],
-	}),
-  ],
-});
-
-
-
-var progressScreens = [newGoalScreen, startProgressScreen, zeroProgressScreen, fiftyProgressScreen, doneProgressScreen];
 
 // Switch to Buddy screen from another section of the app
 var switchToProgressScreen = function() {
-  currentScreen = mainColumn[0];
-	
-  if (progressScreens.indexOf(currentScreen) >= 0) {
-	return;
-  }
 	
   if (!hasProgress) {
   	switchScreens(newGoalScreen);

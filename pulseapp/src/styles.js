@@ -10,44 +10,21 @@ yellowSkin = new Skin({ fill:"#f27400" });
 greenSkin = new Skin({ fill:"#65df71" });
 
 headerLabelStyle = new Style({font:"bold 26px", color:"white"});
+headerButtonLabelStyle = new Style({font:"20px", color:"white"});
 
 HeaderTemplate = Line.template(function($) { return { left: 0, right: 0, height:60, skin: blueSkin, 
 	contents: [
-			$.leftItem,
-			new Label({left:64, right:0, height:50, width: 30, string:$.title, style:headerLabelStyle}),
-			$.rightItem
-	], 
-}});
-
-HeaderTemplate1 = Line.template(function($) { return { left: 0, right: 0, height:60, skin: blueSkin, 
-	contents: [
-			$.leftItem,
-			new Label({left: 0, right:40, height:50, string:$.title, style:headerLabelStyle}),
-			$.rightItem
-	], 
-}});
-
-HeaderTemplate2 = Line.template(function($) { return { left: 0, right: 0, height:60, skin: redSkin, 
-	contents: [
-			$.leftItem,
-			new Label({left:61, right:0, height:50, width: 30, string:$.title, style:headerLabelStyle}),
-			$.rightItem
-	], 
-}});
-
-HeaderTemplate3 = Line.template(function($) { return { left: 0, right: 0, height:60, skin: yellowSkin, 
-	contents: [
-			$.leftItem,
-			new Label({left:61, right:0, height:50, width: 30, string:$.title, style:headerLabelStyle}),
-			$.rightItem
-	], 
-}});
-
-HeaderTemplate4 = Line.template(function($) { return { left: 0, right: 0, height:60, skin: greenSkin, 
-	contents: [
-			$.leftItem,
-			new Label({left:61, right:0, height:50, width: 30, string:$.title, style:headerLabelStyle}),
-			$.rightItem
+			new Container({top:0, left:0, width: 100, height: 60, skin: blueSkin, active: true,
+			  contents: [
+				 $.leftItem,
+			  ],
+			}),
+			new Label({left:0, right:0, height:60, string:$.title, style:headerLabelStyle}),
+			new Container({right: 0, width: 100, height: 60, skin: blueSkin, active: true,
+			  contents: [
+				 $.rightItem,
+			  ],
+			}),
 	], 
 }});
 
