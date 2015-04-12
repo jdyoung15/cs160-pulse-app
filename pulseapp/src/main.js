@@ -6,6 +6,7 @@ var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
 var BUDDY = require('buddy');
 var FORUM = require('forum');
+var PROGRESS = require('progress');
 var NEWPOST = require('newpost');
 var STYLE = require('styles');
 
@@ -63,8 +64,10 @@ var tabButtonLabelStyle = new Style({font:"20px", color:"black"});
 
 var tabButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
+    	PROGRESS.switchToProgressScreen();
       if (button.name == "Progress") {
       	// TODO: Show progress screen
+      	PROGRESS.switchToProgressScreen();
       	
       	progressTabButton.skin = blueSkin;
       	buddyTabButton.skin = greySkin;
