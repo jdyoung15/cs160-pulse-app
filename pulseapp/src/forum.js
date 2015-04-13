@@ -268,12 +268,6 @@ var mainContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 				new HeaderTemplate({title: "Thread", rightItem: new Container({left:0, right:0, top:0, bottom:0}), leftItem: back}),
 			]
 		}),
-		
-		new Line({left:0, right:0, top:0, skin: blackSkin,
-			contents:[				
-				new Label({left:20, height: 2, top:0, string: "", style: labelStyle}),
-			]
-		}),
 	]
 });
 
