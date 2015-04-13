@@ -164,9 +164,9 @@ var scroller = SCROLLER.VerticalScroller.template(function($){ return{
 
 var itemNameStyle = new Style({ font: '26px bold Tahoma, ', horizontal: 'null', vertical: 'null', lines: 1, });
 var timeStyle = new Style({ font: '14px bold Arial, ', horizontal: 'null', vertical: 'null', lines: 1, });
-var textStyle = new Style({ font: '16px bold Arial, ', horizontal: 'null', vertical: 'null', lines: 1, });
+var textStyle = new Style({ font: '16px bold Arial, ', horizontal: 'left', vertical: 'null', lines: 1, left: 10});
 
-var ListItemLine = Line.template(function($) { return { left: 0, right: 0, skin: whiteSkin, name: $.name, 
+var ListItemLine = Line.template(function($) { return { left: 0, right: 0, skin: $.skin, name: $.name, 
 	contents: [
 		Column($, { left: 0, right: 0, contents: [
 			Line($, { left: 0, right: 0, height: 5, skin: spaceSkin, }),
@@ -187,16 +187,16 @@ var ListItemLine = Line.template(function($) { return { left: 0, right: 0, skin:
 
 
 //Forum Container
-var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin,
+var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGreySkin,
 	contents:[    	
 		/*new scroller({ name: "forumScroller", left:0, right:0, top: 0, bottom: 0, skin: whiteSkin,
     		contents: [
         			
     		]
 		}),*/	
-		new ListItemLine({name:"Maria Powell", picture:"gavatar1", date:"1 hr ago", text: "What are your favorite walking shoes?"}),
-        new ListItemLine({name:"Andy Lee", picture:"mavatar1", date:"3 hr ago", text: "Anyone has a good morning exercises?"}), 
-        new ListItemLine({name:"Mike Jones", picture:"mavatar2", date:"3 hr ago", text: "Favorite music to listen to on a run?"}),   				
+		new ListItemLine({name:"Maria Powell", picture:"gavatar1", date:"1 hr ago", text: "What are your favorite walking shoes?", skin:whiteSkin}),
+        new ListItemLine({name:"Andy Lee", picture:"mavatar1", date:"3 hr ago", text: "What's a good morning exercise?", skin:whiteSkin}), 
+        new ListItemLine({name:"Mike Jones", picture:"mavatar2", date:"3 hr ago", text: "Favorite music to listen to on a run?", skin:whiteSkin}),   				
 	],
 });
 
@@ -240,19 +240,19 @@ back.behavior.myButtonAction2  = function(){
 
 
 //Forum Container
-var forumContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, 
+var forumContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGreySkin, 
 	contents:[    	
-		new ListItemLine({name:"Maria Powell", picture:"gavatar1", date:"1 hr ago", text: "What are your favorite walking shoes?"}),
-        new ListItemLine({name:"Andy Lee", picture:"mavatar1", date:"3 hr ago", text: "Anyone has a good morning exercises?"}), 
+		new ListItemLine({name:"Maria Powell", picture:"gavatar1", date:"1 hr ago", text: "What are your favorite walking shoes?", skin:whiteSkin}),
+        new ListItemLine({name:"Andy Lee", picture:"mavatar1", date:"3 hr ago", text: "What's a good morning exercise??"}), 
         new ListItemLine({name:"Mike Jones", picture:"mavatar2", date:"3 hr ago", text: "Favorite music to listen to on a run?"}),  
         
-        new Line({left:0, right:0, top:0, skin: spaceSkin,
+        new Line({left:0, right:0, top:0, skin: lightGreySkin,
 			contents:[				
 				new Label({left:20, height: 3, top:0, string: "", style: labelStyle}),
 			]
 		}),
         
-        new Line({left:0, right:0, top:0, skin: whiteSkin,
+        new Line({bottom:0, skin: whiteSkin,
 			contents:[				
 				dataSend,
 				sendButton,
