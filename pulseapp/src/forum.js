@@ -28,7 +28,7 @@ var chatBoxSkin = new Skin({
 
 //Button Post
 var addComment = new ButtonTemplate({
-  left:0, right:0, height:50, style: medButtonStyle,
+  left:0, right:0, height:60, style: medButtonStyle,
   textForLabel: "Post",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
@@ -48,36 +48,6 @@ var back = new ButtonTemplate({
     }}
   })
 });	
-
-
-
-//Button: Local/Global
-var myButtonTemplate2 = BUTTONS.Button.template(function($){ return{
-	left:10, top:2, bottom:2, width: 94,  height: 30, name:$.textForLabel, skin: orangeSkin, style: smallButtonStyle,
-  	contents:[
-    	new Label({left:0, right:0, height:16, string:$.textForLabel})
-  	],
-    behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-        onTap: { value:  function(button){
-           button.behavior.myButtonAction2(); 
-        }}
-    })
-}});
-
-
-var myButtonTemplate1 = BUTTONS.Button.template(function($){ return{
-	left:10, top:2, bottom:2, width: 94,  height: 30, name:$.textForLabel, skin: whiteSkin, style: smallButtonStyle1,
-  	contents:[
-    	new Label({left:0, right:0, height:16, string:$.textForLabel})
-  	],
-    behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-        onTap: { value:  function(button){
-           button.behavior.myButtonAction2(); 
-        }}
-    })
-}});
-
-
 
 //Send button
 var sendButton = new ButtonTemplate({
@@ -165,9 +135,9 @@ var mainContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSk
 		
 		new Line({left:0, right:0, top:0, height:36,  skin: whiteSkin,
 			contents:[			
-				global = new myButtonTemplate2({textForLabel:"Global"}),	
-				local = new myButtonTemplate1({textForLabel:"Local"}),
-				self = new myButtonTemplate1({textForLabel:"Self"}),
+				global = new ButtonTemplate({height:36, textForLabel:"Global", skin:orangeSkin, style:smallButtonStyle}),	
+				local = new ButtonTemplate({height:36, textForLabel:"Local", skin:whiteSkin, style:smallButtonStyle1}),
+				self = new ButtonTemplate({height:36, textForLabel:"Self", skin:whiteSkin, style:smallButtonStyle1}),
         		
 			]
 		}),
@@ -179,15 +149,6 @@ function searchBuddy() {
 }
 
 function sendBuddy() {
-}
-
-local.behavior.myButtonAction2  = function(){
-}
-
-global.behavior.myButtonAction2  = function(){
-}
-
-self.behavior.myButtonAction2  = function(){
 }
 
 addComment.behavior.myButtonAction  = function(){
