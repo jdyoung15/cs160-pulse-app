@@ -243,8 +243,8 @@ back.behavior.myButtonAction2  = function(){
 var forumContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGreySkin, 
 	contents:[    	
 		new ListItemLine({name:"Maria Powell", picture:"gavatar1", date:"1 hr ago", text: "What are your favorite walking shoes?", skin:whiteSkin}),
-        new ListItemLine({name:"Andy Lee", picture:"mavatar1", date:"3 hr ago", text: "What's a good morning exercise??"}), 
-        new ListItemLine({name:"Mike Jones", picture:"mavatar2", date:"3 hr ago", text: "Favorite music to listen to on a run?"}),  
+        new ListItemLine({name:"Andy Lee", picture:"mavatar1", date:"3 hr ago", text: "I like New Balance shoes!"}), 
+        new ListItemLine({name:"Mike Jones", picture:"mavatar2", date:"3 hr ago", text: "My favorites are Nikes"}),  
         
         new Line({left:0, right:0, top:0, skin: lightGreySkin,
 			contents:[				

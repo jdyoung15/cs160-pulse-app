@@ -13,8 +13,8 @@ var buttonLabel = new Style( {font: "20px", color:"white"});
 var whiteButtonLabel = new Style( {font: "24px", color:"white"});
 var textStyle = new Style({font: "24px", color:"black"});
 var nameInputSkin = new Skin({ borders: { left:2, right:2, top:2, bottom:2 }, stroke: 'gray',});
-var fieldStyle = new Style({ color: 'black', font: '24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5, });
-var fieldHintStyle = new Style({ color: '#aaa', font: '24px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5, });
+var fieldStyle = new Style({ color: 'black', font: '20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5, });
+var fieldHintStyle = new Style({ color: '#aaa', font: '20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5, });
 
 var localPost = true
 
@@ -47,9 +47,9 @@ var submitButton = BUTTONS.Button.template(function($){ return{
 
 //title text field template
 var MyField = Container.template(function($) { return { 
-  width: 230, height: 36, left:10, right:10, skin: nameInputSkin, contents: [
+  width: 230, height: 40, left:10, right:10, skin: nameInputSkin, contents: [
     Scroller($, { 
-      left: 4, right: 4, top: 4, bottom: 4, active: true, 
+      left: 4, right: 4, top: 0, bottom: 0, active: true, 
       behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
         Label($, { 
           left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: fieldStyle, anchor: 'NAME',
