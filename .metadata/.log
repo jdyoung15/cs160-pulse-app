@@ -2506,3 +2506,78 @@ java.io.IOException: Connection reset by peer
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 17:24:40.452
 !MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 17:29:32.097
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:15:31.098
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:17:39.796
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:19:47.533
+!MESSAGE http://localhost:10004/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:20:41.547
+!MESSAGE http://localhost:10006/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:20:44.921
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:20:47.030
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:20:50.961
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:21:21.992
+!MESSAGE http://localhost:10008/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:22:01.326
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:22:03.889
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:22:05.959
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:22:21.834
+!MESSAGE http://localhost:10012/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:22:38.560
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:22:40.347
+!MESSAGE http://localhost:10012/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:23:32.369
+!MESSAGE http://localhost:10014/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:23:34.716
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:23:38.548
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:23:40.524
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:23:42.342
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:23:44.929
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:23:59.609
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:24:08.650
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:25:24.315
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:25:32.037
+!MESSAGE Debug listener stopped...

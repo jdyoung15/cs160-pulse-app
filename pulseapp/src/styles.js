@@ -5,8 +5,8 @@ blueSkin = new Skin({ fill:"#56bce2" });
 greySkin = new Skin({ fill:"#d7d7d5" });
 lightGreySkin = new Skin({ fill: "#efefef" });
 orangeSkin = new Skin({ fill:"#f27400" });
-redSkin = new Skin({ fill:"#ee826c" });
-yellowSkin = new Skin({ fill:"#f27400" });
+redSkin = new Skin({ fill:"#e07464" });
+yellowSkin = new Skin({ fill:"#f2ea00" });
 greenSkin = new Skin({ fill:"#65df71" });
 
 headerLabelStyle = new Style({font:"bold 26px", color:"white"});
