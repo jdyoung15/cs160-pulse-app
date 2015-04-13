@@ -59,14 +59,14 @@ var startProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, sk
 	new Column({left:0, right:0, top:0, bottom:0, 
 	  contents: [
 	  	new HeaderTemplate({title: "Progress", leftItem: new Picture({left:0, width: 50, height:50, url: "assets/profile.jpg"}), rightItem: submitGoalButton}),
-	  	new Picture({url: "assets/defaultGoal.png", width: 300, height:300, top:5})
+	  	new Picture({url: "assets/defaultGoal.png", left:0, right:0, top:-90})
 	  ],
 	}),
   ],
 });
 
 var index = 0;
-var image = new Picture({url: "assets/zeroProgress.png", top:-30, width:320});
+var image = new Picture({url: "assets/zeroProgress.png", top:-91, width:320});
 var imageContainer = new Container({top:0, active:true,
 	  contents: [
 	  	image
