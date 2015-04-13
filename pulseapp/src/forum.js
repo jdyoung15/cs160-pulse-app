@@ -40,7 +40,7 @@ var addComment = new ButtonTemplate({
 
 //Button Back
 var back = new ButtonTemplate({
-  left:0, right:0, height:50, style: medButtonStyle,
+  left:0, right:0, height:60, style: medButtonStyle,
   textForLabel: "Back",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
