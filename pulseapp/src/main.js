@@ -15,8 +15,7 @@ deviceURL = "";
 Handler.bind("/discover", Behavior({
 	onInvoke: function(handler, message){
 		deviceURL = JSON.parse(message.requestText).url;
-		// Uncomment if we want to get constant heartbeat data from device. 
-		// application.invoke(new Message("/getStatus"));
+		application.invoke(new Message("/getStatus"));
 	}
 }));
 
@@ -31,7 +30,7 @@ Handler.bind("/getStatus", {
         handler.invoke(new Message(deviceURL + "getStatus"), Message.JSON);
     },
     onComplete: function(handler, message, json){
-    	trace(json.heartBeat + "\n");
+    	PROGRESS.changeHeartBeat(Math.round(json.heartBeat));
     	handler.invoke( new Message("/delay"));
     }
 });

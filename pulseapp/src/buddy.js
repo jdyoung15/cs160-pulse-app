@@ -6,7 +6,7 @@ var chatBoxSkin = new Skin({
   stroke:"#efefef"
 });
 
-var labelStyle = new Style({ font: "20px", color: "black", horizontal: "left" });
+var labelStyle = new Style({ font: "20px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10 });
 var largeButtonStyle = new Style({font:"24px", color:"white"});
 var medButtonStyle = new Style({font:"20px", color:"white"});
 var smallButtonStyle = new Style({font:"16px", color:"white"});
@@ -41,7 +41,7 @@ var FieldTemplate = Container.template(function($) { return {
   ]
 }});
 
-var findBuddyText = new Text({left:10, right:10, height:70,
+var findBuddyText = new Text({top: 0, left: 0, right:0,
   skin: lightGreySkin, 
   style: labelStyle,
   string:
@@ -67,23 +67,13 @@ var findBuddyScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: 
 	new Column({left:0, right:0, top:0, bottom:0, 
 	  contents: [
 	  	HeaderTemplate({title: "Buddy"}),
-	  	new Container({left:0, right:0, top:0, bottom:0, skin: lightGreySkin,
-	  	  contents: [
-	    	findBuddyText,
-	  	  ]
-	  	}),
-	  	new Line({left:0, right:0, top:0, bottom:0, skin: whiteSkin,
-	      contents:[
-	        new Content({left:0, right:0, top:0, bottom:0, skin: whiteSkin}),
-	        new Picture({left: 0, right: 0, height:200, url: "assets/buddy_unknown.png"}),
-	        new Content({left:0, right:0, top:0, bottom:0, skin: whiteSkin}),
-	      ]
-	    }),
-		new Line({left:0, right:0, top:0, bottom:50, skin: whiteSkin,
+	  	findBuddyText,
+	  	new Picture({left: 0, right: 0, height:180, url: "assets/buddy_unknown.png"}),
+		new Line({left:0, right:0, top:0, skin: whiteSkin,
 		  contents: [
-		    new Content({top:0, bottom:0, width:50, skin: whiteSkin}),
+		    new Content({top:0, bottom:0, width:60, skin: whiteSkin}),
 			findBuddyButton,
-			new Content({top:0, bottom:0, width:50, skin: whiteSkin}),
+			new Content({top:0, bottom:0, width:60, skin: whiteSkin}),
 		  ]
 		})
 	  ],

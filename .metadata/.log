@@ -2665,3 +2665,954 @@ java.io.IOException: Connection reset by peer
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:50:33.568
 !MESSAGE http://localhost:10006/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 19:50:53.644
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 19:50:53.645
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:50:53.647
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:50:55.512
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:50:57.165
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:50:59.111
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:51:49.549
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:58:31.916
+!MESSAGE http://localhost:10002/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:59:33.869
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 19:59:35.190
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:12:27.278
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:12:36.336
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:12:58.574
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:13:28.176
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:19:11.725
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:20:08.627
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:20:37.841
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:20:44.942
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:21:18.351
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:21:23.764
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:22:23.082
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:22:51.448
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:23:14.625
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:23:29.927
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:24:02.053
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:24:09.277
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:24:25.503
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:26:33.258
+!MESSAGE http://localhost:10006/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:27:01.215
+!MESSAGE http://localhost:10008/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:27:17.501
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:27:59.051
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:28:30.832
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:29:38.623
+!MESSAGE http://localhost:10012/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:29:40.628
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:29:42.214
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:29:45.077
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:29:46.713
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:29:48.838
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:29:50.403
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:35:11.017
+!MESSAGE http://localhost:10014/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:35:13.617
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:35:32.759
+!MESSAGE http://localhost:10016/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:35:34.465
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:36:11.565
+!MESSAGE http://localhost:10018/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:36:20.268
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:36:28.196
+!MESSAGE http://localhost:10018/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:36:33.917
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:37:07.415
+!MESSAGE http://localhost:10020/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:37:09.273
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:38:26.898
+!MESSAGE http://localhost:10022/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:38:43.293
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:39:17.553
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:39:55.273
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:40:29.174
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:41:03.771
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:41:14.313
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:41:33.535
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:41:52.935
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:42:19.546
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:43:12.259
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:43:32.053
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:43:41.131
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:43:49.680
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:44:01.607
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 20:44:22.038
+!MESSAGE Unexpected Exception
+!STACK 0
+java.nio.channels.AsynchronousCloseException
+	at java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:205)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:406)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.run(KinomaDebugConnector.java:128)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:44:22.045
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:44:34.379
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:44:35.919
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:44:46.939
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:45:38.193
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:48:26.271
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:48:58.142
+!MESSAGE http://localhost:10006/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:49:56.256
+!MESSAGE http://localhost:10008/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:49:58.472
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:49:59.971
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:50:44.090
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:51:09.181
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:51:18.504
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:51:46.968
+!MESSAGE http://localhost:10012/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:51:48.907
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:51:50.398
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:51:51.961
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:52:20.092
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:52:45.330
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:53:00.654
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:53:15.047
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:53:21.515
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:53:34.380
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:53:57.293
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:54:34.606
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:55:13.012
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:56:06.411
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:58:13.816
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:58:34.831
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:58:42.358
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:58:46.829
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:58:58.401
+!MESSAGE http://localhost:10006/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:59:10.200
+!MESSAGE http://localhost:10008/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:59:17.767
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:59:28.893
+!MESSAGE http://localhost:10008/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:59:31.217
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:59:32.391
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:59:33.541
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:59:35.130
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 20:59:49.548
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:00:01.518
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:00:15.979
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:00:22.758
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:00:31.168
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:00:42.002
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:01:08.204
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:01:13.518
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:01:41.189
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:01:51.817
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:02:24.576
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:02:30.922
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:02:52.218
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:03:35.793
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:04:13.623
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:05:20.379
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:05:50.492
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:10:46.740
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:10:48.973
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:11:08.385
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:11:10.687
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:11:10.688
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:11:10.695
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:11:13.022
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:11:22.399
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:11:25.272
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:11:29.627
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:11:41.738
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:12:04.863
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:12:09.552
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:12:09.553
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:12:09.558
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:12:12.210
+!MESSAGE http://localhost:10006/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:12:22.191
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:12:48.859
+!MESSAGE http://localhost:10006/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:12:57.234
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:12:57.237
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:12:57.243
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:13:02.563
+!MESSAGE http://localhost:10008/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:13:18.552
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:13:54.336
+!MESSAGE http://localhost:10008/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:14:39.320
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:15:01.824
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:15:23.849
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:15:30.036
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:15:42.181
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:15:47.533
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:15:57.826
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:16:01.619
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:16:16.205
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:16:19.228
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:16:43.725
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:16:48.100
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:16:59.033
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:17:25.421
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:17:36.360
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:17:45.195
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:17:56.875
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:18:13.388
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:18:18.604
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:18:30.572
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:19:04.148
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:19:23.100
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:20:07.004
+!MESSAGE http://localhost:10010/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:20:10.148
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:20:10.151
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:20:10.154
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:20:10.197
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:20:26.072
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:20:32.885
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:20:42.241
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:20:51.509
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:20:58.775
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:21:26.152
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:21:29.547
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:21:35.152
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:22:02.940
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:22:39.766
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:22:42.482
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:23:07.522
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:23:11.139
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:23:39.821
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:23:46.989
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:23:52.256
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:24:32.018
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:24:38.154
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:24:44.810
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:24:49.179
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:25:00.348
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:25:07.367
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:25:10.990
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-12 21:25:10.991
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:25:10.992
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:25:37.478
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:25:45.004
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:25:59.818
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:26:11.420
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:26:29.890
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:26:35.619
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:26:55.994
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:27:04.602
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:28:27.575
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:28:35.611
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:28:48.015
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:29:04.488
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:29:23.598
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:29:29.768
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:29:38.869
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:29:54.319
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:30:10.256
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:30:13.957
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:30:23.191
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:30:26.131
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:30:35.795
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:30:38.734
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:30:55.580
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:31:04.535
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:31:14.328
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:31:30.756
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:31:41.415
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:31:46.872
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:31:56.411
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:32:19.397
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:32:32.662
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:32:37.691
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:32:46.331
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:32:49.488
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:32:58.813
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:33:02.258
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:33:07.631
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:33:17.158
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:35:44.919
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:35:55.980
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:38:00.007
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp

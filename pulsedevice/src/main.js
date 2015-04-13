@@ -49,7 +49,7 @@ var yellowSkin = new Skin({ fill:"#f2ea00" });
 var greenSkin = new Skin({ fill:"#65df71" });
 
 var labelStyle = new Style({font:"20px", color:"black"});
-var heartBeatLabel = new Label({left:0, right:0, height:50, string:"Heart Beat/Minute: " + heartBeat, style:labelStyle})
+var heartBeatLabel = new Label({left:0, right:0, height:50, string:"80 BPM" + heartBeat, style:labelStyle})
 var progress = new Line({left:0, right:0, top:0, bottom:0, skin: redSkin});
 var buddyProgress = new Line({left:0, right:0, top:0, bottom:0, skin: yellowSkin});
 
