@@ -28,7 +28,7 @@ var chatBoxSkin = new Skin({
 
 //Button Post
 var addComment = new ButtonTemplate({
-  left:0, right:0, height:60, style: medButtonStyle,
+  left:0, right:0, height:50, style: medButtonStyle,
   textForLabel: "Post",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
@@ -40,7 +40,7 @@ var addComment = new ButtonTemplate({
 
 //Button Back
 var back = new ButtonTemplate({
-  left:0, right:0, height:60, style: medButtonStyle,
+  left:0, right:0, height:50, style: medButtonStyle,
   textForLabel: "Back",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
@@ -66,7 +66,7 @@ var myButtonTemplate2 = BUTTONS.Button.template(function($){ return{
 
 
 var myButtonTemplate1 = BUTTONS.Button.template(function($){ return{
-	left:10, top:2, bottom:2, width: 94,  height: 30, name:$.textForLabel, skin: spaceSkin, style: smallButtonStyle1,
+	left:10, top:2, bottom:2, width: 94,  height: 30, name:$.textForLabel, skin: whiteSkin, style: smallButtonStyle1,
   	contents:[
     	new Label({left:0, right:0, height:16, string:$.textForLabel})
   	],
@@ -90,10 +90,19 @@ var sendButton = new ButtonTemplate({
   })
 });	
 
+//Icon
+var TempIcon = new Texture("assets/search.png");
+var IconSkin = new Skin({
+	width:25,
+	height:25,
+	texture: TempIcon,
+	fill:"white"
+});
+
 //Search button
 var searchButton = new ButtonTemplate({
-  left:8, width:60, height:36, skin: orangeSkin, style: smallButtonStyle,
-  textForLabel: "Search",
+  left:8, width:25, height:25, skin: IconSkin, style: smallButtonStyle,
+  textForLabel: "",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
 	  	searchBuddy();
