@@ -90,6 +90,9 @@ var deleteBuddyButton = new ButtonTemplate({
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
 	  hasCurrentBuddy = false;
+	  var msg = new Message("/changeDeviceColor");
+      msg.requestText = JSON.stringify({target:"buddy", color:"white"});
+      application.invoke(msg);
 	  switchScreens(findBuddyScreen);
     }}
   })
