@@ -63,15 +63,15 @@ var sendButton = new ButtonTemplate({
 //Icon
 var TempIcon = new Texture("assets/search.png");
 var IconSkin = new Skin({
-	width:25,
-	height:25,
+	width:30,
+	height:30,
 	texture: TempIcon,
 	fill:"white"
 });
 
 //Search button
 var searchButton = new ButtonTemplate({
-  left:8, width:25, height:25, skin: IconSkin, style: smallButtonStyle,
+  left:8, width:30, height:34, skin: IconSkin, style: smallButtonStyle,
   textForLabel: "",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
@@ -251,6 +251,12 @@ var forumContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: light
 				new Label({left:20, height: 3, top:0, string: "", style: labelStyle}),
 			]
 		}),
+		
+		new Line({bottom:0, skin: lightGreySkin,
+			contents:[				
+				new Label({left:20, height: 140, top:0, string: "", style: labelStyle}),
+			]
+		}),	
         
         new Line({bottom:0, skin: whiteSkin,
 			contents:[				
