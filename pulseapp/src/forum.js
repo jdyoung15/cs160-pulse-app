@@ -108,8 +108,33 @@ var FieldTemplate = Container.template(function($) { return {
   ]
 }});
 
+
+var FieldTemplate2 = Container.template(function($) { return { 
+  width: 250, height: 36, skin: chatBoxSkin, contents: [
+    Scroller($, { 
+      left: 4, right: 4, top: 4, bottom: 4, active: true,
+      behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
+        Label($, { 
+          left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: fieldStyle, anchor: 'NAME', name: "fieldLabel",
+          editable: true, string: $.name,
+         	behavior: Object.create( CONTROL.FieldLabelBehavior.prototype, {
+         		onEdited: { value: function(label){
+         		  var data = this.data;
+              	  data.name = label.string;
+              	  label.container.hint.visible = ( data.name.length == 0 );	
+         		}}
+         	}),
+         }),
+         Label($, {
+   			 	left:4, right:4, top:4, bottom:4, style:fieldHintStyle, string:$.texto,  name:"hint"
+         })
+      ]
+    })
+  ]
+}});
+
 var search = new FieldTemplate({name:"", texto:"Search..."});
-var dataSend = new FieldTemplate({name:"", texto:""});
+var dataSend = new FieldTemplate2({name:"", texto:""});
 
 //Main Container
 var mainContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, active:true,
