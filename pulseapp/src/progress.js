@@ -66,8 +66,8 @@ var startProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, sk
 });
 
 var index = 0;
-var image = new Picture({url: "assets/zeroProgress.png", top:-91, width:320});
-var imageContainer = new Container({top:0, active:true,
+var image = new Picture({url: "assets/zeroProgress.png", top:-91, left:0, right:0});
+var imageContainer = new Container({left:0, right:0, top:0, bottom:0, active:true,
 	  contents: [
 	  	image
 	  ],
