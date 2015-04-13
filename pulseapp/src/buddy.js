@@ -56,6 +56,9 @@ var findBuddyButton = new ButtonTemplate({left:0, right:0, height:50,
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value: function(button){
       hasCurrentBuddy = true;
+      var msg = new Message("/changeDeviceColor");
+      msg.requestText = JSON.stringify({target:"buddy", color:"red"});
+      application.invoke(msg);
       switchScreens(currentBuddyScreen);
     }}
   }), 

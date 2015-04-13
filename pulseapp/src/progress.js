@@ -133,7 +133,7 @@ var switchToProgressScreen = function() {
 };
 
 var changeHeartBeat = function(value) {
-	heartBeatLabel.string = "Heart Rate: " + value + " BMP";
+	heartBeatLabel.string = "Heart Rate: " + value + " BPM";
 }
    
 exports.switchToProgressScreen = switchToProgressScreen;
