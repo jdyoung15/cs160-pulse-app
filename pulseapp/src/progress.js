@@ -34,8 +34,8 @@ var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: wh
   			string:
     			"You do not have a goal yet! Start by creating one!"
 			}),
-		new Picture({left: 0, right: 0, height:180, url: "assets/sadFace.png"}),
-		new Line({left:0, right:0, top:0, skin: whiteSkin,
+		new Picture({top: 20, left: 0, right: 0, height:180, url: "assets/sadFace.png"}),
+		new Line({top: 20, left:0, right:0, skin: whiteSkin,
 		  contents: [
 		    new Content({top:0, bottom:0, width:60, skin: whiteSkin}),
 			okButton,

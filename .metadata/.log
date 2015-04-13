@@ -3616,3 +3616,42 @@ java.io.IOException: Broken pipe
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:38:00.007
 !MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:41:01.594
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:41:37.389
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:43:40.571
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:44:01.491
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:44:06.152
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:44:08.355
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:44:24.897
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:44:26.473
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:44:38.086
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:45:09.009
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:45:17.518
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:45:26.144
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-12 21:45:32.518
+!MESSAGE Debug listener stopped...
