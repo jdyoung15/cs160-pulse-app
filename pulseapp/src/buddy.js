@@ -69,7 +69,7 @@ var findBuddyScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: 
 	  	HeaderTemplate({title: "Buddy"}),
 	  	findBuddyText,
 	  	new Picture({left: 0, right: 0, height:180, url: "assets/buddy_unknown.png"}),
-		new Line({left:0, right:0, top:0, skin: whiteSkin,
+		new Line({left:0, right:0, skin: whiteSkin,
 		  contents: [
 		    new Content({top:0, bottom:0, width:60, skin: whiteSkin}),
 			findBuddyButton,
@@ -121,7 +121,7 @@ var currentBuddyScreen = new Container({
 	  	new HeaderTemplate({title: "Buddy", leftItem: new Container({left:0, right:0, top:0, bottom:0}), rightItem: deleteBuddyButton}),
 	  	new Container({left:0, right:0, top:0, bottom:0, skin: lightGreySkin,
 	  	  contents: [
-	    	new Label({left:10, right:10, height: 30, string: "Countdown: 6 days left", style: labelStyle}),
+	    	new Label({left:10, right:10, height: 40, string: "Countdown: 6 days left", style: labelStyle}),
 	  	  ]
 	  	}),
 	  	new Line({
@@ -134,15 +134,15 @@ var currentBuddyScreen = new Container({
 		new Line({
 		  left:0, right:0, bottom: 0, skin: whiteSkin, 
 		  contents: [
-		  	new Picture({left: 0, right: 0, height:100, url: "assets/buddy.png"}),
-		  	new Picture({left: 0, right: 0, height:100, url: "assets/buddy.png"}),
+		  	new Picture({left: 0, right: 0, height:100, url: "assets/mavatar2.png"}),
+		  	new Picture({left: 0, right: 0, height:100, url: "assets/mavatar1.png"}),
 		  ]
 		}),
 	  	new Line({
 		  left:0, right:0, bottom: 0, skin: whiteSkin,
 		  contents: [
-		  	new Picture({left: 0, right: 0, height:100, url: "assets/buddy_progress_25.png"}),
-		  	new Picture({left: 0, right: 0, height:100, url: "assets/buddy_progress_50.png"}),		  	
+		  	new Picture({left: 0, right: 0, top:10, height:100, url: "assets/buddy_progress_25.png"}),
+		  	new Picture({left: 0, right: 0, top:10, height:100, url: "assets/buddy_progress_50.png"}),		  	
 		  ]
 		}),
 		new Container({left:0, right:0, top:10, bottom:0, skin: chatBoxSkin,
