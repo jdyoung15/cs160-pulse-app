@@ -45,11 +45,6 @@ Handler.bind("/delay", {
     }
 });
 
-/*   	
-var msg = new Message("/changeDeviceColor");
-msg.requestText = JSON.stringify({target:"self", color:"green"});
-application.invoke(msg);
-*/
 Handler.bind("/changeDeviceColor", {
 	onInvoke: function(handler, message){
 		var myObject = JSON.parse(message.requestText);
@@ -66,7 +61,6 @@ var tabButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
     	PROGRESS.switchToProgressScreen();
       if (button.name == "Progress") {
-      	// TODO: Show progress screen
       	PROGRESS.switchToProgressScreen();
       	
       	progressTabButton.skin = blueSkin;

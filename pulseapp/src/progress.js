@@ -15,7 +15,7 @@ var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: wh
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0, 
 	  contents: [
-	  	new HeaderTemplate({title: "Progress", leftItem: new Picture({width: 50, height:50, left:0, url: "assets/profile.jpg"}),}),
+	  	new HeaderTemplate({title: "Progress"}),
 	  	new Text({left: 0, right:0, height:50,
   			skin: lightGreySkin,
   			style: labelStyle,
@@ -58,7 +58,7 @@ var startProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, sk
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0, 
 	  contents: [
-	  	new HeaderTemplate({title: "Progress", leftItem: new Picture({left:0, width: 50, height:50, url: "assets/profile.jpg"}), rightItem: submitGoalButton}),
+	  	new HeaderTemplate({title: "Progress", rightItem: submitGoalButton}),
 	  	new Picture({url: "assets/defaultGoal.png", left:0, right:0, top:-90})
 	  ],
 	}),
@@ -102,7 +102,7 @@ var zeroProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, ski
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0,
 	  contents: [
-	  	new HeaderTemplate({title: "Progress", leftItem: new Picture({left:0, width: 50, height:50, url: "assets/profile.jpg"}), rightItem: editButton}),
+	  	new HeaderTemplate({title: "Progress", rightItem: editButton}),
 	  	imageContainer,
 	  ],
 	}),
