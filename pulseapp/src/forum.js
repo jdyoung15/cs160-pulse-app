@@ -71,7 +71,7 @@ var IconSkin = new Skin({
 
 //Search button
 var searchButton = new ButtonTemplate({
-  left:8, width:30, height:34, skin: IconSkin, style: smallButtonStyle,
+  left:4, width:30, height:34, skin: IconSkin, style: smallButtonStyle,
   textForLabel: "",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
@@ -85,7 +85,7 @@ var fieldStyle = new Style({ color: 'black', font: 'bold 15px Fira Sans', horizo
 var fieldHintStyle = new Style({ color: 'gray', font: 'bold 15px Fira Sans', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 3, bottom: 3, height: 20 });
 
 var FieldTemplate = Container.template(function($) { return { 
-  width: 250, height: 36, skin: chatBoxSkin, contents: [
+  width: 285, height: 36, skin: chatBoxSkin, contents: [
     Scroller($, { 
       left: 4, right: 4, top: 4, bottom: 4, active: true,
       behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
@@ -121,7 +121,7 @@ var mainContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSk
 	}), 
 	contents:[
 		new HeaderTemplate({title: "Forum", leftItem: new Container({left:0, right:0, top:0, bottom:0}), rightItem: addComment}),
-		new Line({left:0, right:0, top:0, skin: whiteSkin,
+		new Line({left:0, right:0, top:0, skin: lightGreySkin,
 			contents:[				
 				search,
 				searchButton,
