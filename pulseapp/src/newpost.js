@@ -34,7 +34,7 @@ var backButton = BUTTONS.Button.template(function($){ return{
 
 //submit button
 var submitButton = BUTTONS.Button.template(function($){ return{
-  width: 150, height:50, top:10, skin:orangeSkin,
+  width: 150, height:50, top:20, skin:orangeSkin,
   contents:[
     new Label({left:0, right:0, height:30, string:$.textForLabel, style:whiteButtonLabel})
   ],
