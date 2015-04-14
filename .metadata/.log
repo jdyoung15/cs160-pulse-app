@@ -3908,3 +3908,223 @@ org.eclipse.core.internal.resources.ResourceException: Resource is out of sync w
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 09:12:08.099
 !MESSAGE Debug listener stopped...
+
+!ENTRY org.eclipse.debug.core 4 0 2015-04-13 12:03:10.064
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in org.eclipse.debug.core.DebugPlugin.stop() of bundle org.eclipse.debug.core.
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:847)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:950)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:324)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:626)
+	at org.eclipse.osgi.container.Module.stop(Module.java:488)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:1623)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1542)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:248)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:145)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:626)
+	at org.eclipse.osgi.container.Module.stop(Module.java:488)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:186)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:160)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.NullPointerException
+	at com.marvell.kinoma.ide.logging.KinomaLog.log(KinomaLog.java:37)
+	at com.marvell.kinoma.ide.logging.KinomaLog.log(KinomaLog.java:32)
+	at com.marvell.kinoma.ide.logging.KinomaLog.logError(KinomaLog.java:28)
+	at com.marvell.kinoma.ide.logging.KinomaLog.logError(KinomaLog.java:24)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:458)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.terminate(KinomaDebugTarget.java:668)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.terminate(KinomaDebugTarget.java:676)
+	at org.eclipse.debug.core.Launch.terminate(Launch.java:225)
+	at org.eclipse.debug.internal.core.LaunchManager.shutdown(LaunchManager.java:2380)
+	at org.eclipse.debug.core.DebugPlugin.stop(DebugPlugin.java:650)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:827)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:1)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:820)
+	... 13 more
+Root exception:
+java.lang.NullPointerException
+	at com.marvell.kinoma.ide.logging.KinomaLog.log(KinomaLog.java:37)
+	at com.marvell.kinoma.ide.logging.KinomaLog.log(KinomaLog.java:32)
+	at com.marvell.kinoma.ide.logging.KinomaLog.logError(KinomaLog.java:28)
+	at com.marvell.kinoma.ide.logging.KinomaLog.logError(KinomaLog.java:24)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:458)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.terminate(KinomaDebugTarget.java:668)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.terminate(KinomaDebugTarget.java:676)
+	at org.eclipse.debug.core.Launch.terminate(Launch.java:225)
+	at org.eclipse.debug.internal.core.LaunchManager.shutdown(LaunchManager.java:2380)
+	at org.eclipse.debug.core.DebugPlugin.stop(DebugPlugin.java:650)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:827)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:1)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:820)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:950)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:324)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:626)
+	at org.eclipse.osgi.container.Module.stop(Module.java:488)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:1623)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1542)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:248)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:145)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:626)
+	at org.eclipse.osgi.container.Module.stop(Module.java:488)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:186)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:160)
+	at java.lang.Thread.run(Thread.java:745)
+!SESSION 2015-04-13 20:32:06.997 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/alicejliu/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/alicejliu/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2015-04-13 20:32:15.943
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:32:27.978
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:32:35.502
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:33:58.392
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:34:09.061
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:35:53.217
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:35:59.652
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:39:13.062
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:39:35.901
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-13 20:39:40.178
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-13 20:39:40.187
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:39:40.191
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:39:59.176
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-13 20:40:02.503
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-04-13 20:40:02.504
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:40:02.507
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:40:11.184
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:40:25.761
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:40:34.367
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:40:49.233
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-13 20:40:56.170
+!MESSAGE Debug listener stopped...
