@@ -54,29 +54,57 @@ Handler.bind("/changeDeviceColor", {
     },
 });
 
-var tabButtonLabelStyle = new Style({font:"20px", color:"black"});
+var tabButtonLabelStyle = new Style({font:"bold 20px", color:"black"});
+var selectedTabButtonLabelStyle = new Style({font:"bold 20px", color:"white"});
+
+var switchToProgress = function() {
+	PROGRESS.switchToProgressScreen();
+  	
+  	progressTabButton.skin = blueSkin;
+  	progressTabButton.style = selectedTabButtonLabelStyle;
+  	
+  	buddyTabButton.skin = greySkin;
+  	buddyTabButton.style = tabButtonLabelStyle;
+  	
+  	forumTabButton.skin = greySkin,
+  	forumTabButton.style = tabButtonLabelStyle;
+}
+
+var switchToBuddy = function() {
+	BUDDY.switchToBuddyScreen();
+  	
+  	progressTabButton.skin = greySkin;
+  	progressTabButton.style = tabButtonLabelStyle;
+  	
+  	buddyTabButton.skin = blueSkin;
+  	buddyTabButton.style = selectedTabButtonLabelStyle;
+  	
+    forumTabButton.skin = greySkin,
+    forumTabButton.style = tabButtonLabelStyle;
+}
+
+var switchToForum = function() {
+	FORUM.addMainContainer();
+  	
+  	progressTabButton.skin = greySkin;
+  	progressTabButton.style = tabButtonLabelStyle;
+  	
+  	buddyTabButton.skin = greySkin;
+  	buddyTabButton.style = tabButtonLabelStyle;
+  	
+  	forumTabButton.skin = blueSkin,
+  	forumTabButton.style = selectedTabButtonLabelStyle;
+}
 
 var tabButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
     	PROGRESS.switchToProgressScreen();
       if (button.name == "Progress") {
-      	PROGRESS.switchToProgressScreen();
-      	
-      	progressTabButton.skin = blueSkin;
-      	buddyTabButton.skin = greySkin;
-      	forumTabButton.skin = greySkin,
+      	switchToProgress();
       } else if (button.name == "Buddy") {
-      	BUDDY.switchToBuddyScreen();
-      	
-      	progressTabButton.skin = greySkin;
-      	buddyTabButton.skin = blueSkin;
-        forumTabButton.skin = greySkin,
+      	switchToBuddy();
       } else if (button.name == "Forum") {
-      	FORUM.addMainContainer();
-      	
-      	progressTabButton.skin = greySkin;
-      	buddyTabButton.skin = greySkin;
-      	forumTabButton.skin = blueSkin,
+      	switchToForum();
       }
     }}
 });
@@ -111,10 +139,8 @@ var mainColumn = new Column({
 });
 
 PROGRESS.switchToProgressScreen();
+switchToProgress();
 
-progressTabButton.skin = blueSkin;
-buddyTabButton.skin = greySkin;
-forumTabButton.skin = greySkin,
 
 var ApplicationBehavior = Behavior.template({
 	onDisplayed: function(application) {

@@ -1,5 +1,6 @@
 var STYLE = require('styles');
-var SCROLLER = require('mobile/scroller');
+var BUTTONS = require('controls/buttons');
+var SLIDERS = require('controls/sliders');
 
 var labelStyle = new Style({ font: "20px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
 var largeButtonStyle = new Style({font:"24px", color:"white"});
@@ -10,15 +11,13 @@ var fieldStyle = new Style({ color: 'black', font: 'bold 24px', horizontal: 'lef
 var fieldHintStyle = new Style({ color: '#aaa', font: '20px', horizontal: 'left' });
 var heartBeatStyle = new Style({ color: 'black', font: 'bold 24px'});
 
-// True if user is currently assigned an exercise buddy.
-var hasProgress = false;
 var okButton = new ButtonTemplate({height:50, top: 150,
   			textForLabel: "OK",
   			skin: orangeSkin, 
   			style: largeButtonStyle,
   			behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
    				onTap: { value: function(button){
-      				hasProgress = true;
+      				screen = startProgressScreen;
       				switchScreens(startProgressScreen);
     				}}
   				}), 
@@ -47,14 +46,19 @@ var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: wh
   ],
 });
 
-var submitGoalButton = new ButtonTemplate({
-  height:60, style: headerButtonLabelStyle,
+var submitGoalButton = ButtonTemplate({height:50, width: 100,
+  skin: orangeSkin, 			
+  style: largeButtonStyle,
   textForLabel: "Submit",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
+	  // <<<<<
 	  var msg = new Message("/changeDeviceColor");
 	  msg.requestText = JSON.stringify({target:"self", color:"red"});
 	  application.invoke(msg);
+	  // ====
+	  screen = zeroProgressScreen;
+	  // >>>>
 	  switchScreens(zeroProgressScreen);
     }}
   })
@@ -63,14 +67,64 @@ var submitGoalButton = new ButtonTemplate({
 var editButton = new ButtonTemplate({
   height:60, style: headerButtonLabelStyle,
   textForLabel: "Edit",
+  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+   				onTap: { value: function(button){
+      				switchScreens(startProgressScreen);
+    				}}
+  				}), 
 });
+
+var MySlider = SLIDERS.HorizontalSlider.template(function($){ return{
+  height:50, left:10, right:10, name:$.name,
+  behavior: Object.create(SLIDERS.HorizontalSliderBehavior.prototype, {
+    onValueChanged: { value: function(container){
+      SLIDERS.HorizontalSliderBehavior.prototype.onValueChanged.call(this, container);
+      if ($.name == "duration") {
+      	durationSliderLabel.string = "Duration: " + Math.round(this.data.value) + " minutes";
+      } else if ($.name == "frequency") {
+      	frequencySliderLabel.string = "Frequency: " + Math.round(this.data.value) + " times/week";
+      }
+  }}})
+}});
+
+var exerciseRadioGroupBehavior = Object.create(BUTTONS.RadioGroupBehavior.prototype, {
+    onRadioButtonSelected: { value: function(buttonName){
+      exerciseTypeLabel.string = "Exercise intensity: " + buttonName;
+  }}});
+var exerciseRadioGroup = new HorizontalRadioGroup({ buttonNames: "Very light,Light,Moderate", behavior:exerciseRadioGroupBehavior});
+    	
+var exerciseTypeLabel = new Label({left:0, string:"Exercise intensity: Very light", style:labelStyle});
+var durationSliderLabel = new Label({left:0, string:"Duration: 15 minutes", style:labelStyle});
+var frequencySliderLabel = new Label({left:0, string:"Frequency: 7 times/week", style:labelStyle});
 
 var startProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0, 
 	  contents: [
-	  	new HeaderTemplate({title: "Progress", rightItem: submitGoalButton}),
-	  	new Picture({url: "assets/defaultGoal.png", left:0, right:0, top:-25}),
+	  	new HeaderTemplate({title: "New Goal"}),
+	  	
+	  	exerciseTypeLabel,
+	  	exerciseRadioGroup,
+	  	
+	  	new Line({height: 30,
+	  	}),
+	  	
+	  	durationSliderLabel,
+	  	new MySlider({ min:15, max:60, value:30, name:"duration" }),
+	  	
+	  	new Line({height: 20,
+	  	}),
+	  			
+		frequencySliderLabel,
+	  	new MySlider({ min:1, max:14, value:3, name:"frequency" }),
+	  	
+	  	new Line({top: 20, left:0, right:0, skin: whiteSkin,
+		  contents: [
+		    new Content({top:0, bottom:0, width:80, skin: whiteSkin}),
+			submitGoalButton,
+			new Content({top:0, bottom:0, width:80, skin: whiteSkin}),
+		  ]
+		})	
 	  ],
 	}),
   ],
@@ -126,13 +180,10 @@ var zeroProgressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, ski
   ],
 });
 
+var screen = newGoalScreen;
 // Switch to Buddy screen from another section of the app
 var switchToProgressScreen = function() {
-  if (!hasProgress) {
-  	switchScreens(newGoalScreen);
-  } else {
-  	switchScreens(startProgressScreen);
-  }
+  switchScreens(screen);
 };
 
 var changeHeartBeat = function(value) {

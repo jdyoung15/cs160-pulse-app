@@ -1,4 +1,5 @@
 var BUTTONS = require('controls/buttons');
+var SLIDERS = require('controls/sliders');
 
 whiteSkin = new Skin({ fill:"white" });
 blueSkin = new Skin({ fill:"#56bce2" });
@@ -34,4 +35,12 @@ ButtonTemplate = BUTTONS.Button.template(function($){ return{
     new Label({left:$.left, right:$.right, height:$.height, width:$.width, string:$.textForLabel, style:$.style}),
   ],
   behavior:$.behavior
+}});
+
+// Radio group template
+
+HorizontalRadioGroup = Line.template(function($) { return {
+    left:10,
+    active: true,
+    behavior: $.behavior,
 }});
