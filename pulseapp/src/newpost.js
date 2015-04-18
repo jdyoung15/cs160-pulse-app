@@ -94,20 +94,6 @@ var largeField = Container.template(function($) { return {
   ]
 }});
 
-// Radio group template
-
-var HorizontalRadioGroup = Line.template(function($) { return {
-    top:0, bottom:0, left:10, right:0,
-    active: true,
-    behavior: Object.create(BUTTONS.RadioGroupBehavior.prototype, {
-        onRadioButtonSelected: { value: function(buttonName){
-            //trace("Radio button with name " + buttonName + " was selected.\n");
-    }}})
-}});
-
-
-
-
 //main container template
 var MainContainerTemplate = Container.template(function($) { return {
   left: 0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
@@ -119,6 +105,10 @@ var MainContainerTemplate = Container.template(function($) { return {
   })
 }});
 
+var radioButtonBehavior = Object.create(BUTTONS.RadioGroupBehavior.prototype, {
+    onRadioButtonSelected: { value: function(buttonName){
+      trace("Radio button with name " + buttonName + " was selected.\n");
+  }}});
 
 var mainContainer = new Container( {
 	left:0, right:0, top:0, bottom:0, skin: new Skin({fill:"black"}), active:true,
@@ -143,7 +133,7 @@ var mainContainer = new Container( {
 		new Line({left:0, right:0, height:60, skin: new Skin({fill:"white"}), contents:[
 			//post to local or global
 			new Label({left:25, style: textStyle, string:"Post to:"}),
-			new HorizontalRadioGroup({ buttonNames: "Local,Global" }),
+			new HorizontalRadioGroup({ buttonNames: "Local,Global", behavior: radioButtonBehavior}),
 		]}),
 		new Column({left:0, right:0, top:0, bottom:0, height:150, skin: new Skin({fill:"white"}), contents:[
 			new Label({left:25, bottom:10, style: textStyle, string:"Description:"}),
@@ -155,7 +145,6 @@ var mainContainer = new Container( {
 	]}),
 ]
 }); //end container
-
 
 exports.addMainContainer = function() {
 	switchScreens(mainContainer);
