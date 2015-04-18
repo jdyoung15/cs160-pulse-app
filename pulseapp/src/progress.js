@@ -52,6 +52,9 @@ var submitGoalButton = new ButtonTemplate({
   textForLabel: "Submit",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
+	  var msg = new Message("/changeDeviceColor");
+	  msg.requestText = JSON.stringify({target:"self", color:"red"});
+	  application.invoke(msg);
 	  switchScreens(zeroProgressScreen);
     }}
   })
