@@ -8,6 +8,8 @@ var BUDDY = require('buddy');
 var FORUM = require('forum');
 var PROGRESS = require('progress');
 var NEWPOST = require('newpost');
+var EDITSCHEDULE = require('editSchedule');
+var EDITGOAL = require('editGoal');
 var STYLE = require('styles');
 
 deviceURL = "";

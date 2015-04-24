@@ -12,6 +12,8 @@ greenSkin = new Skin({ fill:"#65df71" });
 
 headerLabelStyle = new Style({font:"bold 26px", color:"white"});
 headerButtonLabelStyle = new Style({font:"20px", color:"white"});
+labelStyle = new Style({ font: "20px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
+largeButtonStyle = new Style({font:"24px", color:"white"});
 
 HeaderTemplate = Line.template(function($) { return { left: 0, right: 0, height:60, skin: blueSkin, 
 	contents: [

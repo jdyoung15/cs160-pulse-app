@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Preferences>
-   <Usage eclipseInstanceId="4afc8c7b-e4dc-4333-bef0-47ff017f6578" visitCount="8" lastVisit="150417152636-0700" firstVisit="150403132612-0700"></Usage>
    <SDKContainer>
       <SDK plugin="true" editable="false" name="Kinoma Built-in SDK" location="com.marvell.kinoma.sdk:sdk"></SDK>
    </SDKContainer>
+   <Usage eclipseInstanceId="4afc8c7b-e4dc-4333-bef0-47ff017f6578" visitCount="11" lastVisit="150424115946-0700" firstVisit="150403132612-0700"></Usage>
    <RemoteDeviceManager>
       <UserDevices/>
    </RemoteDeviceManager>
