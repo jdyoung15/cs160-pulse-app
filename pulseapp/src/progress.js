@@ -97,17 +97,110 @@ var scheduleSection = new Column({
 	]
 });
 
-var VerticalScroller = SCROLLER.VerticalScroller.template(function($){ return{
-	contents:$.contents,
+
+var goalHeader = new Line({
+	left:0, right:0, top:0, height: 60,
+	contents: [
+		new Label({left:0, width: 250, string:"Goals", style:bigLabelStyle}),
+	  	new ButtonTemplate({
+		  width: 80, height:60, style: headerButtonLabelStyle, skin: orangeSkin,
+		  textForLabel: "Edit",
+		  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+			onTap: { value: function(button){
+  				EDITGOAL.addMainContainer();
+			}}
+		  }), 
+		})
+	]
+});
+
+
+var SensorBar = Container.template(function($) { return {
+	left:0, right:0, height: 20, width: 300, active:true,
+	contents: [
+		Canvas($, { anchor:"CANVAS", left:20, right:20, top:0, bottom:0, active:true,
+			behavior: Object.create(Behavior.prototype, {
+				onCreate: {value: function(canvas, data) {
+					this.percent = data.percent;
+					this.color = data.color;
+				}},
+				onDisplaying: {value: function(canvas) {
+					var ctx = canvas.getContext("2d");
+					ctx.fillStyle = this.color;
+					ctx.fillRect(0, 0, this.percent * canvas.width, 20);
+					ctx.strokeRect(0, 0, canvas.width, 20);
+					
+				}},
+			}),
+		}),
+	]
 }});
+
+var SensorContainer = Container.template(function($) { return {
+	left:0, right:0, top:10,
+	contents: [
+		new Column({
+			contents: [
+				new Label({left:0, string: $.name, style: smallLabelStyle}),
+				new SensorBar($),
+				new Line({ left:0, right:0,
+					contents: [
+						new Label({left:10, string:$.low, style: smallLabelStyle}),
+						new Label({left:250, string:$.high, style: smallLabelStyle}),
+					]
+				}),
+			]
+		})
+	]
+}});
+
+
+systolicContainer = new SensorContainer({percent: 0.5, color: "red", name: "Systolic", low:"70", high:"190"});
+diastolicContainer = new SensorContainer({percent: 0.5, color: "red", name: "Diastolic", low:"40", high:"100"});
+ldlContainer = new SensorContainer({percent: 0.5, color: "red", name: "LDL Cholesterol", low:"80", high:"110"});
+hdlContainer = new SensorContainer({percent: 0.5, color: "red", name: "HDL Cholesterol", low:"20", high:"80"});
+bmiContainer = new SensorContainer({percent: 0.5, color: "red", name: "BMI", low:"10", high:"40"});
+
+var goalSection = new Column({
+	top:0, left:0, right:0, 
+	contents: [
+		goalHeader,
+		systolicContainer,
+		diastolicContainer,
+		ldlContainer,
+		hdlContainer,
+		bmiContainer,
+	]
+});
+
+
+var ScrollContainer = Container.template(function($) { return {
+	left:0, right:0, top:0, bottom:0,
+	contents: [
+	   		/* Note that the scroller is declared as having only an empty
+	   		 * Column and a scrollbar.  All the entries will be added 
+	   		 * programmatically. */ 
+   		SCROLLER.VerticalScroller($, { 
+   			clip: true,
+   			contents: [
+          		Column($, { left: 0, right: 0, top: 0, name: 'items', }),
+            ]
+   		})
+	]
+}});
+
+var data = new Object();
+var scrollContainer = new ScrollContainer(data);
+
+scrollContainer.first.items.add(goalSection);
+scrollContainer.first.items.add(scheduleSection);
 
 var progressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0,
 	  contents: [
 	  	new HeaderTemplate({title: "Progress"}),
-	  	// goals section
-	  	scheduleSection
+	  	scrollContainer,
 	  ],
 	}),
   ],

@@ -133,7 +133,7 @@ var currentBuddyScreen = new Container({
 	  	new Line({
 		  left:0, right:0, bottom: 0, skin: whiteSkin, 
 		  contents: [
-	    	new Label({left:0, right:0, height: 30, string: "Bob", style: buddyNameStyle}),
+	    	new Label({left:0, right:0, height: 30, string: "Me", style: buddyNameStyle}),
 	    	new Label({left:0, right:0, height: 30, string: "Jean-Paul", style: buddyNameStyle}),
 		  ]
 		}),
