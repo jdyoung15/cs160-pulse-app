@@ -177,24 +177,7 @@ var scheduleSection = new Column({
 	]
 });
 
-
-// Credit to https://github.com/wdimmit/k4/blob/master/ScrollerDemo/src/main.js
-var ScrollContainer = Container.template(function($) { return {
-	left:0, right:0, top:0, bottom:0,
-	contents: [
-	   		/* Note that the scroller is declared as having only an empty
-	   		 * Column and a scrollbar.  All the entries will be added 
-	   		 * programmatically. */ 
-   		SCROLLER.VerticalScroller($, { 
-   			clip: true,
-   			contents: [
-          		Column($, { left: 0, right: 0, top: 0, name: 'items', }),
-            ]
-   		})
-	]
-}});
-
-var scrollContainer = new ScrollContainer(new Object());
+var scrollContainer = new ScrollContainer({left:0, right:0, top:0, bottom:0});
 scrollContainer.first.items.add(goalSection);
 scrollContainer.first.items.add(scheduleSection);
 

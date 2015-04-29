@@ -47,3 +47,19 @@ HorizontalRadioGroup = Line.template(function($) { return {
     active: true,
     behavior: $.behavior,
 }});
+
+// Credit to https://github.com/wdimmit/k4/blob/master/ScrollerDemo/src/main.js
+ScrollContainer = Container.template(function($) { return {
+	left:$.left, right:$.right, top:$.top, bottom:$.bottom,
+	contents: [
+	   		/* Note that the scroller is declared as having only an empty
+	   		 * Column and a scrollbar.  All the entries will be added 
+	   		 * programmatically. */ 
+   		SCROLLER.VerticalScroller($, { 
+   			clip: true,
+   			contents: [
+          		Column($, { left: 0, right: 0, top: 0, name: 'items', }),
+            ]
+   		})
+	]
+}});
