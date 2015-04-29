@@ -6,11 +6,11 @@ var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
 var BUDDY = require('buddy');
 var FORUM = require('forum');
-var PROGRESS = require('progress');
 var NEWPOST = require('newpost');
 var EDITSCHEDULE = require('editSchedule');
 var EDITGOAL = require('editGoal');
 var STYLE = require('styles');
+var PROGRESS = require('progress');
 
 deviceURL = "";
 
@@ -33,6 +33,9 @@ Handler.bind("/getStatus", {
     },
     onComplete: function(handler, message, json){
     	PROGRESS.changeHeartBeat(Math.round(json.heartBeat));
+    	// update goal bars with (mocked) measured sensor values
+    	var measuredSensorValues = {systolic: 130, diastolic: 90, ldl: 210, hdl: 55, bmi: 30};
+    	PROGRESS.updateSensorMeasurements(measuredSensorValues);
     	handler.invoke( new Message("/delay"));
     }
 });
