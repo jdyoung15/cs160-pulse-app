@@ -7940,3 +7940,6 @@ java.io.FileNotFoundException: /Users/alicejliu/Documents/Kinoma Studio/pulse/.m
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-04-30 16:41:43.032
 !MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-30 16:42:32.532
+!MESSAGE Debug listener stopped...
