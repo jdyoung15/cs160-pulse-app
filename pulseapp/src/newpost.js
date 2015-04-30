@@ -27,7 +27,7 @@ var backButton = BUTTONS.Button.template(function($){ return{
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
       //function - go back to forums
-      FORUM.addMainContainer(mainColumn);
+      FORUM.addForumContainer(mainColumn);
     }}
   })
 }});
@@ -40,7 +40,7 @@ var submitButton = BUTTONS.Button.template(function($){ return{
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
-      FORUM.addMainContainer(mainColumn);
+      FORUM.addForumContainer(mainColumn);
     }}
   })
 }});

@@ -89,7 +89,7 @@ var switchToBuddy = function() {
 }
 
 var switchToForum = function() {
-	FORUM.addMainContainer();
+	FORUM.addForumContainer();
   	
   	progressTabButton.skin = greySkin;
   	progressTabButton.style = tabButtonLabelStyle;

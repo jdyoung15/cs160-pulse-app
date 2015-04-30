@@ -146,7 +146,7 @@ var dataSend = new FieldTemplate2({name:"", texto:""});
 
 
 //Main Container
-var mainContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, active:true,
+var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, active:true,
 	behavior: Object.create(Container.prototype, {
 		onTouchEnded: { value: function(content){
 			KEYBOARD.hide();
@@ -315,12 +315,6 @@ var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGrey
 	],
 });
 
-var forumContainer = new Container({ left:0, right:0, top:0, bottom:0, skin:whiteSkin, active: true,
-	contents:[
-		forumColumn,		
-	],
-});
-
 
 /*
 	Thread Logic		   	
@@ -336,7 +330,7 @@ var thread2_3 = {post_id:2, id: 7, userName:"New", location:"Local", title:"New"
 
 //Initial forum
 var threads = [thread0_1, thread0_2, thread0_3, thread1_1, thread1_2, thread2_1, thread2_2];
-//How to add a post to the forum
+//How to add a thread to the Thread list
 threads[threads.length] = thread2_3; 
 
 
@@ -361,11 +355,23 @@ var mainContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 });
 
 back.behavior.myButtonAction2  = function(){
-    switchScreens(mainContainer);
+    switchScreens(forumContainer);
 }
 
 
 
+var threadContainer = Container.template(function($) { return {
+	left:0, right:0, top:0, bottom:0,
+	contents: [
+	   		// Note that the scroller is declared as having only an empty Column and a scrollbar.  All the entries will be added programmatically. 
+	   		SCROLLER.VerticalScroller($, { 
+	   			contents: [
+              			Column($, { left: 0, right: 0, top: 0, name: 'menu', }),
+              			SCROLLER.VerticalScrollbar($, { }),
+              			]
+	   		})
+	   		]
+}});
 
 //Forum Container
 var forumContainer2 = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGreySkin, 
@@ -412,15 +418,15 @@ var repplyContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: white
 function repplyAction() {
 }
 
-mainContainer.add(forumContainer);
+forumContainer.add(forumColumn);
 mainContainer2.add(forumContainer2);
 
-exports.addMainContainer = function() {
-	if (mainColumn[0] == mainContainer) {
+exports.addForumContainer = function() {
+	if (mainColumn[0] == forumContainer) {
 		// Already on forum screen. Can't replace with itself.
 		return;
 	}
-	switchScreens(mainContainer);
+	switchScreens(forumContainer);
 }
 /*
 exports.addPostsForum = function() {
