@@ -3,6 +3,7 @@ var BUTTONS = require('controls/buttons');
 
 var medButtonStyle = new Style({font:"20px", color:"white"});
 var smallButtonStyle = new Style({font:"12px", color:"white"});
+var smallLabelStyle = new Style({font:"18px", color:"black", horizontal: 'center', vertical: 'middle'});
 var bigLabelStyle = new Style({ color: 'black', font: 'bold 24px'});
 
 var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
@@ -143,7 +144,7 @@ var frequencyLabel = new Label({string:"3 times/week", style:labelStyle});
 var index = 0;
 var image = new Picture({url: "assets/zeroProgress.png", top:-60, left:10, right:10});
 var heartBeatLabel = new Label({left:0, right:0, height:80, bottom:0, string:"Heart Rate: 80 BPM", style:bigLabelStyle, skin:lightGreySkin});
-var imageContainer = new Column({left:0, right:0, top:0, active: true,
+var scheduleContainer = new Column({left:0, right:0, top:0, active: true,
 	  contents: [
 	  	image,
 	  	progressLabel,
@@ -181,11 +182,32 @@ var imageContainer = new Column({left:0, right:0, top:0, active: true,
 	}), 
 }),
 
+WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+PROGRESS = [true, false, false, true, true, false, true];
+
+var weekProgress = new Line({
+	top: 100, left:10, right:10, height: 30,
+});
+var weekLabels = new Line({
+	left: 10, right: 10,
+});
+
+for (var i = 0; i < 7; i ++) {
+	if (PROGRESS[i]) {
+		weekProgress.add(new Picture({left:5, right:5, url:"assets/greenCircle.png"}));
+	} else {
+		weekProgress.add(new Picture({left:5, right:5, url:"assets/greyCircle.png"}));
+	}
+	weekLabels.add(new Label({left:0, right:0, string:WEEK[i], style:smallLabelStyle}));
+}
+
 var scheduleSection = new Column({
 	top:0, left:0, right:0, 
 	contents: [
 		scheduleHeader,
-		imageContainer, 
+		scheduleContainer, 
+		weekProgress,
+		weekLabels,
 	]
 });
 
