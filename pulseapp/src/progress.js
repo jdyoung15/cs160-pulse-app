@@ -119,7 +119,6 @@ var SensorContainer = Container.template(function($) { return {
 				new Line({top: 20, left:0, right:0, skin: whiteSkin, 
 					contents: [
 						new Label({left:0, width: 200, string: $.readableName, style: labelStyle}),	// Sensor name
-						//new Label({left:10, string: $.measuredValue + " of " + Math.round($.value) + ", " + Math.round($.startingMeasuredValue), style: labelStyle}),	// Measured value and goal value
 						new Label({left:10, string: $.measuredValue + " of " + Math.round($.value), style: labelStyle}),	// Measured value and goal value
 					]
 				}),
@@ -142,19 +141,6 @@ var goalSection = new Column({
 	]
 });
 
-var tabButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
-    onTap: { value:  function(button){
-      //PROGRESS.switchToProgressScreen();
-      if (button.name == "Progress") {
-      	switchToProgress();
-      } else if (button.name == "Buddy") {
-      	switchToBuddy();
-      } else if (button.name == "Forum") {
-      	switchToForum();
-      }
-    }}
-});
-
 var scheduleHeader = new Line({
 	left:0, right:0, top:0, height:40, skin: lightGreySkin,
 	contents: [
@@ -168,13 +154,6 @@ var scheduleHeader = new Line({
 		    			}}
 		  			}), 
 		})
-	]
-})
-
-var achievementsHeader = new Line({
-	left:0, right:0, top:0, height:40, skin: lightGreySkin,
-	contents: [
-		new Label({left:10, width:250, string:"Achievements", style:bigLabelStyle}),
 	]
 })
 
@@ -233,8 +212,15 @@ var scheduleSection = new Column({
 	]
 });
 
+var achievementsHeader = new Line({
+	left:0, right:0, top:0, height:40, skin: lightGreySkin,
+	contents: [
+		new Label({left:10, width:250, string:"Achievements", style:bigLabelStyle}),
+	]
+})
+
 var achievementsSection = new Column({
-	top:50, left:0, right:0, 
+	top:100, left:0, right:0, 
 	contents: [ 
 		achievementsHeader,
 		new Label({left:10, string:"Achievement stuff goes here", style:bigLabelStyle}),
