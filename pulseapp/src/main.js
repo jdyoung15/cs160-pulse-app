@@ -128,18 +128,20 @@ var progressTabButton = new ButtonTemplate({height:50, textForLabel:"Progress", 
 var buddyTabButton = new ButtonTemplate({height:50, textForLabel:"Buddy", skin:greySkin, behavior:tabButtonBehavior});
 var forumTabButton = new ButtonTemplate({height:50, textForLabel:"Forum", skin:greySkin, behavior:tabButtonBehavior});
 
-var mainColumn = new Column({
-  left:0, right:0, top:0, bottom:0,
-  skin: whiteSkin,
-  contents:[
-  	new Container({left:0, right:0, top:0, bottom:0}),
-    new Line({left:0, right:0, height:50, skin: whiteSkin,
+var bottomTabBar = new Line({left:0, right:0, height:50, skin: whiteSkin,
       contents:[
         progressTabButton,
         buddyTabButton,
         forumTabButton,
       ]
-    }),
+    });
+
+var mainColumn = new Column({
+  left:0, right:0, top:0, bottom:0,
+  skin: whiteSkin,
+  contents:[
+  	new Container({left:0, right:0, top:0, bottom:0}),
+    bottomTabBar
   ]
 });
 
@@ -155,6 +157,14 @@ var ApplicationBehavior = Behavior.template({
 		application.forget("pulsedevice");
 	},
 })
+
+var showTabBar = function(boolean) {
+	if (boolean == true) {
+		bottomTabBar.visible = true;
+	} else {
+		bottomTabBar.visible = false;
+	}
+}
 
 application.behavior = new ApplicationBehavior();
 application.add(mainColumn);
