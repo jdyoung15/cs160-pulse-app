@@ -41,12 +41,12 @@ var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: wh
 
 
 var goalHeader = new Line({
-	left:0, right:0, top:0, height:60, skin: lightGreySkin,
+	left:0, right:0, top:0, height:40, skin: lightGreySkin,
 	contents: [
-		new Label({left:0, width:100, string:"Goals", style:bigLabelStyle}),
+		new Label({left:10, width:100, string:"Goals", style:bigLabelStyle}),
 		new Container({left:0, width:150}), // Buffer space to align above label
 	  	new ButtonTemplate({
-		  width: 80, height:60, style: headerButtonLabelStyle, skin: orangeSkin,
+		  width: 80, height:40, style: headerButtonLabelStyle, skin: orangeSkin,
 		  textForLabel: "Edit",
 		  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 			onTap: { value: function(button){
@@ -119,7 +119,8 @@ var SensorContainer = Container.template(function($) { return {
 				new Line({top: 20, left:0, right:0, skin: whiteSkin, 
 					contents: [
 						new Label({left:0, width: 200, string: $.readableName, style: labelStyle}),	// Sensor name
-						new Label({left:10, string: $.measuredValue + " of " + Math.round($.value) + ", " + Math.round($.startingMeasuredValue), style: labelStyle}),	// Measured value and goal value
+						//new Label({left:10, string: $.measuredValue + " of " + Math.round($.value) + ", " + Math.round($.startingMeasuredValue), style: labelStyle}),	// Measured value and goal value
+						new Label({left:10, string: $.measuredValue + " of " + Math.round($.value), style: labelStyle}),	// Measured value and goal value
 					]
 				}),
 				new SensorBar($),
@@ -143,11 +144,11 @@ var goalSection = new Column({
 
 
 var scheduleHeader = new Line({
-	left:0, right:0, top:0, height:60, skin: lightGreySkin,
+	left:0, right:0, top:0, height:40, skin: lightGreySkin,
 	contents: [
-		new Label({left:0, width:250, string:"Suggested schedule", style:bigLabelStyle}),
+		new Label({left:10, width:250, string:"Suggested schedule", style:bigLabelStyle}),
 	  	new ButtonTemplate({
-		  height:60, style: headerButtonLabelStyle, skin: orangeSkin,
+		  height:40, style: headerButtonLabelStyle, skin: orangeSkin,
 		  textForLabel: "Edit",
 		  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		   				onTap: { value: function(button){
@@ -246,7 +247,7 @@ var updateSensorGoals = function(){
 	goalSection.replace(goalSection[EDITGOAL.SYSTOLIC.position], new SensorContainer(EDITGOAL.SYSTOLIC));
 	goalSection.replace(goalSection[EDITGOAL.DIASTOLIC.position], new SensorContainer(EDITGOAL.DIASTOLIC));
 	goalSection.replace(goalSection[EDITGOAL.LDL.position], new SensorContainer(EDITGOAL.LDL));
-	goalSection.replace(goalSection[EDITGOAL.HDL.position], new SensorContainer(EDITGOAL.HDL));
+	goalSection.replace(goalSection[EDITGOAL.HDL.position], new SensorContainer(EDITGOAL.HDL));	
 	goalSection.replace(goalSection[EDITGOAL.BMI.position], new SensorContainer(EDITGOAL.BMI));
 };
 	

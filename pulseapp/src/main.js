@@ -159,10 +159,10 @@ var ApplicationBehavior = Behavior.template({
 })
 
 var showTabBar = function(boolean) {
-	if (boolean == true) {
-		bottomTabBar.visible = true;
-	} else {
-		bottomTabBar.visible = false;
+	if (boolean == true && mainColumn.last != bottomTabBar) {
+		mainColumn.add(bottomTabBar);
+	} else if (boolean == false && mainColumn.last == bottomTabBar) {
+		mainColumn.remove(bottomTabBar);
 	}
 }
 

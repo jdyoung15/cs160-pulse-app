@@ -6,11 +6,9 @@ var chatBoxSkin = new Skin({
   stroke:lightGreySkin.fillColors[0]
 });
 
-var labelStyle = new Style({ font: "20px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10 });
-var largeButtonStyle = new Style({font:"24px", color:"white"});
 var medButtonStyle = new Style({font:"20px", color:"white"});
 var smallButtonStyle = new Style({font:"16px", color:"white"});
-var buddyNameStyle = new Style({ font: "16px", color: "black"});
+var buddyNameStyle = new Style({ font: "16px", color: "black" });
 var fieldStyle = new Style({ color: 'black', font: 'bold 20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
 var fieldHintStyle = new Style({ color: '#aaa', font: '20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
 
@@ -26,6 +24,11 @@ var FieldTemplate = Container.template(function($) { return {
           left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: labelStyle, anchor: 'NAME', name: "fieldLabel",
           editable: true, string: $.name,
          	behavior: Object.create( CONTROL.FieldLabelBehavior.prototype, {
+         		onFocused:{ value: function(label){
+         		  showTabBar(false);
+         		  label.select(0, label.length)
+				  KEYBOARD.show();
+         		}},
          		onEdited: { value: function(label){
          		  var data = this.data;
               	  data.name = label.string;
@@ -118,8 +121,10 @@ var chatSendButton = new ButtonTemplate({
 	onTap: { value:  function(button){
 	  KEYBOARD.hide();
 	  currentBuddyScreen[0].focus();
+	  showTabBar(true);
 	  chatBox.string += "Me: " + chatField.first.fieldLabel.string + "\n";
 	  chatField.first.fieldLabel.string = "";
+	  chatField.first.hint.visible = true;
     }}
   })
 });	
@@ -141,8 +146,8 @@ var currentBuddyScreen = new Container({
 	  	new Line({
 		  left:0, right:0, bottom: 0, height: 30, skin: whiteSkin, 
 		  contents: [
-	    	new Label({left:0, right:0, height: 30, string: "Me", style: buddyNameStyle}),
-	    	new Label({left:0, right:0, height: 30, string: "Jean-Paul", style: buddyNameStyle}),
+	    	new Label({left:70, right:0, height: 30, string: "Me", style: buddyNameStyle}),
+	    	new Label({left:20, right:0, height: 30, string: "Jean-Paul", style: buddyNameStyle}),
 		  ]
 		}),
 		new Line({
@@ -178,6 +183,7 @@ var currentBuddyScreen = new Container({
     onTouchEnded: { value: function(content){
       KEYBOARD.hide();
       content.focus();
+      showTabBar(true);
     }}
   })
 });
