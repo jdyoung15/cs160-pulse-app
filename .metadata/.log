@@ -7934,3 +7934,9 @@ java.io.FileNotFoundException: /Users/alicejliu/Documents/Kinoma Studio/pulse/.m
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-04-30 16:39:12.024
 !MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-30 16:41:18.402
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-04-30 16:41:43.032
+!MESSAGE Debug listener stopped...
