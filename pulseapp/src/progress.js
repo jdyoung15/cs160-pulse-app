@@ -4,7 +4,6 @@ var BUTTONS = require('controls/buttons');
 var medButtonStyle = new Style({font:"20px", color:"white"});
 var smallButtonStyle = new Style({font:"12px", color:"white"});
 var smallLabelStyle = new Style({font:"18px", color:"black", horizontal: 'center', vertical: 'middle'});
-var bigLabelStyle = new Style({ color: 'black', font: 'bold 24px'});
 
 var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
@@ -158,52 +157,6 @@ var scheduleHeader = new Line({
 	]
 })
 
-var progressLabel = new Label({top: -300, string:"0%", style:bigLabelStyle});
-var durationLabel = new Label({string:"30 minutes of", style:labelStyle});
-var intensityLabel = new Label({string:"Very light exercise for", style:labelStyle});
-var frequencyLabel = new Label({string:"3 times/week", style:labelStyle});
-
-var index = 0;
-var image = new Picture({url: "assets/zeroProgress.png", top:-60, left:10, right:10});
-var heartBeatLabel = new Label({left:0, right:0, height:80, bottom:0, string:"Heart Rate: 80 BPM", style:bigLabelStyle, skin:lightGreySkin});
-
-var scheduleContainer = new Column({left:0, right:0, top:0, active: true,
-	  contents: [
-	  	image,
-	  	progressLabel,
-	  	durationLabel,
-	  	intensityLabel,
-	  	frequencyLabel,
-	  ],
-	  behavior: Object.create(Container.prototype, {
-		onTouchEnded: { value: function(content){
-			index = (index + 1)%3;
-			var msg = new Message("/changeDeviceColor");
-			switch (index) {
-				case 0:
-					image.url = "assets/zeroProgress.png";
-					progressLabel.string = "0%";
-					
-					msg.requestText = JSON.stringify({target:"self", color:"red"});
-					break;
-				case 1:
-					image.url = "assets/fiftyProgress.png";
-					progressLabel.string = "50%";
-					
-					msg.requestText = JSON.stringify({target:"self", color:"yellow"});
-					break;
-				case 2:
-					image.url = "assets/doneProgress.png";
-					progressLabel.string = "100%";
-					
-					msg.requestText = JSON.stringify({target:"self", color:"green"});
-					break;
-					
-			}
-			application.invoke(msg);
-		}}
-	}), 
-}),
 
 WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 PROGRESS = [true, false, false, true, true, false, true];
@@ -228,7 +181,7 @@ var scheduleSection = new Column({
 	top:50, left:0, right:0, 
 	contents: [
 		scheduleHeader,
-		scheduleContainer, 
+		new scheduleContainer(), 
 		weekProgress,
 		weekLabels,
 	]
