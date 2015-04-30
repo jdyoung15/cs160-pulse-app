@@ -4,28 +4,38 @@ var CONTROL = require('mobile/control');
 var SLIDERS = require('controls/sliders');
 var STYLES = require('styles');
 
+duration = 15;
+frequency = 7;
+intensity = "Very light";
+
 var MySlider = SLIDERS.HorizontalSlider.template(function($){ return{
   height:50, left:10, right:10, name:$.name,
   behavior: Object.create(SLIDERS.HorizontalSliderBehavior.prototype, {
     onValueChanged: { value: function(container){
       SLIDERS.HorizontalSliderBehavior.prototype.onValueChanged.call(this, container);
       if ($.name == "duration") {
-      	durationSliderLabel.string = "Duration: " + Math.round(this.data.value) + " minutes";
+      	duration = Math.round(this.data.value)
+      	durationSliderLabel.string = "Duration: " + duration + " minutes";
       } else if ($.name == "frequency") {
-      	frequencySliderLabel.string = "Frequency: " + Math.round(this.data.value) + " times/week";
+        frequency = Math.round(this.data.value)
+      	frequencySliderLabel.string = "Frequency: " + frequency + " times/week"; 	
       }
   }}})
 }});
 
-var exerciseRadioGroupBehavior = Object.create(BUTTONS.RadioGroupBehavior.prototype, {
+var intensityRadioGroupBehavior = Object.create(BUTTONS.RadioGroupBehavior.prototype, {
     onRadioButtonSelected: { value: function(buttonName){
-      exerciseTypeLabel.string = "Exercise intensity: " + buttonName;
+      intensity = buttonName;
+      intensityLabel.string = "Exercise intensity: " + intensity;
   }}});
-var exerciseRadioGroup = new HorizontalRadioGroup({ buttonNames: "Very light,Light,Moderate", behavior:exerciseRadioGroupBehavior});
+var intensityRadioGroup = new HorizontalRadioGroup({ buttonNames: "Very light,Light,Moderate", behavior:intensityRadioGroupBehavior});
     	
-var exerciseTypeLabel = new Label({left:0, string:"Exercise intensity: Very light", style:labelStyle});
+var intensityLabel = new Label({left:0, string:"Exercise intensity: Very light", style:labelStyle});
 var durationSliderLabel = new Label({left:0, string:"Duration: 15 minutes", style:labelStyle});
 var frequencySliderLabel = new Label({left:0, string:"Frequency: 7 times/week", style:labelStyle});
+
+var durationSlider = new MySlider({ min:15, max:60, value:30, name:"duration" });
+var frequencySlider = new MySlider({ min:1, max:14, value:3, name:"frequency" });
 
 var submitScheduleButton = ButtonTemplate({height:50, width: 100,
   skin: orangeSkin, 			
@@ -36,8 +46,7 @@ var submitScheduleButton = ButtonTemplate({height:50, width: 100,
 	  var msg = new Message("/changeDeviceColor");
 	  msg.requestText = JSON.stringify({target:"self", color:"red"});
 	  application.invoke(msg);
-	  // screen = zeroProgressScreen;
-	  // switchScreens(zeroProgressScreen);
+	  PROGRESS.updateSchedule({"duration":duration, "intensity":intensity, "frequency":frequency});
 	  PROGRESS.switchToProgressScreen();
     }}
   })
@@ -49,20 +58,20 @@ var mainContainer = new Container({left:0, right: 0, top: 0, bottom: 0, skin: wh
 	  contents: [
 	  	new HeaderTemplate({title: "Schedule"}),
 	  	
-	  	exerciseTypeLabel,
-	  	exerciseRadioGroup,
+	  	intensityLabel,
+	  	intensityRadioGroup,
 	  	
 	  	new Line({height: 30,
 	  	}),
 	  	
 	  	durationSliderLabel,
-	  	new MySlider({ min:15, max:60, value:30, name:"duration" }),
+	  	durationSlider,
 	  	
 	  	new Line({height: 20,
 	  	}),
 	  			
 		frequencySliderLabel,
-	  	new MySlider({ min:1, max:14, value:3, name:"frequency" }),
+	  	frequencySlider,
 	  	
 	  	new Line({top: 20, left:0, right:0, skin: whiteSkin,
 		  contents: [

@@ -137,7 +137,7 @@ var scheduleHeader = new Line({
 
 var progressLabel = new Label({top: -300, string:"0%", style:bigLabelStyle});
 var durationLabel = new Label({string:"30 minutes of", style:labelStyle});
-var intensityLabel = new Label({string:"Light exercise for", style:labelStyle});
+var intensityLabel = new Label({string:"Very light exercise for", style:labelStyle});
 var frequencyLabel = new Label({string:"3 times/week", style:labelStyle});
 
 var index = 0;
@@ -236,9 +236,15 @@ var updateSensorGoals = function(data){
 		new SensorContainer(data),
 	)
 };
-	
+
+var updateSchedule = function(data) {
+	durationLabel.string = data.duration + " minutes of";
+	intensityLabel.string = data.intensity + " exercise for";
+	frequencyLabel.string = data.frequency + " times/week";
+}
    
 exports.switchToProgressScreen = switchToProgressScreen;
 exports.changeHeartBeat = changeHeartBeat;
 exports.updateSensorMeasurements = updateSensorMeasurements;
 exports.updateSensorGoals = updateSensorGoals;
+exports.updateSchedule = updateSchedule;
