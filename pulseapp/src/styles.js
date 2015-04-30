@@ -13,6 +13,7 @@ greenSkin = new Skin({ fill:"#65df71" });
 headerLabelStyle = new Style({font:"bold 26px", color:"white"});
 headerButtonLabelStyle = new Style({font:"20px", color:"white"});
 labelStyle = new Style({ font: "20px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
+smallLabelStyle = new Style({ font: "14px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
 largeButtonStyle = new Style({font:"24px", color:"white"});
 
 HeaderTemplate = Line.template(function($) { return { left: 0, right: 0, height:60, skin: blueSkin, 
@@ -45,4 +46,20 @@ HorizontalRadioGroup = Line.template(function($) { return {
     left:10,
     active: true,
     behavior: $.behavior,
+}});
+
+// Credit to https://github.com/wdimmit/k4/blob/master/ScrollerDemo/src/main.js
+ScrollContainer = Container.template(function($) { return {
+	left:$.left, right:$.right, top:$.top, bottom:$.bottom,
+	contents: [
+	   		/* Note that the scroller is declared as having only an empty
+	   		 * Column and a scrollbar.  All the entries will be added 
+	   		 * programmatically. */ 
+   		SCROLLER.VerticalScroller($, { 
+   			clip: true,
+   			contents: [
+          		Column($, { left: 0, right: 0, top: 0, name: 'items', }),
+            ]
+   		})
+	]
 }});
