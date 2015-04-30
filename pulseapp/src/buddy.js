@@ -90,6 +90,7 @@ var deleteBuddyButton = new ButtonTemplate({
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
 	  hasCurrentBuddy = false;
+	  chatBox.string = "";
 	  var msg = new Message("/changeDeviceColor");
       msg.requestText = JSON.stringify({target:"buddy", color:"white"});
       application.invoke(msg);
@@ -111,10 +112,12 @@ chatBoxScrollContainer.first.items.add(chatBox);
 var chatField = new FieldTemplate({name:""});
 
 var chatSendButton = new ButtonTemplate({
-  left:0, right:0, bottom:0, height:40, skin: orangeSkin, style: smallButtonStyle,
+  left:0, right:0, bottom:0, height:40, skin: orangeSkin, style: smallButtonStyle, active:true,
   textForLabel: "Send",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
+	  KEYBOARD.hide();
+	  currentBuddyScreen[0].focus();
 	  chatBox.string += "Me: " + chatField.first.fieldLabel.string + "\n";
 	  chatField.first.fieldLabel.string = "";
     }}
