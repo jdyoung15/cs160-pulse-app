@@ -35,7 +35,7 @@ HeaderTemplate = Line.template(function($) { return { left: 0, right: 0, height:
 ButtonTemplate = BUTTONS.Button.template(function($){ return{
   bottom:0, left:0, right:0, name:$.textForLabel, skin:$.skin,
   contents:[
-    new Label({left:$.left, right:$.right, height:$.height, width:$.width, string:$.textForLabel, style:$.style}),
+    new Label({left:$.left, right:$.right, height:$.height, width:$.width, string:$.textForLabel, style:$.style, horizontal: 'center'}),
   ],
   behavior:$.behavior
 }});
