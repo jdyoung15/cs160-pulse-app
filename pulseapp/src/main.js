@@ -34,7 +34,7 @@ Handler.bind("/getStatus", {
     onComplete: function(handler, message, json){
     	PROGRESS.changeHeartBeat(Math.round(json.heartBeat));
     	// update goal bars with (mocked) measured sensor values
-    	var measuredSensorValues = {systolic: 130, diastolic: 90, ldl: 210, hdl: 55, bmi: 30};
+    	var measuredSensorValues = {systolic: 130, diastolic: 90, ldl: 210, hdl: Math.round(json.heartBeat), bmi: Math.round(json.heartBeat)};
     	PROGRESS.updateSensorMeasurements(measuredSensorValues);
     	handler.invoke( new Message("/delay"));
     }
@@ -159,10 +159,10 @@ var ApplicationBehavior = Behavior.template({
 })
 
 var showTabBar = function(boolean) {
-	if (boolean == true) {
-		bottomTabBar.visible = true;
-	} else {
-		bottomTabBar.visible = false;
+	if (boolean == true && mainColumn.last != bottomTabBar) {
+		mainColumn.add(bottomTabBar);
+	} else if (boolean == false && mainColumn.last == bottomTabBar) {
+		mainColumn.remove(bottomTabBar);
 	}
 }
 

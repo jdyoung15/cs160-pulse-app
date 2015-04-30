@@ -41,11 +41,12 @@ var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: wh
 
 
 var goalHeader = new Line({
-	left:0, right:0, top:0, height: 60,
+	left:0, right:0, top:0, height:40, skin: lightGreySkin,
 	contents: [
-		new Label({left:0, width: 250, string:"Goals", style:bigLabelStyle}),
+		new Label({left:10, width:100, string:"Goals", style:bigLabelStyle}),
+		new Container({left:0, width:150}), // Buffer space to align above label
 	  	new ButtonTemplate({
-		  width: 80, height:60, style: headerButtonLabelStyle, skin: orangeSkin,
+		  width: 80, height:40, style: headerButtonLabelStyle, skin: orangeSkin,
 		  textForLabel: "Edit",
 		  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 			onTap: { value: function(button){
@@ -64,19 +65,42 @@ var SensorBar = Container.template(function($) { return {
 		Canvas($, { anchor:"CANVAS", left:20, right:20, top:0, bottom:0, active:true,
 			behavior: Object.create(Behavior.prototype, {
 				onCreate: {value: function(canvas, data) {
-					this.percent = (data.value - data.min) / (data.max - data.min);	// Percent of the bar to fill based on the user's goal
-					this.measuredPercent = (data.measuredValue - data.min) / (data.max - data.min);	// Percent of the bar to fill based on user's measurement
-					this.color = data.color;
+					//trace("startingMeasuredValue: " + data.startingMeasuredValue + "\n");
+					//trace("measuredValue: " + data.measuredValue + "\n");
+					//trace("goal value: " + data.value + "\n");
+					
+					var pointsToGoal = Math.abs(data.startingMeasuredValue - data.value);
+					var pointsAchieved = Math.abs(data.measuredValue - data.startingMeasuredValue);
+					var percent = pointsAchieved / pointsToGoal;
+					
+					if (data.name == EDITGOAL.HDL.name) {
+						if (data.measuredValue >= data.value) {	// Goal has been acheived
+							percent = 1;
+						} else if (data.startingMeasuredValue > data.measuredValue) {	// Readjust starting measured value 
+							data.startingMeasuredValue = data.measuredValue;
+							percent = 0;
+						}
+					} else {
+						if (data.measuredValue <= data.value) {	// Goal has been achieved
+							percent = 1;
+						} else if (data.startingMeasuredValue < data.measuredValue) {	// Readjust starting measured value
+							data.startingMeasuredValue = data.measuredValue;
+							percent = 0;
+						}
+					} 
+					this.percent = percent;
 				}},
 				onDisplaying: {value: function(canvas) {
 					var ctx = canvas.getContext("2d");
 					ctx.beginPath();
 					ctx.lineWidth = "1";
 					ctx.strokeStyle = greySkin.fillColors[0];
-					ctx.fillStyle = redSkin.fillColors[0];
-					ctx.fillRect(0, 0, this.measuredPercent * canvas.width, 20);	// First fill the bar with the user's actual measurement...
-					ctx.fillStyle = greenSkin.fillColors[0];
-					ctx.fillRect(0, 0, this.percent * canvas.width, 20);	// ... and then overlay with the user's goal.
+					if (this.percent == 1) {
+						ctx.fillStyle = greenSkin.fillColors[0];
+					} else {
+						ctx.fillStyle = redSkin.fillColors[0];
+					}
+					ctx.fillRect(0, 0, this.percent * canvas.width, 20);
 					ctx.strokeRect(0, 0, canvas.width, 20);
 					
 				}},
@@ -92,14 +116,13 @@ var SensorContainer = Container.template(function($) { return {
 	contents: [
 		new Column({
 			contents: [
-				new Label({left:0, string: $.name, style: labelStyle}),	// Sensor name
-				new SensorBar($),
-				new Line({ left:0, right:0,
+				new Line({top: 20, left:0, right:0, skin: whiteSkin, 
 					contents: [
-						new Label({left:10, string:$.min, style: smallLabelStyle}),		// Minimum possible value of sensor range
-						new Label({left:250, string:$.max, style: smallLabelStyle}),	// Maximum possible value of sensor range
+						new Label({left:0, width: 200, string: $.readableName, style: labelStyle}),	// Sensor name
+						new Label({left:10, string: $.measuredValue + " of " + Math.round($.value), style: labelStyle}),	// Measured value and goal value
 					]
 				}),
+				new SensorBar($),
 			]
 		})
 	]
@@ -118,13 +141,12 @@ var goalSection = new Column({
 	]
 });
 
-
 var scheduleHeader = new Line({
-	left:0, right:0, top:0, height: 60,
+	left:0, right:0, top:0, height:40, skin: lightGreySkin,
 	contents: [
-		new Label({left:0, width: 250, string:"Suggested schedule", style:bigLabelStyle}),
+		new Label({left:10, width:250, string:"Suggested schedule", style:bigLabelStyle}),
 	  	new ButtonTemplate({
-		  width: 80, height:60, style: headerButtonLabelStyle, skin: orangeSkin,
+		  height:40, style: headerButtonLabelStyle, skin: orangeSkin,
 		  textForLabel: "Edit",
 		  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 		   				onTap: { value: function(button){
@@ -143,6 +165,7 @@ var frequencyLabel = new Label({string:"3 times/week", style:labelStyle});
 var index = 0;
 var image = new Picture({url: "assets/zeroProgress.png", top:-60, left:10, right:10});
 var heartBeatLabel = new Label({left:0, right:0, height:80, bottom:0, string:"Heart Rate: 80 BPM", style:bigLabelStyle, skin:lightGreySkin});
+
 var imageContainer = new Column({left:0, right:0, top:0, active: true,
 	  contents: [
 	  	image,
@@ -182,16 +205,33 @@ var imageContainer = new Column({left:0, right:0, top:0, active: true,
 }),
 
 var scheduleSection = new Column({
-	top:0, left:0, right:0, 
+	top:50, left:0, right:0, 
 	contents: [
 		scheduleHeader,
 		imageContainer, 
 	]
 });
 
+var achievementsHeader = new Line({
+	left:0, right:0, top:0, height:40, skin: lightGreySkin,
+	contents: [
+		new Label({left:10, width:250, string:"Achievements", style:bigLabelStyle}),
+	]
+})
+
+var achievementsSection = new Column({
+	top:100, left:0, right:0, 
+	contents: [ 
+		achievementsHeader,
+		new Label({left:10, string:"Achievement stuff goes here", style:bigLabelStyle}),
+	]
+});
+
 var scrollContainer = new ScrollContainer({left:0, right:0, top:0, bottom:0});
-scrollContainer.first.items.add(goalSection);
-scrollContainer.first.items.add(scheduleSection);
+var scrollItems = scrollContainer.first.items;
+scrollItems.add(goalSection);
+scrollItems.add(scheduleSection);
+scrollItems.add(achievementsSection);
 
 var progressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
   contents: [
@@ -219,8 +259,7 @@ var changeHeartBeat = function(value) {
 	heartBeatLabel.string = "Heart Rate: " + value + " BPM";
 }
 
-var measuredSensorValues = {};
-
+				
 // update user's measurements after manually adjusting sensors on device
 var updateSensorMeasurements = function(data){
 	EDITGOAL.SYSTOLIC.measuredValue = data.systolic;
@@ -228,13 +267,16 @@ var updateSensorMeasurements = function(data){
 	EDITGOAL.LDL.measuredValue = data.ldl;
 	EDITGOAL.HDL.measuredValue = data.hdl;
 	EDITGOAL.BMI.measuredValue = data.bmi;
+
+	updateSensorGoals();
 };
 
-var updateSensorGoals = function(data){
-	goalSection.replace(
-		goalSection[data.position],
-		new SensorContainer(data),
-	)
+var updateSensorGoals = function(){
+	goalSection.replace(goalSection[EDITGOAL.SYSTOLIC.position], new SensorContainer(EDITGOAL.SYSTOLIC));
+	goalSection.replace(goalSection[EDITGOAL.DIASTOLIC.position], new SensorContainer(EDITGOAL.DIASTOLIC));
+	goalSection.replace(goalSection[EDITGOAL.LDL.position], new SensorContainer(EDITGOAL.LDL));
+	goalSection.replace(goalSection[EDITGOAL.HDL.position], new SensorContainer(EDITGOAL.HDL));	
+	goalSection.replace(goalSection[EDITGOAL.BMI.position], new SensorContainer(EDITGOAL.BMI));
 };
 
 var updateSchedule = function(data) {
