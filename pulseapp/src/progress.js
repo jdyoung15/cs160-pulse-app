@@ -142,6 +142,18 @@ var goalSection = new Column({
 	]
 });
 
+var tabButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
+    onTap: { value:  function(button){
+      //PROGRESS.switchToProgressScreen();
+      if (button.name == "Progress") {
+      	switchToProgress();
+      } else if (button.name == "Buddy") {
+      	switchToBuddy();
+      } else if (button.name == "Forum") {
+      	switchToForum();
+      }
+    }}
+});
 
 var scheduleHeader = new Line({
 	left:0, right:0, top:0, height:40, skin: lightGreySkin,
@@ -159,12 +171,29 @@ var scheduleHeader = new Line({
 	]
 })
 
+var achievementsHeader = new Line({
+	left:0, right:0, top:0, height:40, skin: lightGreySkin,
+	contents: [
+		new Label({left:10, width:250, string:"Achievements", style:bigLabelStyle}),
+	]
+})
+
+var progressLabel = new Label({top: -300, string:"0%", style:bigLabelStyle});
+var durationLabel = new Label({string:"30 minutes of", style:labelStyle});
+var intensityLabel = new Label({string:"Light exercise for", style:labelStyle});
+var frequencyLabel = new Label({string:"3 times/week", style:labelStyle});
+
 var index = 0;
-var image = new Picture({url: "assets/zeroProgress.png", top:-80, left:0, right:0});
+var image = new Picture({url: "assets/zeroProgress.png", top:-60, left:10, right:10});
 var heartBeatLabel = new Label({left:0, right:0, height:80, bottom:0, string:"Heart Rate: 80 BPM", style:bigLabelStyle, skin:lightGreySkin});
-var imageContainer = new Line({left:0, right:0, top:20, active: true,
+
+var imageContainer = new Column({left:0, right:0, top:0, active: true,
 	  contents: [
 	  	image,
+	  	progressLabel,
+	  	durationLabel,
+	  	intensityLabel,
+	  	frequencyLabel,
 	  ],
 	  behavior: Object.create(Container.prototype, {
 		onTouchEnded: { value: function(content){
@@ -173,16 +202,19 @@ var imageContainer = new Line({left:0, right:0, top:20, active: true,
 			switch (index) {
 				case 0:
 					image.url = "assets/zeroProgress.png";
+					progressLabel.string = "0%";
 					
 					msg.requestText = JSON.stringify({target:"self", color:"red"});
 					break;
 				case 1:
 					image.url = "assets/fiftyProgress.png";
+					progressLabel.string = "50%";
 					
 					msg.requestText = JSON.stringify({target:"self", color:"yellow"});
 					break;
 				case 2:
 					image.url = "assets/doneProgress.png";
+					progressLabel.string = "100%";
 					
 					msg.requestText = JSON.stringify({target:"self", color:"green"});
 					break;
@@ -201,9 +233,19 @@ var scheduleSection = new Column({
 	]
 });
 
+var achievementsSection = new Column({
+	top:50, left:0, right:0, 
+	contents: [ 
+		achievementsHeader,
+		new Label({left:10, string:"Achievement stuff goes here", style:bigLabelStyle}),
+	]
+});
+
 var scrollContainer = new ScrollContainer({left:0, right:0, top:0, bottom:0});
-scrollContainer.first.items.add(goalSection);
-scrollContainer.first.items.add(scheduleSection);
+var scrollItems = scrollContainer.first.items;
+scrollItems.add(goalSection);
+scrollItems.add(scheduleSection);
+scrollItems.add(achievementsSection);
 
 var progressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin,
   contents: [
