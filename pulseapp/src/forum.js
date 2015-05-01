@@ -88,14 +88,40 @@ var searchButton = new ButtonTemplate({
   })
 });	
 
+var newPostButton = BUTTONS.Button.template(function($){ return{
+  width: 60, height:36, top:0, skin:orangeSkin,
+  contents:[
+    new Label({left:0, right:0, height:30, string:$.textForLabel, })
+  ],
+  behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
+    onTap: { value:  function(button){
+    	
+      var text = newPostField.myScroller.fieldLabel.string;
+      var postNew = {id: 8, userName:"Bob Smith", title:text, date: "Now", picture:"avatar1", link:"", skin:whiteSkin};
+      var newForum = [postNew]
+
+     
+      for (i=0; i<forum_posts.length; i++){
+      	newForum[i+1] = forum_posts[i];
+      }
+      forum_posts = newForum;
+      forumColumn.first.first.menu.add(new ProcessorLine(postNew));
+      
+  
+
+      
+    }}
+  })
+}});
+
 //Fields Text
 var fieldStyle = new Style({ color: 'black', font: 'bold 15px Fira Sans', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5, });
 var fieldHintStyle = new Style({ color: 'gray', font: 'bold 15px Fira Sans', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 3, bottom: 3, height: 20 });
 
 var FieldTemplate = Container.template(function($) { return { 
-  width: 285, height: 36, skin: chatBoxSkin, contents: [
+  width: 260, height: 36, skin: chatBoxSkin, contents: [
     Scroller($, { 
-      left: 4, right: 4, top: 4, bottom: 4, active: true,
+      left: 4, right: 4, top: 4, bottom: 4, name:"myScroller", active: true,
       behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
         Label($, { 
           left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: fieldStyle, anchor: 'NAME', name: "fieldLabel",
@@ -141,8 +167,9 @@ var FieldTemplate2 = Container.template(function($) { return {
   ]
 }});
 
-var search = new FieldTemplate({name:"", texto:"Search..."});
+var newPostField = new FieldTemplate({name:"", texto:"Tap to create new post..."});
 var dataSend = new FieldTemplate2({name:"", texto:""});
+var newPostButton = new newPostButton({left:0, right:0, top:0, textForLabel: "Post", });
 
 
 //Main Container
@@ -154,19 +181,8 @@ var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 		}}
 	}), 
 	contents:[
-		new HeaderTemplate({title: "Forum", leftItem: new Container({left:0, right:0, top:0, bottom:0}), rightItem: addComment}),
-		new Line({left:0, right:0, top:0, skin: lightGreySkin,
-			contents:[				
-				search,
-				searchButton,
-			]
-		}),		
-		new Line({left:0, right:0, top:0, skin: spaceSkin,
-			contents:[				
-				new Label({left:20, height: 3, top:0, string: "", style: labelStyle}),
-			]
-		}),
-		
+		new HeaderTemplate({title: "Forum", leftItem: new Container({left:0, right:0, top:0, bottom:0}), rightItem: new Container({left:0, right:0, top:0, bottom:0})}),
+	
 		new Line({left:0, right:0, top:0, height:36,  skin: whiteSkin,
 			contents:[			
 				global = new ButtonTemplate({height:36, textForLabel:"Global", skin:orangeSkin, style:smallButtonStyle}),	
@@ -174,9 +190,16 @@ var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 				self = new ButtonTemplate({height:36, textForLabel:"MyPost", skin:whiteSkin, style:smallButtonStyle1}),        		
 			]
 		}),
+		new Line({left:0, right:0, top:0, skin: lightGreySkin,
+			contents:[				
+				newPostField,
+				newPostButton,
+			]
+		}),	
 		
 	]
 });
+
 
 function searchBuddy() {
 }
@@ -189,30 +212,25 @@ addComment.behavior.myButtonAction  = function(){
 }
 
 
-
-
 /*
 	Forum Logic		   	
 */
-var post0 = {id: 0, userName:"Maria Powell", location:"Local", title:"What are your favorite walking shoes?", date: "1 hr ago", picture:"gavatar1", descrition:"", skin: whiteSkin,};
-var post1 = {id: 1, userName:"Andy Lee", location:"Local", title:"What's a good morning exercise?", date: "3 hr ago", picture:"mavatar1", descrition:"", skin: whiteSkin,};
-var post2 = {id: 2, userName:"Mike Jones", location:"Local", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"mavatar2", descrition:"", skin: whiteSkin,};
-var post3 = {id: 3, userName:"New", location:"Local", title:"New", date: "Now", picture:"avatar1", descrition:"", skin: whiteSkin,};
-var post4 = {id: 4, userName:"Maria Powell", location:"Local", title:"What are your favorite walking shoes?", date: "1 hr ago", picture:"gavatar1", descrition:"", skin: whiteSkin,};
-var post5 = {id: 5,userName:"Andy Lee", location:"Local", title:"What's a good morning exercise?", date: "3 hr ago", picture:"mavatar1", descrition:"", skin: whiteSkin,};
-var post6 = {id: 6, userName:"Mike Jones", location:"Local", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"mavatar2", descrition:"", skin: whiteSkin,};
-var post7 = {id: 7, userName:"New", location:"Local", title:"New", date: "Now", picture:"avatar1", descrition:"", link:"", skin:whiteSkin};
+var post0 = {id: 0, userName:"Maria Powell",  title:"What are your favorite walking shoes?", date: "6 min ago", picture:"gavatar1", skin: whiteSkin,};
+var post1 = {id: 1, userName:"Andy Lee", title:"What's a good morning exercise?", date: "1 hr ago", picture:"mavatar1", skin: whiteSkin,};
+var post2 = {id: 2, userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"mavatar2",  skin: whiteSkin,};
+var post3 = {id: 3, userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"avatar1", skin: whiteSkin,};
+var post4 = {id: 4, userName:"Jane Doe",  title:"Ideal hiking trail for beginners?", date: "1 hr ago", picture:"gavatar1",  skin: whiteSkin,};
 
 //Initial forum
-var forum_posts = [post0, post1, post2, post3, post4, post5, post6];
+var forum_posts = [post0, post1, post2, post3, post4];
 //How to add a post to the forum
-forum_posts[forum_posts.length] = post7; 
+//forum_posts[forum_posts.length] = post4; 
 
 
 var itemNameStyle = new Style({ font: '26px bold Tahoma, ', horizontal: 'null', vertical: 'null', lines: 1, color:"black", horizontal: 'left'});
 var timeStyle = new Style({ font: '14px bold Arial, ', horizontal: 'null', vertical: 'null', lines: 1, color:"black", horizontal: 'left'});
 var textStyle = new Style({ font: '16px bold Arial, ', horizontal: 'left', vertical: 'null', lines: 1, left: 10, color:"black", horizontal: 'left'});
-
+ 
 var ListItemLine = Line.template(function($) { return { left: 0, right: 0, skin:$.skin, userName: $.userName, 
 	behavior: Object.create(Behavior.prototype, {
     	onTouchBegan: { value: function(container, id, x,  y, ticks) {
@@ -298,8 +316,6 @@ var once = true;  //load values once only
 function ListBuilder(element, index, array) {
 	forumColumn.first.first.menu.add(new ProcessorLine(element));	
 }
-
-
 //Forum Container
 var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGreySkin,
 	behavior: Object.create(Container.prototype, {
@@ -314,7 +330,6 @@ var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGrey
 		new ScreenContainer(new Object()),		
 	],
 });
-
 
 /*
 	Thread Logic		   	
