@@ -44,7 +44,7 @@ var back = new ButtonTemplate({
 
 //Send button
 var sendButton = BUTTONS.Button.template(function($){ return{
-  left:5, width:60, height:40, skin: orangeSkin,
+  left:0, width:70, height:40, skin: orangeSkin,
   contents:[
     new Label({left:0, right:0, height:30, string:$.textForLabel, })
   ],
@@ -58,6 +58,8 @@ var sendButton = BUTTONS.Button.template(function($){ return{
      
       	for (i=0; i<threads.length; i++){
       		newThread[i+1] = threads[i];
+      		
+      	KEYBOARD.hide();
       	}
       	threads = newThread;
       	threadColumn.first.first.menu.add(new ThreadLine(lineNew));
@@ -82,6 +84,8 @@ var newPostButton = BUTTONS.Button.template(function($){ return{
      
       	for (i=0; i<forum_posts.length; i++){
       		newForum[i+1] = forum_posts[i];
+      		
+      	KEYBOARD.hide();
       	}
       	forum_posts = newForum;
       	forumColumn.first.first.menu.insert(new PostLine(postNew), forumColumn.first.first.menu.post0);
@@ -96,14 +100,13 @@ var fieldHintStyle = new Style({ color: 'gray', font: 'bold 15px Fira Sans', hor
 /*
 	Forum Logic		   	
 */
-var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite walking shoes?", date: "6 min ago", picture:"gavatar1", skin: whiteSkin,};
-var post1 = {id: "post1", userName:"Andy Lee", title:"What's a good morning exercise?", date: "1 hr ago", picture:"mavatar1", skin: whiteSkin,};
-var post2 = {id: "post2", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"mavatar2",  skin: whiteSkin,};
-var post3 = {id: "post3", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"avatar1", skin: whiteSkin,};
-var post4 = {id: "post4", userName:"Jane Doe",  title:"Ideal hiking trail for beginners?", date: "1 hr ago", picture:"gavatar1",  skin: whiteSkin,};
+var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin,};
+var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"mavatar2",  skin: whiteSkin,};
+var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"avatar1", skin: whiteSkin,};
+var post3 = {id: "post3", userName:"Jane Doe",  title:"Favorite walking shoes?", date: "1 hr ago", picture:"gavatar1",  skin: whiteSkin,};
 
 //Initial forum
-var forum_posts = [post0, post1, post2, post3, post4];
+var forum_posts = [post0, post1, post2, post3];
 //How to add a post to the forum
 //forum_posts[forum_posts.length] = post4; 
 
@@ -212,7 +215,7 @@ function ListBuilder(element, index, array) {
 //Forum Container
 var oncePost = true;  //load values only once
 var newPostField = new FieldTemplate({name:"", text:"Tap to create new post..."});
-var threadField = new FieldTemplate({name:"", text:"Tap to send a msg..."});
+var threadField = new FieldTemplate({name:"", text:"Tap to post a reply..."});
 var newPostButton = new newPostButton({left:0, right:0, top:0, textForLabel: "Post", });
 var sendButton = new sendButton({left:0, right:0, top:0, textForLabel: "Send", });
 
@@ -270,9 +273,9 @@ var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGrey
 /*
 	Thread Logic		   	
 */
-var thread0_1 = {post_id:0, id: "thread0", userName:"Maria Powell", title:"What are your favorite walking shoes?", date: "1 hr ago", picture:"gavatar1", skin:whiteSkin,};
-var thread0_2 = {post_id:0, id: "thread1", userName:"Andy Lee", title:"What's a good morning exercise?", date: "3 hr ago", picture:"mavatar1", };
-var thread0_3 = {post_id:0, id: "thread2", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"mavatar2", };
+var thread0_1 = {post_id:0, id: "thread0", userName:"Maria Powell", title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin:whiteSkin,};
+var thread0_2 = {post_id:0, id: "thread1", userName:"Andy Lee", title:"The view from Indian Rock is amazing!", date: "3 hr ago", picture:"mavatar1", };
+var thread0_3 = {post_id:0, id: "thread2", userName:"Mike Jones", title:"The Fire Trail is great for beginners.", date: "2 hr ago", picture:"mavatar2", };
 /*var thread1_1 = {post_id:1, id: "thread3", userName:"New", title:"New", date: "Now", picture:"avatar1", };
 var thread1_2 = {post_id:1, id: "thread4", userName:"Maria Powell", title:"What are your favorite walking shoes?", date: "1 hr ago", picture:"gavatar1", };
 var thread2_1 = {post_id:2, id: "thread5", userName:"Andy Lee", title:"What's a good morning exercise?", date: "3 hr ago", picture:"mavatar1", };
@@ -324,7 +327,7 @@ var threadColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGre
 	contents:[	
 		new ScreenContainer(new Object()),	
 		      
-        new Line({bottom:0, skin: whiteSkin,
+        new Line({left:0, right:0, bottom:0, skin: whiteSkin,
 			contents:[				
 				threadField,
 				sendButton,
