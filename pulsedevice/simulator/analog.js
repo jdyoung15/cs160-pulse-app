@@ -12,9 +12,9 @@ exports.configure = function(configuration) {
 					{
 						valueLabel : "Heart Beat/Minute",
 						valueID : "heartBeat",
-						minValue: 0,
-						maxValue: 120,
-						value: 60,
+						minValue: 40,
+						maxValue: 150,
+						value: 80,
 						defaultControl: PinsSimulators.SLIDER
 					}
 				),

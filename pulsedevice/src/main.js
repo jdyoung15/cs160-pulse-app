@@ -97,7 +97,7 @@ var mainColumn = new Column({
   behavior: Object.create(Behavior.prototype, {
 		onAnalogValueChanged: {value:  function(content, result){
 			heartBeat = result.heartBeat;
-			heartBeatLabel.string = "Heart Beat/Minute: " + Math.round(heartBeat);
+			heartBeatLabel.string = "BMI: " + Math.round(heartBeat);
 			systolicVal = result.systolicVal;
 			systolicLabel.string = "Systolic: " + Math.round(systolicVal);
 			diastolicVal = result.diastolicVal;
