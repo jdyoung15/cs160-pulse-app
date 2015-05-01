@@ -153,66 +153,29 @@ var scheduleHeader = new Line({
 	]
 })
 
-
-var DayProgressCircle = Container.template(function($) { return {
-	left:0, right:0, height:30, active:true,
-	contents: [
-		Canvas($, { anchor:"CANVAS", left:8, right:0, top:0, bottom:0, active:true,
-			behavior: Object.create(Behavior.prototype, {
-				drawCircleOutline: {value: function(ctx) {
-					ctx.beginPath();
-					ctx.arc(12, 12, 12, 0, 2 * Math.PI, false);
-				    ctx.lineWidth = 1;
-				    ctx.strokeStyle = '#003300';
-				    ctx.stroke();
-				}},
-				onDisplaying: {value: function(canvas) {
-					this.dayCompleted = false;
-					this.drawCircleOutline(canvas.getContext("2d"));
-				}},
-				onTouchEnded: {value: function(canvas, id, x, y, ticks){
-					this.dayCompleted = !this.dayCompleted;
-					var ctx = canvas.getContext("2d");
-				    this.drawCircleOutline(ctx);
-				    if (this.dayCompleted) {
-					    ctx.fillStyle = 'green';
-				    } else {
-				    	ctx.fillStyle = 'white';
-				    }
-				    ctx.fill();
-				}},
-			}),
-		}),
-	]
-}});
-
 WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-//PROGRESS = [true, false, false, true, true, false, true];
 
 var weekProgress = new Line({
 	top: 100, left:10, right:0, //height: 30,
 });
 
-/*var weekLabels = new Line({
-	left: 10, right: 10,
-});*/
-
 for (var i = 0; i < 7; i ++) {
 	weekProgress.add(new Column({left:0, right:0, top:0, bottom:0, 
 		contents: [
-			new DayProgressCircle(),
+			new Picture({left:5, right:5, height:40, active: true, url:"assets/greyCircle.png",
+				behavior: Object.create(Behavior.prototype, {
+					onTouchEnded: { value: function(container, id, x, y, ticks){
+						if (container.url.indexOf("greyCircle") > -1) {
+							container.url = "assets/greenCircle.png";
+						} else {
+							container.url = "assets/greyCircle.png";
+						}
+					}},
+				})
+			}),
 			new Label({left:0, right:0, string:WEEK[i], style:smallLabelStyle})
 		]
 	}));
-	/*
-for (var i = 0; i < 7; i++) {
-	if (PROGRESS[i]) {
-		weekProgress.add(new Picture({left:5, right:5, url:"assets/greenCircle.png"}));
-	} else {
-		weekProgress.add(new Picture({left:5, right:5, url:"assets/greyCircle.png"}));
-	}
-	*/
-	//weekLabels.add(new Label({left:0, right:0, string:WEEK[i], style:smallLabelStyle}));
 }
 
 var scheduleSection = new Column({
@@ -221,7 +184,6 @@ var scheduleSection = new Column({
 		scheduleHeader,
 		new scheduleContainer(), 
 		weekProgress,
-		//weekLabels,
 	]
 });
 
@@ -233,7 +195,7 @@ var achievementsHeader = new Line({
 })
 
 var achievementsSection = new Column({
-	top:50, left:0, right:0, 
+	top:30, bottom: 30, left:0, right:0, 
 	contents: [ 
 		achievementsHeader,
 		new Line({
