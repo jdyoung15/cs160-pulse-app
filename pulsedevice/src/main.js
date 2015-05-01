@@ -1,4 +1,9 @@
 heartBeat = 80;
+systolicVal = 130;
+diastolicVal = 85;
+ldlVal = 150;
+hdlVal = 45;
+bmiVal = 30;
 
 Handler.bind("/gotAnalogResult", Object.create(Behavior.prototype, {
 	onInvoke: { value: function( handler, message ){
@@ -16,7 +21,14 @@ Handler.bind("/respond", Behavior({
 
 Handler.bind("/getStatus", Behavior({
 	onInvoke: function(handler, message){
-		message.responseText = JSON.stringify( { heartBeat: heartBeat } );
+		message.responseText = JSON.stringify({ 
+			heartBeat: Math.round(heartBeat), 
+			systolicVal: Math.round(systolicVal), 
+			diastolicVal: Math.round(diastolicVal), 
+			ldlVal: Math.round(ldlVal), 
+			hdlVal: Math.round(hdlVal), 
+			bmiVal: Math.round(bmiVal) 
+		});
 		message.status = 200;
 	},
 }));
@@ -51,7 +63,12 @@ var yellowSkin = new Skin({ fill:"#f2ea00" });
 var greenSkin = new Skin({ fill:"#65df71" });
 
 var labelStyle = new Style({font:"20px", color:"black"});
-var heartBeatLabel = new Label({left:0, right:0, height:50, string:"80 BPM" + heartBeat, style:labelStyle})
+var heartBeatLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
+var systolicLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
+var diastolicLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
+var ldlLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
+var hdlLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
+var bmiLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
 var progress = new Line({left:0, right:0, top:0, bottom:0, skin: whiteSkin});
 var buddyProgress = new Line({left:0, right:0, top:0, bottom:0, skin: whiteSkin});
 
@@ -60,6 +77,11 @@ var mainColumn = new Column({
   skin: whiteSkin,
   contents:[
     heartBeatLabel,
+    systolicLabel,
+    diastolicLabel,
+    ldlLabel,
+    hdlLabel,
+    bmiLabel,
     progress,
     buddyProgress,
   ],
@@ -67,6 +89,16 @@ var mainColumn = new Column({
 		onAnalogValueChanged: {value:  function(content, result){
 			heartBeat = result.heartBeat;
 			heartBeatLabel.string = "Heart Beat/Minute: " + Math.round(heartBeat);
+			systolicVal = result.systolicVal;
+			systolicLabel.string = "Systolic Pressure: " + Math.round(systolicVal);
+			diastolicVal = result.diastolicVal;
+			diastolicLabel.string = "Diastolic Pressure: " + Math.round(diastolicVal);
+			ldlVal = result.ldlVal;
+			ldlLabel.string = "LDL: " + Math.round(ldlVal);
+			hdlVal = result.hdlVal;
+			hdlLabel.string = "HDL: " + Math.round(hdlVal);
+			bmiVal = result.bmiVal;
+			bmiLabel.string = "BMI: " + Math.round(bmiVal);
 		}}
   })
 });

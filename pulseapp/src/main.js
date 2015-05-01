@@ -32,11 +32,17 @@ Handler.bind("/getStatus", {
         handler.invoke(new Message(deviceURL + "getStatus"), Message.JSON);
     },
     onComplete: function(handler, message, json){
-    	PROGRESS.changeHeartBeat(Math.round(json.heartBeat));
+    	PROGRESS.changeHeartBeat(json.heartBeat);
     	// update goal bars with (mocked) measured sensor values
-    	var measuredSensorValues = {systolic: 130, diastolic: 90, ldl: 210, hdl: Math.round(json.heartBeat), bmi: Math.round(json.heartBeat)};
+    	var measuredSensorValues = {
+    		systolicVal: json.systolicVal, 
+    		diastolicVal: json.diastolicVal,
+    		ldlVal: json.ldlVal,
+    		hdlVal: json.hdlVal, 
+    		bmiVal: json.bmiVal
+    	}
     	PROGRESS.updateSensorMeasurements(measuredSensorValues);
-    	handler.invoke( new Message("/delay"));
+    	handler.invoke(new Message("/delay"));
     }
 });
 

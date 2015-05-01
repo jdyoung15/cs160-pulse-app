@@ -9,13 +9,19 @@ orangeSkin = new Skin({ fill:"#f27400" });
 redSkin = new Skin({ fill:"#e07464" });
 yellowSkin = new Skin({ fill:"#f2ea00" });
 greenSkin = new Skin({ fill:"#65df71" });
+blackSkin = new Skin({ fill: 'black',});
+spaceSkin = new Skin({ fill: '#F0F0F0',});
+lightBlueSkin = new Skin({ fill: '#B4DCF0'});
 
 headerLabelStyle = new Style({font:"bold 26px", color:"white"});
 headerButtonLabelStyle = new Style({font:"20px", color:"white"});
 labelStyle = new Style({ font: "20px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
-smallLabelStyle = new Style({ font: "14px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
+smallLabelStyle = new Style({font:"18px", color:"black", horizontal: 'center', vertical: 'middle'});
+mediumLabelStyle = new Style({font:"22px", color:"black", horizontal: 'center', vertical: 'middle'});
 bigLabelStyle = new Style({ color: 'black', font: 'bold 24px'});
 largeButtonStyle = new Style({font:"24px", color:"white"});
+fieldStyle = new Style({ color: 'black', font: 'bold 20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
+fieldHintStyle = new Style({ color: '#aaa', font: '20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
 
 HeaderTemplate = Line.template(function($) { return { left: 0, right: 0, height:60, skin: blueSkin, 
 	contents: [
@@ -113,3 +119,33 @@ scheduleContainer = function() {
 		}), 
 	})
 };
+
+
+FieldTemplate = Container.template(function($) { return { 
+  width: 250, height: 40, skin: whiteSkin, contents: [
+    Scroller($, { 
+      left: 4, right: 4, top: 0, bottom: 0, active: true,
+      behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
+        Label($, { 
+          left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: labelStyle, anchor: 'NAME', name: "fieldLabel",
+          editable: true, string: $.name,
+         	behavior: Object.create( CONTROL.FieldLabelBehavior.prototype, {
+         		onFocused:{ value: function(label){
+         		  showTabBar(false);
+         		  label.select(0, label.length)
+				  KEYBOARD.show();
+         		}},
+         		onEdited: { value: function(label){
+         		  var data = this.data;
+              	  data.name = label.string;
+              	  label.container.hint.visible = ( data.name.length == 0 );	
+         		}}
+         	}),
+         }),
+         Label($, {
+   			 	left:4, right:4, top:4, bottom:4, style:fieldHintStyle, string:$.text, name:"hint"
+         })
+      ]
+    })
+  ]
+}});

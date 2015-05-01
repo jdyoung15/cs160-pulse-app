@@ -12,10 +12,6 @@ for ( var i in THEME ){
 }
 
 //MIO
-var blackSkin = new Skin({ fill: 'black',});
-var spaceSkin = new Skin({ fill: '#F0F0F0',});
-var whiteSkin = new Skin({ fill: 'white',});
-var lightBlueSkin = new Skin({ fill: '#B4DCF0'});
 var fieldLabelSkin,
 var smallButtonStyle = new Style({font:"bold 16px", color:"white"});
 var smallButtonStyle1 = new Style({font:"bold 16px", color:"black"});
@@ -47,14 +43,17 @@ var back = new ButtonTemplate({
 });	
 
 //Send button
-var sendButton = new ButtonTemplate({
-  left:5, width:60, height:36, skin: orangeSkin, style: smallButtonStyle,
-  textForLabel: "Send",
+var sendButton = BUTTONS.Button.template(function($){ return{
+  left:5, width:60, height:40, skin: orangeSkin,
+  contents:[
+    new Label({left:0, right:0, height:30, string:$.textForLabel, })
+  ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
-	  	var text = threadField.myScroller.fieldLabel.string;
-		threadField.myScroller.fieldLabel.string="";
-      	var lineNew = {post_id:0, id: "thread" + threads.length, userName:"Bob Smith", title:text, date: "Now", picture:"avatar1", link:"", skin:whiteSkin};
+	  	var text = threadField.first.fieldLabel.string;
+		threadField.first.fieldLabel.string="";
+		threadField.first.hint.visible = true;
+      	var lineNew = {post_id:0, id: "thread" + threads.length, userName:"Bob Smith", title:text, date: "Now", picture:"avatar1", link:""};
       	var newThread = [lineNew]
      
       	for (i=0; i<threads.length; i++){
@@ -64,19 +63,20 @@ var sendButton = new ButtonTemplate({
       	threadColumn.first.first.menu.add(new ThreadLine(lineNew));
     }}
   })
-});	
+}});
 
 
 //Post Button
 var newPostButton = BUTTONS.Button.template(function($){ return{
-  width: 60, height:36, top:0, skin:orangeSkin,
+  left:5, width:60, height:40, skin: orangeSkin,
   contents:[
     new Label({left:0, right:0, height:30, string:$.textForLabel, })
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
-		var text = newPostField.myScroller.fieldLabel.string;
-		newPostField.myScroller.fieldLabel.string="";
+		var text = newPostField.first.fieldLabel.string;
+		newPostField.first.fieldLabel.string="";
+		newPostField.first.hint.visible = true;
       	var postNew = {id: "post" + forum_posts.length, userName:"Bob Smith", title:text, date: "Now", picture:"avatar1", link:"", skin:whiteSkin};
       	var newForum = [postNew]
      
@@ -92,31 +92,6 @@ var newPostButton = BUTTONS.Button.template(function($){ return{
 //Fields Text
 var fieldStyle = new Style({ color: 'black', font: 'bold 15px Fira Sans', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5, });
 var fieldHintStyle = new Style({ color: 'gray', font: 'bold 15px Fira Sans', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 3, bottom: 3, height: 20 });
-
-var FieldTemplate = Container.template(function($) { return { 
-  width: 260, height: 36, skin: chatBoxSkin, contents: [
-    Scroller($, { 
-      left: 4, right: 4, top: 4, bottom: 4, name:"myScroller", active: true,
-      behavior: Object.create(CONTROL.FieldScrollerBehavior.prototype), clip: true, contents: [
-        Label($, { 
-          left: 0, top: 0, bottom: 0, skin: THEME.fieldLabelSkin, style: fieldStyle, anchor: 'NAME', name: "fieldLabel",
-          editable: true, string: $.name,
-         	behavior: Object.create( CONTROL.FieldLabelBehavior.prototype, {
-         		onEdited: { value: function(label){
-         		  var data = this.data;
-              	  data.name = label.string;
-              	  label.container.hint.visible = ( data.name.length == 0 );	
-         		}}
-         	}),
-         }),
-         Label($, {
-   			 	left:4, right:4, top:4, bottom:4, style:fieldHintStyle, string:$.texto,  name:"hint"
-         })
-      ]
-    })
-  ]
-}});
-
 
 /*
 	Forum Logic		   	
@@ -179,11 +154,11 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
     		container.skin = lightBlueSkin;
     	}},
     	onTouchEnded: { value: function(container, id, x,  y, ticks) {	
-			container.skin = whiteSkin;
+			container.skin = spaceSkin;
 			trace($.userName+"\n");
 		}},
 		onTouchCancelled: { value: function(container, id, x,  y, ticks) {
-    		container.skin = whiteSkin;
+    		container.skin = spaceSkin;
     	}},
 		
     }),
@@ -236,9 +211,10 @@ function ListBuilder(element, index, array) {
 //Containers
 //Forum Container
 var oncePost = true;  //load values only once
-var newPostField = new FieldTemplate({name:"", texto:"Tap to create new post..."});
-var threadField = new FieldTemplate({name:"", texto:"Tap to send a msg..."});
+var newPostField = new FieldTemplate({name:"", text:"Tap to create new post..."});
+var threadField = new FieldTemplate({name:"", text:"Tap to send a msg..."});
 var newPostButton = new newPostButton({left:0, right:0, top:0, textForLabel: "Post", });
+var sendButton = new sendButton({left:0, right:0, top:0, textForLabel: "Send", });
 
 //Forum Container
 var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, active:true,
@@ -246,6 +222,7 @@ var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 		onTouchEnded: { value: function(content){
 			KEYBOARD.hide();
 			content.focus();
+			showTabBar(true);
 		}}
 	}), 
 	contents:[
@@ -255,15 +232,19 @@ var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 			contents:[			
 				global = new ButtonTemplate({height:36, textForLabel:"Global", skin:orangeSkin, style:smallButtonStyle}),	
 				local = new ButtonTemplate({height:36, textForLabel:"Local", skin:whiteSkin, style:smallButtonStyle1}),
-				self = new ButtonTemplate({height:36, textForLabel:"MyPost", skin:whiteSkin, style:smallButtonStyle1}),        		
+				self = new ButtonTemplate({height:36, textForLabel:"My Posts", skin:whiteSkin, style:smallButtonStyle1}),        		
 			]
 		}),
-		new Line({left:0, right:0, top:0, skin: lightGreySkin,
+
+		new Line({ left: 0, right: 0, height: 3, skin: spaceSkin, }),
+		new Line({bottom:0, skin: whiteSkin,
 			contents:[				
 				newPostField,
 				newPostButton,
+				
 			]
 		}),	
+		new Line({ left: 0, right: 0, height: 3, skin: spaceSkin, }),
 		
 	]
 });
@@ -317,6 +298,7 @@ var threadContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: white
 		onTouchEnded: { value: function(content){
 			KEYBOARD.hide();
 			content.focus();
+			showTabBar(true);
 		}}
 	}), 
 	contents:[
@@ -340,7 +322,8 @@ var threadColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGre
 		}}
 	}), 
 	contents:[	
-		new ScreenContainer(new Object()),	      
+		new ScreenContainer(new Object()),	
+		      
         new Line({bottom:0, skin: whiteSkin,
 			contents:[				
 				threadField,

@@ -1,10 +1,6 @@
 var STYLE = require('styles');
 var BUTTONS = require('controls/buttons');
 
-var medButtonStyle = new Style({font:"20px", color:"white"});
-var smallButtonStyle = new Style({font:"12px", color:"white"});
-var smallLabelStyle = new Style({font:"18px", color:"black", horizontal: 'center', vertical: 'middle'});
-
 var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0, 
@@ -209,6 +205,7 @@ for (var i = 0; i < 7; i ++) {
 		]
 	}));
 	/*
+for (var i = 0; i < 7; i++) {
 	if (PROGRESS[i]) {
 		weekProgress.add(new Picture({left:5, right:5, url:"assets/greenCircle.png"}));
 	} else {
@@ -239,9 +236,61 @@ var achievementsSection = new Column({
 	top:50, left:0, right:0, 
 	contents: [ 
 		achievementsHeader,
-		new Label({left:10, string:"Achievement stuff goes here", style:bigLabelStyle}),
+		new Line({
+			top: 10, left:10, right:10, height: 30,
+			contents: [
+				new Label({left:0, right:0, string:"193", style:mediumLabelStyle}),
+				new Label({left:0, right:0, string:"3", style:mediumLabelStyle}),
+				new Label({left:0, right:0, string:"2", style:mediumLabelStyle}),
+			]
+		}),
+		
+		new Line({
+			top: 0, left:10, right:10, height: 30,
+			contents: [
+				new Label({left:0, right:0, string:"Hours", style:smallLabelStyle}),
+				new Label({left:0, right:0, string:"Weeks", style:smallLabelStyle}),
+				new Label({left:0, right:0, string:"Buddies", style:smallLabelStyle}),
+			]
+		}),
+		
+		new Line({
+			top: 10, left:0, right:0, height: 2, skin: lightGreySkin,
+		}),
+		
+		new Label({top: 10, left:0, right:0, string:"Consecutive Weeks", style:mediumLabelStyle}),
 	]
 });
+
+NUMBER_OF_WEEKS = ["5", "10", "25", "50", "100", "250", "500", "1K+"];
+WEEK_ACHIEVEMENTS = [true, true, true, false, false, false, false, false];
+ACHIEVEMENTS_LABELS = ["Newbie", "Novice", "Rookie", "Beginner", "Skilled", "Proficient", " Advanced", "Expert"];
+
+for (var i = 0; i < 2; i++) {
+	var stars = new Line({
+		top: 20, left:10, right:10, height: 30,
+	});
+	
+	var weeks = new Line({
+		top: -25, left:10, right:10, height: 30,
+	});
+	var achievementLabels = new Line({
+		top: 25, left: 10, right: 10,
+	});
+	for (var j = 0; j < 4; j++) {
+		var index = i*4 + j;
+		if (WEEK_ACHIEVEMENTS[index]) {
+			stars.add(new Picture({left:5, right:5, url:"assets/yellowStar.png"}));
+		} else {
+			stars.add(new Picture({left:5, right:5, url:"assets/greyStar.png"}));
+		}
+		weeks.add(new Label({left:0, right:0, string:NUMBER_OF_WEEKS[index], style:smallLabelStyle}));
+		achievementLabels.add(new Label({left:0, right:0, string:ACHIEVEMENTS_LABELS[index], style:smallLabelStyle}));
+	}
+	achievementsSection.add(stars);
+	achievementsSection.add(weeks);
+	achievementsSection.add(achievementLabels);
+}
 
 var scrollContainer = new ScrollContainer({left:0, right:0, top:0, bottom:0});
 var scrollItems = scrollContainer.first.items;
@@ -278,11 +327,11 @@ var changeHeartBeat = function(value) {
 				
 // update user's measurements after manually adjusting sensors on device
 var updateSensorMeasurements = function(data){
-	EDITGOAL.SYSTOLIC.measuredValue = data.systolic;
-	EDITGOAL.DIASTOLIC.measuredValue = data.diastolic;
-	EDITGOAL.LDL.measuredValue = data.ldl;
-	EDITGOAL.HDL.measuredValue = data.hdl;
-	EDITGOAL.BMI.measuredValue = data.bmi;
+	EDITGOAL.SYSTOLIC.measuredValue = data.systolicVal;
+	EDITGOAL.DIASTOLIC.measuredValue = data.diastolicVal;
+	EDITGOAL.LDL.measuredValue = data.ldlVal;
+	EDITGOAL.HDL.measuredValue = data.hdlVal;
+	EDITGOAL.BMI.measuredValue = data.bmiVal;
 
 	updateSensorGoals();
 };
