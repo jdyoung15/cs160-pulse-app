@@ -201,9 +201,9 @@ var achievementsSection = new Column({
 		new Line({
 			top: 10, left:10, right:10, height: 30,
 			contents: [
-				new Label({left:0, right:0, string:"193", style:mediumLabelStyle}),
-				new Label({left:0, right:0, string:"3", style:mediumLabelStyle}),
-				new Label({left:0, right:0, string:"2", style:mediumLabelStyle}),
+				new Label({left:0, right:0, string:"193", style:boldedMediumLabelStyle}),
+				new Label({left:0, right:0, string:"3", style:boldedMediumLabelStyle}),
+				new Label({left:0, right:0, string:"2", style:boldedMediumLabelStyle}),
 			]
 		}),
 		
@@ -246,7 +246,7 @@ for (var i = 0; i < 2; i++) {
 		} else {
 			stars.add(new Picture({left:5, right:5, url:"assets/greyStar.png"}));
 		}
-		weeks.add(new Label({left:0, right:0, string:NUMBER_OF_WEEKS[index], style:smallLabelStyle}));
+		weeks.add(new Label({left:0, right:0, string:NUMBER_OF_WEEKS[index], style:boldedSmallLabelStyle}));
 		achievementLabels.add(new Label({left:0, right:0, string:ACHIEVEMENTS_LABELS[index], style:smallLabelStyle}));
 	}
 	achievementsSection.add(stars);
