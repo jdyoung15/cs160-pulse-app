@@ -60,9 +60,9 @@ var goalHeader = new Line({
 
 // Progress bar displaying user's goal (in green) and current measured value (in red) for a given sensor.
 var SensorBar = Container.template(function($) { return {
-	left:0, right:0, height: 20, width: 300, active:true,
+	left:0, right:0, top:5, width: 300, active:true,
 	contents: [
-		Canvas($, { anchor:"CANVAS", left:20, right:20, top:0, bottom:0, active:true,
+		Canvas($, { anchor:"CANVAS", left:10, width:290, top:0, height:25, active:true,
 			behavior: Object.create(Behavior.prototype, {
 				onCreate: {value: function(canvas, data) {
 					//trace("startingMeasuredValue: " + data.startingMeasuredValue + "\n");
@@ -100,8 +100,8 @@ var SensorBar = Container.template(function($) { return {
 					} else {
 						ctx.fillStyle = redSkin.fillColors[0];
 					}
-					ctx.fillRect(0, 0, this.percent * canvas.width, 20);
-					ctx.strokeRect(0, 0, canvas.width, 20);
+					ctx.fillRect(0, 0, this.percent * canvas.width, 25);
+					ctx.strokeRect(0, 0, canvas.width, 25);
 					
 				}},
 			}),
@@ -112,11 +112,11 @@ var SensorBar = Container.template(function($) { return {
 
 // Contains the sensor name, progress bar, and min/max markers.
 var SensorContainer = Container.template(function($) { return {
-	left:0, right:0, top:10,
+	left:0, right:0, top:25, height:45,
 	contents: [
 		new Column({
 			contents: [
-				new Line({top: 20, left:0, right:0, skin: whiteSkin, 
+				new Line({top: 0, left:0, right:0, height:20, skin: whiteSkin, 
 					contents: [
 						new Label({left:0, width: 200, string: $.readableName, style: labelStyle}),	// Sensor name
 						new Label({left:10, string: $.measuredValue + " of " + Math.round($.value), style: labelStyle}),	// Measured value and goal value
@@ -158,23 +158,64 @@ var scheduleHeader = new Line({
 })
 
 
+var DayProgressCircle = Container.template(function($) { return {
+	left:0, right:0, height:30, active:true,
+	contents: [
+		Canvas($, { anchor:"CANVAS", left:8, right:0, top:0, bottom:0, active:true,
+			behavior: Object.create(Behavior.prototype, {
+				drawCircleOutline: {value: function(ctx) {
+					ctx.beginPath();
+					ctx.arc(12, 12, 12, 0, 2 * Math.PI, false);
+				    ctx.lineWidth = 1;
+				    ctx.strokeStyle = '#003300';
+				    ctx.stroke();
+				}},
+				onDisplaying: {value: function(canvas) {
+					this.dayCompleted = false;
+					this.drawCircleOutline(canvas.getContext("2d"));
+				}},
+				onTouchEnded: {value: function(canvas, id, x, y, ticks){
+					this.dayCompleted = !this.dayCompleted;
+					var ctx = canvas.getContext("2d");
+				    this.drawCircleOutline(ctx);
+				    if (this.dayCompleted) {
+					    ctx.fillStyle = 'green';
+				    } else {
+				    	ctx.fillStyle = 'white';
+				    }
+				    ctx.fill();
+				}},
+			}),
+		}),
+	]
+}});
+
 WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-PROGRESS = [true, false, false, true, true, false, true];
+//PROGRESS = [true, false, false, true, true, false, true];
 
 var weekProgress = new Line({
-	top: 100, left:10, right:10, height: 30,
-});
-var weekLabels = new Line({
-	left: 10, right: 10,
+	top: 100, left:10, right:0, //height: 30,
 });
 
+/*var weekLabels = new Line({
+	left: 10, right: 10,
+});*/
+
 for (var i = 0; i < 7; i ++) {
+	weekProgress.add(new Column({left:0, right:0, top:0, bottom:0, 
+		contents: [
+			new DayProgressCircle(),
+			new Label({left:0, right:0, string:WEEK[i], style:smallLabelStyle})
+		]
+	}));
+	/*
 	if (PROGRESS[i]) {
 		weekProgress.add(new Picture({left:5, right:5, url:"assets/greenCircle.png"}));
 	} else {
 		weekProgress.add(new Picture({left:5, right:5, url:"assets/greyCircle.png"}));
 	}
-	weekLabels.add(new Label({left:0, right:0, string:WEEK[i], style:smallLabelStyle}));
+	*/
+	//weekLabels.add(new Label({left:0, right:0, string:WEEK[i], style:smallLabelStyle}));
 }
 
 var scheduleSection = new Column({
@@ -183,7 +224,7 @@ var scheduleSection = new Column({
 		scheduleHeader,
 		new scheduleContainer(), 
 		weekProgress,
-		weekLabels,
+		//weekLabels,
 	]
 });
 
@@ -195,7 +236,7 @@ var achievementsHeader = new Line({
 })
 
 var achievementsSection = new Column({
-	top:100, left:0, right:0, 
+	top:50, left:0, right:0, 
 	contents: [ 
 		achievementsHeader,
 		new Label({left:10, string:"Achievement stuff goes here", style:bigLabelStyle}),
