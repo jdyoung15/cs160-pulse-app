@@ -82,6 +82,8 @@ var SensorBar = Container.template(function($) { return {
 						ctx.fillStyle = greenSkin.fillColors[0];
 					} else {	// User has not met goal. Red bar with remaining white space. 
 						ctx.fillStyle = redSkin.fillColors[0];
+						ctx.fillRect(0, 0, canvas.width, 25);						
+						ctx.fillStyle = greenSkin.fillColors[0];
 					}
 					ctx.fillRect(0, 0, amountToFill * canvas.width, 25);
 					ctx.strokeRect(0, 0, canvas.width, 25);
