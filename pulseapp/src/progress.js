@@ -1,10 +1,6 @@
 var STYLE = require('styles');
 var BUTTONS = require('controls/buttons');
 
-var medButtonStyle = new Style({font:"20px", color:"white"});
-var smallButtonStyle = new Style({font:"12px", color:"white"});
-var smallLabelStyle = new Style({font:"18px", color:"black", horizontal: 'center', vertical: 'middle'});
-
 var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0, 
@@ -198,7 +194,29 @@ var achievementsSection = new Column({
 	top:100, left:0, right:0, 
 	contents: [ 
 		achievementsHeader,
-		new Label({left:0, right:0, string:"Consecutive Weeks of Exercise", style:labelStyle}),
+		new Line({
+			top: 10, left:10, right:10, height: 30,
+			contents: [
+				new Label({left:0, right:0, string:"193", style:mediumLabelStyle}),
+				new Label({left:0, right:0, string:"3", style:mediumLabelStyle}),
+				new Label({left:0, right:0, string:"2", style:mediumLabelStyle}),
+			]
+		}),
+		
+		new Line({
+			top: 0, left:10, right:10, height: 30,
+			contents: [
+				new Label({left:0, right:0, string:"Hours", style:smallLabelStyle}),
+				new Label({left:0, right:0, string:"Weeks", style:smallLabelStyle}),
+				new Label({left:0, right:0, string:"Buddies", style:smallLabelStyle}),
+			]
+		}),
+		
+		new Line({
+			top: 10, left:0, right:0, height: 2, skin: lightGreySkin,
+		}),
+		
+		new Label({top: 10, left:0, right:0, string:"Consecutive Weeks", style:mediumLabelStyle}),
 	]
 });
 

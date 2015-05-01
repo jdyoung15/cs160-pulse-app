@@ -13,7 +13,8 @@ greenSkin = new Skin({ fill:"#65df71" });
 headerLabelStyle = new Style({font:"bold 26px", color:"white"});
 headerButtonLabelStyle = new Style({font:"20px", color:"white"});
 labelStyle = new Style({ font: "20px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
-smallLabelStyle = new Style({ font: "14px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
+smallLabelStyle = new Style({font:"18px", color:"black", horizontal: 'center', vertical: 'middle'});
+mediumLabelStyle = new Style({font:"22px", color:"black", horizontal: 'center', vertical: 'middle'});
 bigLabelStyle = new Style({ color: 'black', font: 'bold 24px'});
 largeButtonStyle = new Style({font:"24px", color:"white"});
 
