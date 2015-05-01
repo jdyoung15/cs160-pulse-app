@@ -65,13 +65,13 @@ ScrollContainer = Container.template(function($) { return {
    		SCROLLER.VerticalScroller($, { 
    			clip: true,
    			contents: [
-          		Column($, { left: 0, right: 0, top: 0, name: 'items', }),
+          		Column($, { left: 0, right: 0, top: 0, name: 'menu', }),
             ]
    		})
 	]
 }});
 
-progressLabel = new Label({top: -300, string:"0%", style:bigLabelStyle});
+progressLabel = new Label({top: 75, string:"0%", style:bigLabelStyle});
 durationLabel = new Label({string:"30 minutes of", style:labelStyle});
 intensityLabel = new Label({string:"Very light exercise for", style:labelStyle});
 frequencyLabel = new Label({string:"3 times/week", style:labelStyle});
@@ -80,45 +80,47 @@ index = 0;
 image = new Picture({url: "assets/zeroProgress.png", top:-60, left:10, right:10});
 heartBeatLabel = new Label({left:0, right:0, height:80, bottom:0, string:"Heart Rate: 80 BPM", style:bigLabelStyle, skin:lightGreySkin});
 
-scheduleContainer = function() {
-	return new Column({left:0, right:0, top:0, active: true,
-		  contents: [
-		  	image,
-		  	progressLabel,
-		  	durationLabel,
-		  	intensityLabel,
-		  	frequencyLabel,
-		  ],
-		  behavior: Object.create(Container.prototype, {
-			onTouchEnded: { value: function(content){
-				index = (index + 1)%3;
-				var msg = new Message("/changeDeviceColor");
-				switch (index) {
-					case 0:
-						image.url = "assets/zeroProgress.png";
-						progressLabel.string = "0%";
-						
-						msg.requestText = JSON.stringify({target:"self", color:"red"});
-						break;
-					case 1:
-						image.url = "assets/fiftyProgress.png";
-						progressLabel.string = "50%";
-						
-						msg.requestText = JSON.stringify({target:"self", color:"yellow"});
-						break;
-					case 2:
-						image.url = "assets/doneProgress.png";
-						progressLabel.string = "100%";
-						
-						msg.requestText = JSON.stringify({target:"self", color:"green"});
-						break;
-						
-				}
-				application.invoke(msg);
-			}}
-		}), 
-	})
-};
+ProgressCircle = Container.template(function($) { return {
+	left:10, right:0, height:300, active:true, name: "progressCircle",
+	contents: [
+		Canvas($, { anchor:"CANVAS", left:0, right:0, top:0, bottom:0,
+			behavior: Object.create(Behavior.prototype, {
+				onDisplaying: {value: function(canvas) {
+					var amountToFill = $.percent / 100;
+					var color;
+					if ($.percent == 0) {
+						color = redSkin.fillColors[0];
+						amountToFill = 1;
+					} else if ($.percent == 100) {
+						color = greenSkin.fillColors[0];
+					} else {
+						color = yellowSkin.fillColors[0];
+					}
+				
+					var ctx = canvas.getContext("2d");
+					ctx.beginPath();
+					ctx.arc(150, 150, 140, -0.1, 2 * Math.PI, false);
+				    ctx.lineWidth = 3;
+				    ctx.strokeStyle = color;
+				    ctx.stroke();
+				    		
+					ctx.beginPath();
+				    ctx.arc(150, 150, 110, -0.1, 2 * Math.PI, false);
+				    ctx.lineWidth = 3;
+				    ctx.strokeStyle = color;
+				    ctx.stroke();
+				    
+					ctx.beginPath();
+				    ctx.arc(150, 150, 125, amountToFill * (2 * Math.PI) + Math.PI / 2, Math.PI / 2);
+				    ctx.lineWidth = 30;
+				    ctx.strokeStyle = color;
+				    ctx.stroke();
+				}},
+			}),
+		}),
+		// Add whatever goes inside the progress circle (labels, etc.) here
+	]
+}});
 
 
 FieldTemplate = Container.template(function($) { return { 

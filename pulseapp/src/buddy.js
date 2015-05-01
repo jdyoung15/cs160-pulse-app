@@ -82,7 +82,7 @@ var chatBox = new Text({
 
 // Allow user to scroll through chat messages
 var chatBoxScrollContainer = new ScrollContainer({left:3, right:3, top:3, bottom:3});
-chatBoxScrollContainer.first.items.add(chatBox);
+chatBoxScrollContainer.first.menu.add(chatBox);
 
 var chatField = new FieldTemplate({name:"", text:"Chat with buddy..."});
 

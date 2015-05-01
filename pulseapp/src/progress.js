@@ -61,10 +61,6 @@ var SensorBar = Container.template(function($) { return {
 		Canvas($, { anchor:"CANVAS", left:10, width:290, top:0, height:25, active:true,
 			behavior: Object.create(Behavior.prototype, {
 				onCreate: {value: function(canvas, data) {
-					//trace("startingMeasuredValue: " + data.startingMeasuredValue + "\n");
-					//trace("measuredValue: " + data.measuredValue + "\n");
-					//trace("goal value: " + data.value + "\n");
-					
 					var pointsToGoal = Math.abs(data.startingMeasuredValue - data.value);
 					var pointsAchieved = Math.abs(data.measuredValue - data.startingMeasuredValue);
 					var percent = pointsAchieved / pointsToGoal;
@@ -106,7 +102,7 @@ var SensorBar = Container.template(function($) { return {
 }});
 
 
-// Contains the sensor name, progress bar, and min/max markers.
+// Contains the sensor name and associated progress bar.
 var SensorContainer = Container.template(function($) { return {
 	left:0, right:0, top:25, height:45,
 	contents: [
@@ -156,8 +152,10 @@ var scheduleHeader = new Line({
 WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 var weekProgress = new Line({
-	top: 100, left:10, right:0, //height: 30,
+	top: 100, left:10, right:0,
 });
+
+var checkCount = 0;
 
 for (var i = 0; i < 7; i ++) {
 	weekProgress.add(new Column({left:0, right:0, top:0, bottom:0, 
@@ -167,9 +165,18 @@ for (var i = 0; i < 7; i ++) {
 					onTouchEnded: { value: function(container, id, x, y, ticks){
 						if (container.url.indexOf("greyCircle") > -1) {
 							container.url = "assets/greenCircle.png";
+							checkCount += 1;
 						} else {
 							container.url = "assets/greyCircle.png";
+							checkCount -= 1;
 						}
+						var frequency = parseInt(frequencyLabel.string.split(" ")[0]);
+						var percent = Math.round(checkCount / frequency * 100);
+						progressLabel.string = percent + "%";
+						progressCircle.empty();	// Necessary before replacing with new progress circle
+						progressCircle = new ProgressCircle({percent: percent});
+						progressCircle.add(progressCircleContents);
+						scheduleSection.replace(scheduleSection.progressCircle, progressCircle);
 					}},
 				})
 			}),
@@ -178,11 +185,22 @@ for (var i = 0; i < 7; i ++) {
 	}));
 }
 
+var progressCircle = new ProgressCircle({percent:0});
+var progressCircleContents = new Column({left:0, right:0, top:0, bottom:0,
+	contents: [
+		progressLabel,
+		durationLabel,
+		intensityLabel,
+		frequencyLabel,
+	]
+});
+progressCircle.add(progressCircleContents);
+
 var scheduleSection = new Column({
 	top:50, left:0, right:0, 
 	contents: [
 		scheduleHeader,
-		new scheduleContainer(), 
+		progressCircle,
 		weekProgress,
 	]
 });
@@ -255,7 +273,7 @@ for (var i = 0; i < 2; i++) {
 }
 
 var scrollContainer = new ScrollContainer({left:0, right:0, top:0, bottom:0});
-var scrollItems = scrollContainer.first.items;
+var scrollItems = scrollContainer.first.menu;
 scrollItems.add(goalSection);
 scrollItems.add(scheduleSection);
 scrollItems.add(achievementsSection);
