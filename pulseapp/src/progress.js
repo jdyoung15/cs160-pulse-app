@@ -267,7 +267,7 @@ var changeHeartBeat = function(value) {
 				
 // update user's measurements after manually adjusting sensors on device
 var updateSensorMeasurements = function(data){
-	EDITGOAL.SYSTOLIC.measuredValue = data.systolic;
+	EDITGOAL.SYSTOLIC.measuredValue = data.systolicVal;
 	EDITGOAL.DIASTOLIC.measuredValue = data.diastolic;
 	EDITGOAL.LDL.measuredValue = data.ldl;
 	EDITGOAL.HDL.measuredValue = data.hdl;
