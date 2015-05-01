@@ -168,7 +168,7 @@ var weekLabels = new Line({
 	left: 10, right: 10,
 });
 
-for (var i = 0; i < 7; i ++) {
+for (var i = 0; i < 7; i++) {
 	if (PROGRESS[i]) {
 		weekProgress.add(new Picture({left:5, right:5, url:"assets/greenCircle.png"}));
 	} else {
@@ -198,9 +198,39 @@ var achievementsSection = new Column({
 	top:100, left:0, right:0, 
 	contents: [ 
 		achievementsHeader,
-		new Label({left:10, string:"Achievement stuff goes here", style:bigLabelStyle}),
+		new Label({left:0, right:0, string:"Consecutive Weeks of Exercise", style:labelStyle}),
 	]
 });
+
+NUMBER_OF_WEEKS = ["5", "10", "25", "50", "100", "250", "500", "1K+"];
+WEEK_ACHIEVEMENTS = [true, true, true, false, false, false, false, false];
+ACHIEVEMENTS_LABELS = ["Newbie", "Novice", "Rookie", "Beginner", "Skilled", "Proficient", " Advanced", "Expert"];
+
+for (var i = 0; i < 2; i++) {
+	var stars = new Line({
+		top: 20, left:10, right:10, height: 30,
+	});
+	
+	var weeks = new Line({
+		top: -25, left:10, right:10, height: 30,
+	});
+	var achievementLabels = new Line({
+		top: 25, left: 10, right: 10,
+	});
+	for (var j = 0; j < 4; j++) {
+		var index = i*4 + j;
+		if (WEEK_ACHIEVEMENTS[index]) {
+			stars.add(new Picture({left:5, right:5, url:"assets/yellowStar.png"}));
+		} else {
+			stars.add(new Picture({left:5, right:5, url:"assets/greyStar.png"}));
+		}
+		weeks.add(new Label({left:0, right:0, string:NUMBER_OF_WEEKS[index], style:smallLabelStyle}));
+		achievementLabels.add(new Label({left:0, right:0, string:ACHIEVEMENTS_LABELS[index], style:smallLabelStyle}));
+	}
+	achievementsSection.add(stars);
+	achievementsSection.add(weeks);
+	achievementsSection.add(achievementLabels);
+}
 
 var scrollContainer = new ScrollContainer({left:0, right:0, top:0, bottom:0});
 var scrollItems = scrollContainer.first.items;
