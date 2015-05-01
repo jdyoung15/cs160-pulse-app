@@ -17,7 +17,6 @@ var MySlider = SLIDERS.HorizontalSlider.template(function($){ return{
     onValueChanged: { value: function(container){
       SLIDERS.HorizontalSliderBehavior.prototype.onValueChanged.call(this, container);
       var newGoalValue = $.readableName + ": " + Math.round(this.data.value);
-      $.startingMeasuredValue = $.measuredValue;
       if ($.name == SYSTOLIC.name) {
       	systolicBloodPressureSliderLabel.string = newGoalValue;
       } else if ($.name == DIASTOLIC.name) {

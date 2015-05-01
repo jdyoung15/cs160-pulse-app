@@ -61,38 +61,29 @@ var SensorBar = Container.template(function($) { return {
 		Canvas($, { anchor:"CANVAS", left:10, width:290, top:0, height:25, active:true,
 			behavior: Object.create(Behavior.prototype, {
 				onCreate: {value: function(canvas, data) {
-					var pointsToGoal = Math.abs(data.startingMeasuredValue - data.value);
-					var pointsAchieved = Math.abs(data.measuredValue - data.startingMeasuredValue);
-					var percent = pointsAchieved / pointsToGoal;
-					
 					if (data.name == EDITGOAL.HDL.name) {
-						if (data.measuredValue >= data.value) {	// Goal has been acheived
-							percent = 1;
-						} else if (data.startingMeasuredValue > data.measuredValue) {	// Readjust starting measured value 
-							data.startingMeasuredValue = data.measuredValue;
-							percent = 0;
-						}
+						this.percent = data.measuredValue / data.value;
 					} else {
-						if (data.measuredValue <= data.value) {	// Goal has been achieved
-							percent = 1;
-						} else if (data.startingMeasuredValue < data.measuredValue) {	// Readjust starting measured value
-							data.startingMeasuredValue = data.measuredValue;
-							percent = 0;
-						}
-					} 
-					this.percent = percent;
+						this.percent = data.value / data.measuredValue;
+					}
 				}},
 				onDisplaying: {value: function(canvas) {
 					var ctx = canvas.getContext("2d");
 					ctx.beginPath();
 					ctx.lineWidth = "1";
 					ctx.strokeStyle = greySkin.fillColors[0];
-					if (this.percent == 1) {
+					var amountToFill = this.percent;
+					if (this.percent == 1) {	// User has reached goal. Fully filled light green bar.
 						ctx.fillStyle = greenSkin.fillColors[0];
-					} else {
+					} else if (this.percent > 1) {	// User has exceeded goal. Light green bar with dark green remnant.
+						amountToFill = 1 / this.percent;
+						ctx.fillStyle = "green";
+						ctx.fillRect(0, 0, canvas.width, 25);
+						ctx.fillStyle = greenSkin.fillColors[0];
+					} else {	// User has not met goal. Red bar with remaining white space. 
 						ctx.fillStyle = redSkin.fillColors[0];
 					}
-					ctx.fillRect(0, 0, this.percent * canvas.width, 25);
+					ctx.fillRect(0, 0, amountToFill * canvas.width, 25);
 					ctx.strokeRect(0, 0, canvas.width, 25);
 					
 				}},
