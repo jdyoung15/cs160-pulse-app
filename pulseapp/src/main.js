@@ -33,7 +33,6 @@ Handler.bind("/getStatus", {
     },
     onComplete: function(handler, message, json){
     	PROGRESS.changeHeartBeat(json.heartBeat);
-    	// update goal bars with (mocked) measured sensor values
     	var measuredSensorValues = {
     		systolicVal: json.systolicVal, 
     		diastolicVal: json.diastolicVal,

@@ -63,12 +63,12 @@ var yellowSkin = new Skin({ fill:"#f2ea00" });
 var greenSkin = new Skin({ fill:"#65df71" });
 
 var labelStyle = new Style({font:"20px", color:"black"});
-var heartBeatLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
-var systolicLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
-var diastolicLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
-var ldlLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
-var hdlLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
-var bmiLabel = new Label({left:0, right:0, height:40, string:"", style:labelStyle})
+var heartBeatLabel = new Label({left:0, right:0, height:30, string:"", style:labelStyle})
+var systolicLabel = new Label({left:0, right:0, height:30, string:"", style:labelStyle})
+var diastolicLabel = new Label({left:0, right:0, height:30, string:"", style:labelStyle})
+var ldlLabel = new Label({left:0, right:0, height:30, string:"", style:labelStyle})
+var hdlLabel = new Label({left:0, right:0, height:30, string:"", style:labelStyle})
+var bmiLabel = new Label({left:0, right:0, height:30, string:"", style:labelStyle})
 var progress = new Line({left:0, right:0, top:0, bottom:0, skin: whiteSkin});
 var buddyProgress = new Line({left:0, right:0, top:0, bottom:0, skin: whiteSkin});
 
@@ -76,12 +76,21 @@ var mainColumn = new Column({
   left:0, right:0, top:0, bottom:0,
   skin: whiteSkin,
   contents:[
-    heartBeatLabel,
-    systolicLabel,
-    diastolicLabel,
-    ldlLabel,
-    hdlLabel,
-    bmiLabel,
+    new Line({left:0, right:0, top:0, height:30,
+    	contents: [
+    		heartBeatLabel, systolicLabel,
+    	]
+    }),    
+    new Line({left:0, right:0, top:0, height:30,
+    	contents: [
+    		diastolicLabel, ldlLabel, 
+    	]
+    }),    
+    new Line({left:0, right:0, top:0, height:30,
+    	contents: [
+    		hdlLabel, bmiLabel, 
+    	]
+    }),
     progress,
     buddyProgress,
   ],
@@ -90,9 +99,9 @@ var mainColumn = new Column({
 			heartBeat = result.heartBeat;
 			heartBeatLabel.string = "Heart Beat/Minute: " + Math.round(heartBeat);
 			systolicVal = result.systolicVal;
-			systolicLabel.string = "Systolic Pressure: " + Math.round(systolicVal);
+			systolicLabel.string = "Systolic: " + Math.round(systolicVal);
 			diastolicVal = result.diastolicVal;
-			diastolicLabel.string = "Diastolic Pressure: " + Math.round(diastolicVal);
+			diastolicLabel.string = "Diastolic: " + Math.round(diastolicVal);
 			ldlVal = result.ldlVal;
 			ldlLabel.string = "LDL: " + Math.round(ldlVal);
 			hdlVal = result.hdlVal;
