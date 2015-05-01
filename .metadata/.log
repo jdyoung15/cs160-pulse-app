@@ -8681,3 +8681,22 @@ java.io.FileNotFoundException: /Users/alicejliu/Documents/Kinoma Studio/pulse/.m
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-05-01 00:52:44.368
 !MESSAGE Debug listener stopped...
+
+!ENTRY org.eclipse.core.resources 4 568 2015-05-01 00:58:47.784
+!MESSAGE Could not write metadata for '/pulsedevice'.
+!STACK 0
+java.io.FileNotFoundException: /Users/alicejliu/Documents/Kinoma Studio/pulse/.metadata/.plugins/org.eclipse.core.resources/.projects/pulsedevice/.markers.snap (No such file or directory)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:133)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:45)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:41)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSnap(SaveManager.java:1745)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSnap(SaveManager.java:1828)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1202)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1144)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-01 10:24:08.879
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
