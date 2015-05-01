@@ -7,14 +7,14 @@ greySkin = new Skin({ fill:"#d7d7d5" });
 lightGreySkin = new Skin({ fill: "#efefef" });
 orangeSkin = new Skin({ fill:"#f27400" });
 redSkin = new Skin({ fill:"#e07464" });
-yellowSkin = new Skin({ fill:"#f2ea00" });
+yellowSkin = new Skin({ fill:"#fee003" });
 greenSkin = new Skin({ fill:"#65df71" });
 blackSkin = new Skin({ fill: 'black',});
 spaceSkin = new Skin({ fill: '#F0F0F0',});
 lightBlueSkin = new Skin({ fill: '#B4DCF0'});
 
-headerLabelStyle = new Style({font:"bold 26px", color:"white"});
-headerButtonLabelStyle = new Style({font:"20px", color:"white"});
+headerLabelStyle = new Style({font:"bold 26px", color:"white", horizontal: 'center', vertical: 'middle'});
+headerButtonLabelStyle = new Style({font:"20px", color:"white", horizontal: 'center', vertical: 'middle'});
 labelStyle = new Style({ font: "20px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
 smallLabelStyle = new Style({font:"18px", color:"black", horizontal: 'center', vertical: 'middle'});
 boldedSmallLabelStyle = new Style({font:"bold 18px", color:"black", horizontal: 'center', vertical: 'middle'});
