@@ -8884,3 +8884,12 @@ java.io.IOException: Can't assign requested address
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-05-01 15:00:10.515
 !MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-01 15:30:47.022
+!MESSAGE http://localhost:10006/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-01 15:32:55.052
+!MESSAGE http://localhost:10008/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-01 15:33:15.724
+!MESSAGE Debug listener stopped...
