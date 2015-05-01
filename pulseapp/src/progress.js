@@ -152,7 +152,7 @@ var scheduleHeader = new Line({
 WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 var weekProgress = new Line({
-	top: 100, left:10, right:0,
+	top: 0, left:10, right:0,
 });
 
 var checkCount = 0;
