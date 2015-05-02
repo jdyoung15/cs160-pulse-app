@@ -49,6 +49,7 @@ ButtonTemplate = BUTTONS.Button.template(function($){ return{
   behavior:$.behavior
 }});
 
+
 // Radio group template
 
 HorizontalRadioGroup = Line.template(function($) { return {
@@ -128,9 +129,9 @@ FieldTemplate = Container.template(function($) { return {
          		onFocused:{ value: function(label){
          		  showTabBar(false);
          		  label.select(0, label.length)
-				  KEYBOARD.show();
+				   KEYBOARD.show();
          		}},
-         		onEdited: { value: function(label){
+         		onEdited: { value: function(label){         		
          		  var data = this.data;
               	  data.name = label.string;
               	  label.container.hint.visible = ( data.name.length == 0 );	

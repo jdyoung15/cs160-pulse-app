@@ -13,8 +13,9 @@ for ( var i in THEME ){
 
 //MIO
 var fieldLabelSkin,
-var smallButtonLabel = new Style({font:"bold 16px", color:"black"});
-var smallButtonSelected = new Style({font:"bold 16px", color:"white"});
+var currentScreenSize;
+
+	
 var appName1 = new Style( { font:"bold 22px Arial, Gadget, sans-serif", color:"white", align: "left", lines: "1"} );
 var appName2 = new Style( { font:"16px Arial, Helvetica, sans-serif", color:"white", align: "left", lines: "1"} );
 var appName3 = new Style( { font:"bold 22px Arial, Gadget, sans-serif", color:"black", align: "left", lines: "1"} );
@@ -50,17 +51,19 @@ var sendButton = BUTTONS.Button.template(function($){ return{
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
+		KEYBOARD.hide(); 
 	  	var text = threadField.first.fieldLabel.string;
 		threadField.first.fieldLabel.string="";
 		threadField.first.hint.visible = true;
       	var lineNew = {post_id:0, id: "thread" + threads.length, userName:"Bob Smith", title:text, date: "Now", picture:"mavatar2", link:""};
-      	var newThread = [lineNew]
+      	var newThread = new Array();
+      	var newThread = [lineNew];
      
       	for (i=0; i<threads.length; i++){
       		newThread[i+1] = threads[i];
       		
-      	KEYBOARD.hide();
       	}
+      	
       	threads = newThread;
       	threadColumn.first.first.menu.add(new ThreadLine(lineNew));
     }}
@@ -76,19 +79,19 @@ var newPostButton = BUTTONS.Button.template(function($){ return{
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
+    	KEYBOARD.hide(); 
 		var text = newPostField.first.fieldLabel.string;
 		newPostField.first.fieldLabel.string="";
 		newPostField.first.hint.visible = true;
-      	var postNew = {id: "post" + forum_posts.length, userName:"Bob Smith", title:text, date: "Now", picture:"mavatar2", link:"", skin:whiteSkin};
-      	var newForum = [postNew]
+      	var postNew = {id: "post" + forum_posts.length, userName:"Bob Smith", title:text, date: "Now", picture:"mavatar2", skin:whiteSkin, location: "Self",};
+      	var newForum = new Array();
+      	var newForum = [postNew];
      
       	for (i=0; i<forum_posts.length; i++){
-      		newForum[i+1] = forum_posts[i];
-      		
-      	KEYBOARD.hide();
-      	}
+      		newForum[i+1] = forum_posts[i];         		  
+      	}      	          	
       	forum_posts = newForum;
-      	forumColumn.first.first.menu.insert(new PostLine(postNew), forumColumn.first.first.menu.post0);
+      	forumColumn.first.first.menu.insert(new PostLine(postNew), forumColumn.first.first.menu.first);
     }}
   })
 }});
@@ -100,13 +103,20 @@ var fieldHintStyle = new Style({ color: 'gray', font: 'bold 15px Fira Sans', hor
 /*
 	Forum Logic		   	
 */
-var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin,};
-var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin,};
-var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin,};
-var post3 = {id: "post3", userName:"Jane Doe",  title:"Favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin,};
+var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin, location: "Local",};
+var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin, location: "Global",};
+var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Local",};
+var post3 = {id: "post3", userName:"Jane Doe",  title:"Favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin, location: "Local",};
+var post4 = {id: "post4", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin, location: "Local",};
+var post5 = {id: "post5", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin, location: "Global",};
+var post6 = {id: "post6", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Local",};
+var post7 = {id: "post7", userName:"Jane Doe",  title:"Favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin, location: "Local",};
+var post7 = {id: "post7", userName:"Bob Smith",  title:"What diet do you follow?", date: "4 hr ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
+
+
 
 //Initial forum
-var forum_posts = [post0, post1, post2, post3];
+var forum_posts = [post0, post1, post2, post3, post4, post5, post6, post7];
 //How to add a post to the forum
 //forum_posts[forum_posts.length] = post4; 
 
@@ -123,8 +133,7 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
     	}},
     	onTouchEnded: { value: function(container, id, x,  y, ticks) {	
 			container.skin = whiteSkin;
-			trace($.userName+"\n");
-			if($.id == "post0") {
+			if($.id == "post0" && $.userName == "Maria Powell") {
 				switchScreens(threadContainer);
 			}
 		}},
@@ -211,7 +220,13 @@ function ListBuilder(element, index, array) {
 }
 
 
-//Upper Tab buttons
+//Top Tab buttons
+var onceGlobalPost = true;  //load values only once
+var onceLocalPost = true;  //load values only once
+var onceSelfPost = true;  //load values only once
+var smallButtonLabel = new Style({font:"bold 16px", color:"black"});
+var smallButtonSelected = new Style({font:"bold 16px", color:"white"});
+
 var switchToGlobal = function() {
   	myglobal.skin = orangeSkin;
   	myglobal.style = smallButtonSelected;
@@ -221,6 +236,13 @@ var switchToGlobal = function() {
   	
   	self.skin = whiteSkin,
   	self.style = smallButtonLabel;
+  		
+  	//Remove content from Screen
+  	while(forumColumn.first.first.menu.length>=1)
+		forumColumn.first.first.menu.remove(forumColumn.first.first.menu.first);
+
+	//Add content	
+	forum_posts.forEach(ListBuilder);
 }
 
 var switchToLocal = function() {
@@ -232,6 +254,15 @@ var switchToLocal = function() {
   	
     self.skin = whiteSkin,
     self.style = smallButtonLabel;
+    
+    //Remove content from Screen
+  	while(forumColumn.first.first.menu.length>=1)
+		forumColumn.first.first.menu.remove(forumColumn.first.first.menu.first);
+    
+    //Add content	
+    location_posts = new Array();
+	location_posts = getLocations(forum_posts, "Local");
+	location_posts.forEach(ListBuilder);  	
 }
 
 var switchToMyPosts = function() { 	
@@ -243,9 +274,18 @@ var switchToMyPosts = function() {
   	
   	self.skin = orangeSkin,
   	self.style = smallButtonSelected;
+
+	//Remove content from Screen
+  	while(forumColumn.first.first.menu.length>=1)
+		forumColumn.first.first.menu.remove(forumColumn.first.first.menu.first);
+    	
+    //Add new content
+    location_posts = new Array();
+	location_posts = getLocations(forum_posts, "Self");
+	location_posts.forEach(ListBuilder);
 }
 
-var upperButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
+var TopButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
       if (button.name == "Global") {
       	switchToGlobal();
@@ -261,37 +301,41 @@ var upperButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
 
 //Containers
 //Forum Container
-var oncePost = true;  //load values only once
 var newPostField = new FieldTemplate({name:"", text:"Tap to create new post..."});
 var threadField = new FieldTemplate({name:"", text:"Tap to post a reply..."});
 var newPostButton = new newPostButton({left:0, right:0, top:0, textForLabel: "Post", });
 var sendButton = new sendButton({left:0, right:0, top:0, textForLabel: "Send", });
 
-
-var myglobal = new ButtonTemplate({height:36, textForLabel:"Global", skin:orangeSkin, style:smallButtonSelected, behavior:upperButtonBehavior});	
-var local = new ButtonTemplate({height:36, textForLabel:"Local", skin:whiteSkin, style:smallButtonLabel, behavior:upperButtonBehavior});
-var self = new ButtonTemplate({height:36, textForLabel:"My Posts", skin:whiteSkin, style:smallButtonLabel, behavior:upperButtonBehavior});
+var myglobal = new ButtonTemplate({height:36, textForLabel:"Global", skin:orangeSkin, behavior:TopButtonBehavior});	
+var local = new ButtonTemplate({height:36, textForLabel:"Local", skin:whiteSkin, behavior:TopButtonBehavior});
+var self = new ButtonTemplate({height:36, textForLabel:"My Posts", skin:whiteSkin, behavior:TopButtonBehavior});
 
 //Forum Container
-var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, active:true,
+var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, 
 	behavior: Object.create(Container.prototype, {
 		onTouchEnded: { value: function(content){
 			KEYBOARD.hide();
 			content.focus();
 			showTabBar(true);
-		}}
+		}},
 	}), 
+	
 	contents:[
 		new HeaderTemplate({title: "Forum", leftItem: new Container({left:0, right:0, top:0, bottom:0}), rightItem: new Container({left:0, right:0, top:0, bottom:0})}),	
 		
-		new Line({left:0, right:0, top:0, height:36,  skin: whiteSkin,
+		new Line({left:0, right:0, top:0, height:36,  skin: whiteSkin, style: smallButtonLabel,
+			behavior: Object.create(Container.prototype, {
+				onDisplayed: { value: function(content){
+					switchToGlobal();
+				}},
+			}),
 			contents:[			
 				myglobal,	
 				local,
 				self,        		
 			]
 		}),
-
+		
 		new Line({ left: 0, right: 0, height: 3, skin: spaceSkin, }),
 		new Line({bottom:0, skin: whiteSkin,
 			contents:[				
@@ -306,16 +350,28 @@ var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 });
 
 
+//Split the forum_post by location
+function getLocations(posts, location) {
+	var local_posts = new Array();
+	var self_posts = new Array();
+	
+	for (i = 0; i<posts.length; i++) {
+		val = posts[i];
+		if (val.location == "Local" || val.location == "Self")
+			local_posts.push(val);
+		if (val.location == "Self")
+			self_posts.push(val);													
+	}
+	
+	if(location=="Local")
+		return local_posts;
+	else if(location=="Self")
+		return self_posts;
+}
+
+
 //Forum Column
 var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGreySkin,
-	behavior: Object.create(Container.prototype, {
-		onDisplayed:  { value: function(content){
-				if (oncePost) {
-					forum_posts.forEach(ListBuilder);
-					oncePost = false;
-				}
-		}}
-	}), 
 	contents:[	
 		new ScreenContainer(new Object()),		
 	],
