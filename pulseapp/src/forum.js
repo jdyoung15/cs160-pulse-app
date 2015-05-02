@@ -13,8 +13,8 @@ for ( var i in THEME ){
 
 //MIO
 var fieldLabelSkin,
-var smallButtonStyle = new Style({font:"bold 16px", color:"white"});
-var smallButtonStyle1 = new Style({font:"bold 16px", color:"black"});
+var smallButtonLabel = new Style({font:"bold 16px", color:"black"});
+var smallButtonSelected = new Style({font:"bold 16px", color:"white"});
 var appName1 = new Style( { font:"bold 22px Arial, Gadget, sans-serif", color:"white", align: "left", lines: "1"} );
 var appName2 = new Style( { font:"16px Arial, Helvetica, sans-serif", color:"white", align: "left", lines: "1"} );
 var appName3 = new Style( { font:"bold 22px Arial, Gadget, sans-serif", color:"black", align: "left", lines: "1"} );
@@ -44,7 +44,7 @@ var back = new ButtonTemplate({
 
 //Send button
 var sendButton = BUTTONS.Button.template(function($){ return{
-  left:0, width:70, height:40, skin: orangeSkin,
+  left:0, width:72, height:40, skin: orangeSkin,
   contents:[
     new Label({left:0, right:0, height:30, string:$.textForLabel, })
   ],
@@ -53,7 +53,7 @@ var sendButton = BUTTONS.Button.template(function($){ return{
 	  	var text = threadField.first.fieldLabel.string;
 		threadField.first.fieldLabel.string="";
 		threadField.first.hint.visible = true;
-      	var lineNew = {post_id:0, id: "thread" + threads.length, userName:"Bob Smith", title:text, date: "Now", picture:"avatar1", link:""};
+      	var lineNew = {post_id:0, id: "thread" + threads.length, userName:"Bob Smith", title:text, date: "Now", picture:"mavatar2", link:""};
       	var newThread = [lineNew]
      
       	for (i=0; i<threads.length; i++){
@@ -70,7 +70,7 @@ var sendButton = BUTTONS.Button.template(function($){ return{
 
 //Post Button
 var newPostButton = BUTTONS.Button.template(function($){ return{
-  left:5, width:60, height:40, skin: orangeSkin,
+  left:5, width:72, height:40, skin: orangeSkin,
   contents:[
     new Label({left:0, right:0, height:30, string:$.textForLabel, })
   ],
@@ -79,7 +79,7 @@ var newPostButton = BUTTONS.Button.template(function($){ return{
 		var text = newPostField.first.fieldLabel.string;
 		newPostField.first.fieldLabel.string="";
 		newPostField.first.hint.visible = true;
-      	var postNew = {id: "post" + forum_posts.length, userName:"Bob Smith", title:text, date: "Now", picture:"avatar1", link:"", skin:whiteSkin};
+      	var postNew = {id: "post" + forum_posts.length, userName:"Bob Smith", title:text, date: "Now", picture:"mavatar2", link:"", skin:whiteSkin};
       	var newForum = [postNew]
      
       	for (i=0; i<forum_posts.length; i++){
@@ -101,9 +101,9 @@ var fieldHintStyle = new Style({ color: 'gray', font: 'bold 15px Fira Sans', hor
 	Forum Logic		   	
 */
 var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin,};
-var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"mavatar2",  skin: whiteSkin,};
-var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"avatar1", skin: whiteSkin,};
-var post3 = {id: "post3", userName:"Jane Doe",  title:"Favorite walking shoes?", date: "1 hr ago", picture:"gavatar1",  skin: whiteSkin,};
+var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin,};
+var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin,};
+var post3 = {id: "post3", userName:"Jane Doe",  title:"Favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin,};
 
 //Initial forum
 var forum_posts = [post0, post1, post2, post3];
@@ -193,6 +193,7 @@ var ScreenContainer = Container.template(function($) { return {
 	contents: [
 	   		// Note that the scroller is declared as having only an empty Column and a scrollbar.  All the entries will be added programmatically. 
 	   		SCROLLER.VerticalScroller($, { 
+	   			clip: true,
 	   			contents: [
               			Column($, { left: 0, right: 0, top: 0, name: 'menu', }),
               			SCROLLER.VerticalScrollbar($, { }),
@@ -210,6 +211,53 @@ function ListBuilder(element, index, array) {
 }
 
 
+//Upper Tab buttons
+var switchToGlobal = function() {
+  	myglobal.skin = orangeSkin;
+  	myglobal.style = smallButtonSelected;
+  	
+  	local.skin = whiteSkin;
+  	local.style = smallButtonLabel;
+  	
+  	self.skin = whiteSkin,
+  	self.style = smallButtonLabel;
+}
+
+var switchToLocal = function() {
+  	myglobal.skin = whiteSkin;
+  	myglobal.style = smallButtonLabel;
+  	
+  	local.skin = orangeSkin;
+  	local.style = smallButtonSelected;
+  	
+    self.skin = whiteSkin,
+    self.style = smallButtonLabel;
+}
+
+var switchToMyPosts = function() { 	
+  	myglobal.skin = whiteSkin;
+  	myglobal.style = smallButtonLabel;
+  	
+  	local.skin = whiteSkin;
+  	local.style = smallButtonLabel;
+  	
+  	self.skin = orangeSkin,
+  	self.style = smallButtonSelected;
+}
+
+var upperButtonBehavior = Object.create(BUTTONS.ButtonBehavior.prototype, {
+    onTap: { value:  function(button){
+      if (button.name == "Global") {
+      	switchToGlobal();
+      } else if (button.name == "Local") {
+      	switchToLocal();
+      } else if (button.name == "My Posts") {
+      	switchToMyPosts();
+      }
+    }}
+});
+
+
 
 //Containers
 //Forum Container
@@ -218,6 +266,11 @@ var newPostField = new FieldTemplate({name:"", text:"Tap to create new post..."}
 var threadField = new FieldTemplate({name:"", text:"Tap to post a reply..."});
 var newPostButton = new newPostButton({left:0, right:0, top:0, textForLabel: "Post", });
 var sendButton = new sendButton({left:0, right:0, top:0, textForLabel: "Send", });
+
+
+var myglobal = new ButtonTemplate({height:36, textForLabel:"Global", skin:orangeSkin, style:smallButtonSelected, behavior:upperButtonBehavior});	
+var local = new ButtonTemplate({height:36, textForLabel:"Local", skin:whiteSkin, style:smallButtonLabel, behavior:upperButtonBehavior});
+var self = new ButtonTemplate({height:36, textForLabel:"My Posts", skin:whiteSkin, style:smallButtonLabel, behavior:upperButtonBehavior});
 
 //Forum Container
 var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, active:true,
@@ -229,13 +282,13 @@ var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 		}}
 	}), 
 	contents:[
-		new HeaderTemplate({title: "Forum", leftItem: new Container({left:0, right:0, top:0, bottom:0}), rightItem: new Container({left:0, right:0, top:0, bottom:0})}),
-	
+		new HeaderTemplate({title: "Forum", leftItem: new Container({left:0, right:0, top:0, bottom:0}), rightItem: new Container({left:0, right:0, top:0, bottom:0})}),	
+		
 		new Line({left:0, right:0, top:0, height:36,  skin: whiteSkin,
 			contents:[			
-				global = new ButtonTemplate({height:36, textForLabel:"Global", skin:orangeSkin, style:smallButtonStyle}),	
-				local = new ButtonTemplate({height:36, textForLabel:"Local", skin:whiteSkin, style:smallButtonStyle1}),
-				self = new ButtonTemplate({height:36, textForLabel:"My Posts", skin:whiteSkin, style:smallButtonStyle1}),        		
+				myglobal,	
+				local,
+				self,        		
 			]
 		}),
 
@@ -275,12 +328,7 @@ var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGrey
 */
 var thread0_1 = {post_id:0, id: "thread0", userName:"Maria Powell", title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin:whiteSkin,};
 var thread0_2 = {post_id:0, id: "thread1", userName:"Andy Lee", title:"The view from Indian Rock is amazing!", date: "3 hr ago", picture:"mavatar1", };
-var thread0_3 = {post_id:0, id: "thread2", userName:"Mike Jones", title:"The Fire Trail is great for beginners.", date: "2 hr ago", picture:"mavatar2", };
-/*var thread1_1 = {post_id:1, id: "thread3", userName:"New", title:"New", date: "Now", picture:"avatar1", };
-var thread1_2 = {post_id:1, id: "thread4", userName:"Maria Powell", title:"What are your favorite walking shoes?", date: "1 hr ago", picture:"gavatar1", };
-var thread2_1 = {post_id:2, id: "thread5", userName:"Andy Lee", title:"What's a good morning exercise?", date: "3 hr ago", picture:"mavatar1", };
-var thread2_2 = {post_id:2, id: "thread6", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"mavatar2", };
-var thread2_3 = {post_id:2, id: "thread7", userName:"New", title:"New", date: "Now", picture:"avatar1", };*/
+var thread0_3 = {post_id:0, id: "thread2", userName:"Steve White", title:"The Fire Trail is great for beginners.", date: "2 hr ago", picture:"mavatar3", };
 
 //Initial forum
 var threads = [thread0_1, thread0_2, thread0_3, /*thread1_1, thread1_2, thread2_1, thread2_2*/];
