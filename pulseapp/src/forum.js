@@ -51,7 +51,8 @@ var sendButton = BUTTONS.Button.template(function($){ return{
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
-		KEYBOARD.hide(); 
+		KEYBOARD.hide();
+		showTabBar(true); 
 	  	var text = threadField.first.fieldLabel.string;
 		threadField.first.fieldLabel.string="";
 		threadField.first.hint.visible = true;
@@ -80,6 +81,7 @@ var newPostButton = BUTTONS.Button.template(function($){ return{
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
     onTap: { value:  function(button){
     	KEYBOARD.hide(); 
+    	showTabBar(true);
 		var text = newPostField.first.fieldLabel.string;
 		newPostField.first.fieldLabel.string="";
 		newPostField.first.hint.visible = true;
@@ -311,7 +313,7 @@ var local = new ButtonTemplate({height:36, textForLabel:"Local", skin:whiteSkin,
 var self = new ButtonTemplate({height:36, textForLabel:"My Posts", skin:whiteSkin, behavior:TopButtonBehavior});
 
 //Forum Container
-var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, 
+var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, active: true,
 	behavior: Object.create(Container.prototype, {
 		onTouchEnded: { value: function(content){
 			KEYBOARD.hide();
