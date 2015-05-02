@@ -163,13 +163,32 @@ for (var i = 0; i < 7; i ++) {
 							container.url = "assets/greyCircle.png";
 							checkCount -= 1;
 						}
+						
+						// Update progress circle
 						var frequency = parseInt(frequencyLabel.string.split(" ")[0]);
 						var percent = Math.round(checkCount / frequency * 100);
+						if (percent > 100) { percent = 100; }
 						progressLabel.string = percent + "%";
 						progressCircle.empty();	// Necessary before replacing with new progress circle
-						progressCircle = new ProgressCircle({percent: percent});
+						progressCircle = new ProgressCircle({left:10, right:0, height:300, percent: percent, x: 150, y:150, r1:140, r2:110});
 						progressCircle.add(progressCircleContents);
 						scheduleSection.replace(scheduleSection.progressCircle, progressCircle);
+						
+						// Update color on device
+						var deviceColor;
+						if (percent == 0) {
+							deviceColor = "red";
+						} else if (percent >= 100) {
+							deviceColor = "green";
+						} else {
+							deviceColor = "yellow";
+						}
+						var msg = new Message("/changeDeviceColor");
+      					msg.requestText = JSON.stringify({target:"self", color:deviceColor});
+      					application.invoke(msg);
+      					
+      					// Update progress circle on buddy page
+      					BUDDY.updateMyProgressCircle(percent);
 					}},
 				})
 			}),
@@ -178,7 +197,7 @@ for (var i = 0; i < 7; i ++) {
 	}));
 }
 
-var progressCircle = new ProgressCircle({percent:0});
+var progressCircle = new ProgressCircle({left:10, right:0, height:300, percent:0, x: 150, y:150, r1:140, r2:110});
 var progressCircleContents = new Column({left:0, right:0, top:0, bottom:0,
 	contents: [
 		progressLabel,

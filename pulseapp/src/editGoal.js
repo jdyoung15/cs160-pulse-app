@@ -46,6 +46,9 @@ var submitGoalButton = ButtonTemplate({height:50, width: 100,
 	onTap: { value:  function(button){
 	  PROGRESS.updateSensorGoals();
 	  PROGRESS.switchToProgressScreen();
+	  var msg = new Message("/changeDeviceColor");
+	  msg.requestText = JSON.stringify({target:"self", color:"red"});
+	  application.invoke(msg);
     }}
   })
 });

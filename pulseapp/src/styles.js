@@ -83,40 +83,31 @@ image = new Picture({url: "assets/zeroProgress.png", top:-60, left:10, right:10}
 heartBeatLabel = new Label({left:0, right:0, height:80, bottom:0, string:"Heart Rate: 80 BPM", style:bigLabelStyle, skin:lightGreySkin});
 
 ProgressCircle = Container.template(function($) { return {
-	left:10, right:0, height:300, active:true, name: "progressCircle",
+	left: $.left, right: $.right, height:$.height, name: "progressCircle",
 	contents: [
 		Canvas($, { anchor:"CANVAS", left:0, right:0, top:0, bottom:0,
 			behavior: Object.create(Behavior.prototype, {
+				drawCircle: {value: function(ctx, x, y, r, sAngle, eAngle, lineWidth, color) {
+					ctx.beginPath();
+					ctx.arc(x, y, r, sAngle, eAngle, false);
+				    ctx.lineWidth = lineWidth;
+				    ctx.strokeStyle = color;
+				    ctx.stroke();
+				}},
 				onDisplaying: {value: function(canvas) {
-					var amountToFill = $.percent / 100;
 					var color;
 					if ($.percent == 0) {
 						color = redSkin.fillColors[0];
-						amountToFill = 1;
-					} else if ($.percent == 100) {
+					} else if ($.percent >= 100) {
 						color = greenSkin.fillColors[0];
 					} else {
 						color = yellowSkin.fillColors[0];
 					}
-				
+					var amountToFill = $.percent / 100;
 					var ctx = canvas.getContext("2d");
-					ctx.beginPath();
-					ctx.arc(150, 150, 140, -0.1, 2 * Math.PI, false);
-				    ctx.lineWidth = 3;
-				    ctx.strokeStyle = color;
-				    ctx.stroke();
-				    		
-					ctx.beginPath();
-				    ctx.arc(150, 150, 110, -0.1, 2 * Math.PI, false);
-				    ctx.lineWidth = 3;
-				    ctx.strokeStyle = color;
-				    ctx.stroke();
-				    
-					ctx.beginPath();
-				    ctx.arc(150, 150, 125, amountToFill * (2 * Math.PI) + Math.PI / 2, Math.PI / 2);
-				    ctx.lineWidth = 30;
-				    ctx.strokeStyle = color;
-				    ctx.stroke();
+					this.drawCircle(ctx, $.x, $.y, $.r1, -0.1, 2 * Math.PI, 3, color); // Outer outline of ring
+					this.drawCircle(ctx, $.x, $.y, $.r2, -0.1, 2 * Math.PI, 3, color); // Inner outline of ring
+					this.drawCircle(ctx, $.x, $.y, ($.r2 + $.r1) / 2, amountToFill * (2 * Math.PI) + Math.PI / 2, Math.PI / 2, $.r1 - $.r2, color);	// Fill the ring
 				}},
 			}),
 		}),

@@ -9,12 +9,11 @@ var chatBoxSkin = new Skin({
 var medButtonStyle = new Style({font:"20px", color:"white"});
 var smallButtonStyle = new Style({font:"16px", color:"white"});
 var buddyNameStyle = new Style({ font: "16px", color: "black" });
+var boldedLabelStyle = new Style({ font: "bold 18px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
 
 
 // True if user is currently assigned an exercise buddy.
 var hasCurrentBuddy = false;
-
-
 
 var findBuddyText = new Text({top: 0, left: 0, right:0,
   skin: lightGreySkin, 
@@ -32,7 +31,7 @@ var findBuddyButton = new ButtonTemplate({left:0, right:0, height:50,
     onTap: { value: function(button){
       hasCurrentBuddy = true;
       var msg = new Message("/changeDeviceColor");
-      msg.requestText = JSON.stringify({target:"buddy", color:"red"});
+      msg.requestText = JSON.stringify({target:"buddy", color:"yellow"});
       application.invoke(msg);
       switchScreens(currentBuddyScreen);
     }}
@@ -74,6 +73,17 @@ var deleteBuddyButton = new ButtonTemplate({
   })
 });	
 
+var buddyProgressCircle = function(percent) {
+	var percentLabel = new Column({left:0, right:0, top:30, bottom:0,
+		contents: [
+			new Label({left:28, right:0, horizontalAlignment: "center", string: percent + "%", style: boldedLabelStyle})
+		]
+	});
+	var circle = new ProgressCircle({left:30, right:0, height:100, percent:percent, x:50, y:50, r1:40, r2:30});
+	circle.add(percentLabel);
+	return circle;
+}
+
 var chatBox = new Text({
   left:5, right:10, top:5, skin: whiteSkin, style: labelStyle, string:
   "Me: You're almost there, Jean-Paul!\n" + 
@@ -106,7 +116,7 @@ var currentBuddyScreen = new Container({
   left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
 	new Column({
-	  left:0, right:0, top:0, bottom:0, 
+	  left:0, right:0, top:0, bottom:0, name: "column",
 	  contents: [
 	  	new HeaderTemplate({title: "Buddy", leftItem: new Container({left:0, right:0, top:0, bottom:0})}),
 	  	new Line({left:0, right:0, bottom:0, height: 40, skin: lightGreySkin,
@@ -130,10 +140,10 @@ var currentBuddyScreen = new Container({
 		  ]
 		}),
 	  	new Line({
-		  left:0, right:0, bottom: 0, height: 90, skin: whiteSkin,
+		  left:0, right:0, bottom: 0, height: 100, skin: whiteSkin, name: "progressCircles",
 		  contents: [
-		  	new Picture({left: 0, right: 0, top:10, height:90, url: "assets/buddy_progress_25.png"}),
-		  	new Picture({left: 0, right: 0, top:10, height:90, url: "assets/buddy_progress_50.png"}),		  	
+		  	new buddyProgressCircle(0),	  	
+		  	new buddyProgressCircle(85),	  	
 		  ]
 		}),
 		new Container({left:0, right:0, top:20, bottom:0, skin: chatBoxSkin,
@@ -176,5 +186,11 @@ var switchToBuddyScreen = function() {
   	switchScreens(currentBuddyScreen);
   }
 };
-   
+
+var updateMyProgressCircle = function(percent) {
+	var progressCircles = currentBuddyScreen.column.progressCircles;
+	progressCircles.replace(progressCircles[0], new buddyProgressCircle(percent));
+} 
+
 exports.switchToBuddyScreen = switchToBuddyScreen;
+exports.updateMyProgressCircle = updateMyProgressCircle;
