@@ -198,7 +198,7 @@ for (var i = 0; i < 7; i ++) {
 }
 
 var progressCircle = new ProgressCircle({left:10, right:0, height:300, percent:0, x: 150, y:150, r1:140, r2:124});
-var progressCircleContents = new Column({left:0, right:0, top:0, bottom:0,
+var progressCircleContents = new Column({left:0, right:0, top:-15, bottom:0,
 	contents: [
 		progressLabel,
 		durationLabel,

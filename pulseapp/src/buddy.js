@@ -1,4 +1,6 @@
 var STYLE = require('styles');
+var DIALOG = require('mobile/dialog');
+var MODEL = require('mobile/model');
 
 var chatBoxSkin = new Skin({
   fill:"white", 
@@ -63,12 +65,15 @@ var deleteBuddyButton = new ButtonTemplate({
   textForLabel: "Unbuddy",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
+	  button.invoke(new Message("/deleteBuddyAlert?mesaage=Do you really want to delete your buddy?"));
+	  /*
 	  hasCurrentBuddy = false;
 	  chatBox.string = "";
 	  var msg = new Message("/changeDeviceColor");
       msg.requestText = JSON.stringify({target:"buddy", color:"white"});
       application.invoke(msg);
 	  switchScreens(findBuddyScreen);
+	  */
     }}
   })
 });	
@@ -194,3 +199,39 @@ var updateMyProgressCircle = function(percent) {
 
 exports.switchToBuddyScreen = switchToBuddyScreen;
 exports.updateMyProgressCircle = updateMyProgressCircle;
+
+//Alert
+Handler.bind("/deleteBuddyAlert", Object.create(MODEL.DialogBehavior.prototype, {
+	onDescribe: { value: 
+		function(query) {
+			return {
+                Dialog: DIALOG.Box,
+                title: "Alert Message",
+                action: "/deleteBuddyAlertResult",
+                items: [
+                	{
+                    },
+                    {
+                        Item: DIALOG.Caption,
+                        string: query.mesaage,
+                    },
+                ],
+                ok: "OK",
+                cancel: "Cancel",
+            };
+		},
+	},
+}));
+
+Handler.bind("/deleteBuddyAlertResult", Object.create(MODEL.CommandBehavior.prototype, {
+	onQuery: { value: 
+		function(handler, query) {
+		  hasCurrentBuddy = false;
+		  chatBox.string = "";
+		  var msg = new Message("/changeDeviceColor");
+	      msg.requestText = JSON.stringify({target:"buddy", color:"white"});
+	      application.invoke(msg);
+		  switchScreens(findBuddyScreen);
+		},
+	},
+}));

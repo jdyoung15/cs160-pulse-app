@@ -21,7 +21,8 @@ boldedSmallLabelStyle = new Style({font:"bold 18px", color:"black", horizontal: 
 mediumLabelStyle = new Style({font:"22px", color:"black", horizontal: 'center', vertical: 'middle'});
 boldedMediumLabelStyle = new Style({font:"bold 22px", color:"black", horizontal: 'center', vertical: 'middle'});
 bigLabelStyle = new Style({ color: 'black', font: 'bold 24px'});
-hugeLabelStyle = new Style({ color: 'black', font: 'bold 48px'});
+hugeLabelStyle = new Style({ color: 'black', font: 'bold 40px'});
+progressCircleGoalStyle = new Style({ font: "24px", color: "black", horizontal: "left", left:10, right:10, top:10, bottom:10});
 largeButtonStyle = new Style({font:"24px", color:"white"});
 fieldStyle = new Style({ color: 'black', font: 'bold 20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
 fieldHintStyle = new Style({ color: '#aaa', font: '20px', horizontal: 'left', vertical: 'middle', left: 5, right: 5, top: 5, bottom: 5 });
@@ -76,9 +77,9 @@ ScrollContainer = Container.template(function($) { return {
 }});
 
 progressLabel = new Label({top: 75, string:"0%", style:hugeLabelStyle});
-durationLabel = new Label({string:"30 minutes of", style:labelStyle});
-intensityLabel = new Label({string:"Very light exercise for", style:labelStyle});
-frequencyLabel = new Label({string:"3 times/week", style:labelStyle});
+durationLabel = new Label({string:"30 minutes of", style:progressCircleGoalStyle});
+intensityLabel = new Label({string:"Very light exercise for", style:progressCircleGoalStyle});
+frequencyLabel = new Label({string:"3 times/week", style:progressCircleGoalStyle});
 
 index = 0;
 image = new Picture({url: "assets/zeroProgress.png", top:-60, left:10, right:10});

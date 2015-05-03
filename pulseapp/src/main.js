@@ -164,17 +164,20 @@ var showTabBar = function(boolean) {
 
 
 //uncoment these lines
-/*
+
 var ApplicationBehavior = Behavior.template({
 	onDisplayed: function(application) {
 		application.discover("pulsedevice");
+		// line from 182 goes here:
+		application.behavior = new MODEL.ApplicationBehavior( application );
 	},
 	onQuit: function(application) {
 		application.forget("pulsedevice");
 	},
 })
-application.behavior = new ApplicationBehavior();*/
+application.behavior = new ApplicationBehavior();
+
 
 //comment line below
-application.behavior = new MODEL.ApplicationBehavior( application );   
+//application.behavior = new MODEL.ApplicationBehavior( application );   
 application.add(mainColumn);

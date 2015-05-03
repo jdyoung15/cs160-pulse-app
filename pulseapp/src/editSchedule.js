@@ -35,7 +35,7 @@ var durationSliderLabel = new Label({left:0, string:"Duration: 15 minutes", styl
 var frequencySliderLabel = new Label({left:0, string:"Frequency: 7 times/week", style:labelStyle});
 
 var durationSlider = new MySlider({ min:15, max:60, value:30, name:"duration" });
-var frequencySlider = new MySlider({ min:1, max:14, value:3, name:"frequency" });
+var frequencySlider = new MySlider({ min:1, max:7, value:3, name:"frequency" });
 
 var submitScheduleButton = ButtonTemplate({height:50, width: 100,
   skin: orangeSkin, 			
