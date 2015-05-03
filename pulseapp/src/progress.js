@@ -231,9 +231,9 @@ var achievementsSection = new Column({
 		new Line({
 			top: 10, left:10, right:10, height: 30,
 			contents: [
-				new Label({left:0, right:0, string:"193", style:boldedMediumLabelStyle}),
-				new Label({left:0, right:0, string:"3", style:boldedMediumLabelStyle}),
-				new Label({left:0, right:0, string:"2", style:boldedMediumLabelStyle}),
+				new Label({left:0, right:0, string:"1930", style:boldedMediumLabelStyle}),
+				new Label({left:0, right:0, string:"30", style:boldedMediumLabelStyle}),
+				new Label({left:0, right:0, string:"20", style:boldedMediumLabelStyle}),
 			]
 		}),
 		
