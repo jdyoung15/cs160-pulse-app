@@ -106,12 +106,18 @@ var chatSendButton = new ButtonTemplate({
   textForLabel: "Send",
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
-	  KEYBOARD.hide();
-	  currentBuddyScreen[0].focus();
-	  showTabBar(true);
-	  chatBox.string += "Me: " + chatField.first.fieldLabel.string + "\n";
-	  chatField.first.fieldLabel.string = "";
-	  chatField.first.hint.visible = true;
+	  	KEYBOARD.hide();
+	  	currentBuddyScreen[0].focus();
+	  	showTabBar(true);
+	  
+	  	var text = chatField.first.fieldLabel.string;
+		if (text == "") 
+			button.invoke(new Message("/alert?mesaage=You need to enter the message"));
+		else {
+	  		chatBox.string += "Me: " + chatField.first.fieldLabel.string + "\n";
+	  		chatField.first.fieldLabel.string = "";
+	  		chatField.first.hint.visible = true;
+	  	}
     }}
   })
 });	
@@ -232,6 +238,33 @@ Handler.bind("/deleteBuddyAlertResult", Object.create(MODEL.CommandBehavior.prot
 	      msg.requestText = JSON.stringify({target:"buddy", color:"white"});
 	      application.invoke(msg);
 		  switchScreens(findBuddyScreen);
+		},
+	},
+}));
+
+
+Handler.bind("/alert", Object.create(MODEL.DialogBehavior.prototype, {
+	onDescribe: { value: 
+		function(query) {
+			return {
+                    Dialog: DIALOG.Box,
+                    title: "Alert Message",
+                    action: "/alertResult",
+                    items: [
+                        {
+                            Item: DIALOG.Caption,
+                            string: query.mesaage
+                        },
+                    ],
+                    ok: "OK",
+                };
+		},
+	},
+}));
+
+Handler.bind("/alertResult", Object.create(MODEL.CommandBehavior.prototype, {
+	onQuery: { value: 
+		function(handler, query) {		
 		},
 	},
 }));

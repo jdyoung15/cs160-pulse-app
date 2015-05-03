@@ -53,6 +53,7 @@ var sendButton = BUTTONS.Button.template(function($){ return{
 	onTap: { value:  function(button){		
 		KEYBOARD.hide();
 		showTabBar(true);
+		threadContainer.focus();
 		
 		var text = threadField.first.fieldLabel.string;
 		if (text == "") 
@@ -86,6 +87,7 @@ var newPostButton = BUTTONS.Button.template(function($){ return{
     onTap: { value:  function(button){
     	KEYBOARD.hide(); 
     	showTabBar(true);
+    	forumContainer.focus();
     	
     	var text = newPostField.first.fieldLabel.string;    	
     	if (text == "") 
@@ -168,8 +170,11 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
 					//Delete X
 					Label($, { right: 5, height: 15, width: 16, top: 5, style: deleteStyle, skin: orangeSkin, active: true, string: "X",
      			    	behavior: Object.create(Behavior.prototype, {
-     			           	onTouchEnded: { value: function(label, id, x,  y, ticks) {		
-								label.invoke(new Message("/deleteAlert?mesaage=Do you really want to delete this post?&post_id="+$.id));							
+     			           	onTouchEnded: { value: function(label, id, x,  y, ticks) {	
+     			           		if($.userName == "Bob Smith")	
+									label.invoke(new Message("/deleteAlert?mesaage=Do you really want to delete this post?&post_id="+$.id));
+								else
+									label.invoke(new Message("/alert?mesaage=You are not the author of this post. You can't delete it"));						
 							}},							
 						})
      				}), 	
