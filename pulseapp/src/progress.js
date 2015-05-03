@@ -164,7 +164,11 @@ for (var i = 0; i < 7; i ++) {
 							checkCount -= 1;
 						}
 						
+						var percent = calculatePercent();
+						
 						// Update progress circle
+						updateProgressCircle();
+						/*
 						var frequency = parseInt(frequencyLabel.string.split(" ")[0]);
 						var percent = Math.round(checkCount / frequency * 100);
 						if (percent > 100) { percent = 100; }
@@ -173,22 +177,10 @@ for (var i = 0; i < 7; i ++) {
 						progressCircle = new ProgressCircle({left:10, right:0, height:300, percent: percent, x: 150, y:150, r1:140, r2:124});
 						progressCircle.add(progressCircleContents);
 						scheduleSection.replace(scheduleSection.progressCircle, progressCircle);
+						*/
 						
 						// Update color on device
-						var deviceColor;
-						if (percent == 0) {
-							deviceColor = "red";
-						} else if (percent >= 100) {
-							deviceColor = "green";
-						} else {
-							deviceColor = "yellow";
-						}
-						var msg = new Message("/changeDeviceColor");
-      					msg.requestText = JSON.stringify({target:"self", color:deviceColor});
-      					application.invoke(msg);
-      					
-      					// Update progress circle on buddy page
-      					BUDDY.updateMyProgressCircle(percent);
+
 					}},
 				})
 			}),
@@ -206,7 +198,6 @@ var progressCircleContents = new Column({left:0, right:0, top:-15, bottom:0,
 		frequencyLabel,
 	]
 });
-progressCircle.add(progressCircleContents);
 
 var scheduleSection = new Column({
 	top:50, left:0, right:0, 
@@ -341,9 +332,44 @@ var updateSchedule = function(data) {
 	intensityLabel.string = data.intensity + " exercise for";
 	frequencyLabel.string = data.frequency + " times/week";
 }
-   
+
+var updateProgressCircle = function() {
+	// Calculate new percent
+	var frequency = parseInt(frequencyLabel.string.split(" ")[0]);
+	var percent = Math.round(checkCount / frequency * 100);
+	if (percent > 100) { percent = 100; }
+	
+	// Update progress circle on Progress screen
+	progressLabel.string = percent + "%";
+	progressCircle.empty();	// Necessary before replacing with new progress circle
+	progressCircle = new ProgressCircle({left:10, right:0, height:300, percent: percent, x: 150, y:150, r1:140, r2:124});
+	progressCircle.add(progressCircleContents);
+	scheduleSection.replace(scheduleSection.progressCircle, progressCircle);
+	
+	// Update user's progress cicle on Buddy screen
+    BUDDY.updateMyProgressCircle(percent);
+    
+    // Update user's color on device
+	var deviceColor = (percent == 0) ? "red" : "yellow";
+	deviceColor = (percent >= 100) ? "green" : deviceColor;
+	var msg = new Message("/changeDeviceColor");
+	msg.requestText = JSON.stringify({target:"self", color:deviceColor});
+	application.invoke(msg);
+}
+
+var calculatePercent = function() {
+	var frequency = parseInt(frequencyLabel.string.split(" ")[0]);
+	var percent = Math.round(checkCount / frequency * 100);
+	if (percent > 100) { percent = 100; }
+	return percent;
+}
+
+updateProgressCircle(calculatePercent());
+
 exports.switchToProgressScreen = switchToProgressScreen;
 exports.changeHeartBeat = changeHeartBeat;
 exports.updateSensorMeasurements = updateSensorMeasurements;
 exports.updateSensorGoals = updateSensorGoals;
 exports.updateSchedule = updateSchedule;
+exports.updateProgressCircle = updateProgressCircle;
+exports.calculatePercent = calculatePercent;

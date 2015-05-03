@@ -47,6 +47,7 @@ var submitScheduleButton = ButtonTemplate({height:50, width: 100,
 	  msg.requestText = JSON.stringify({target:"self", color:"red"});
 	  application.invoke(msg);
 	  PROGRESS.updateSchedule({"duration":duration, "intensity":intensity, "frequency":frequency});
+	  PROGRESS.updateProgressCircle();
 	  PROGRESS.switchToProgressScreen();
     }}
   })
