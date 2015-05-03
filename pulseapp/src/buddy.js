@@ -9,7 +9,7 @@ var chatBoxSkin = new Skin({
 var medButtonStyle = new Style({font:"20px", color:"white"});
 var smallButtonStyle = new Style({font:"16px", color:"white"});
 var buddyNameStyle = new Style({ font: "16px", color: "black" });
-var boldedLabelStyle = new Style({ font: "bold 18px", color: "black", horizontal: "center", left:10, right:10, top:10, bottom:10});
+var boldedLabelStyle = new Style({ font: "bold 24px", color: "black", horizontal: "center", left:10, right:10, top:10, bottom:10});
 
 
 // True if user is currently assigned an exercise buddy.
@@ -79,7 +79,7 @@ var buddyProgressCircle = function(percent) {
 			new Label({left:-20, right:0, string: percent + "%", style: boldedLabelStyle})
 		]
 	});
-	var circle = new ProgressCircle({left:30, right:0, height:100, percent:percent, x:50, y:50, r1:40, r2:30});
+	var circle = new ProgressCircle({left:30, right:0, height:100, percent:percent, x:50, y:50, r1:40, r2:34});
 	circle.add(percentLabel);
 	return circle;
 }
