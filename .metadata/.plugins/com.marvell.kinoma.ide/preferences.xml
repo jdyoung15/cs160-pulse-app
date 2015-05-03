@@ -13,10 +13,10 @@
          <OSX width="0" height="0"></OSX>
       </Settings>
    </OSXExportSettings>
+   <Usage eclipseInstanceId="4afc8c7b-e4dc-4333-bef0-47ff017f6578" visitCount="16" lastVisit="150502220516-0700" firstVisit="150403132612-0700"></Usage>
    <SDKContainer>
       <SDK plugin="true" editable="false" name="Kinoma Built-in SDK" location="com.marvell.kinoma.sdk:sdk"></SDK>
    </SDKContainer>
-   <Usage eclipseInstanceId="4afc8c7b-e4dc-4333-bef0-47ff017f6578" visitCount="14" lastVisit="150430111752-0700" firstVisit="150403132612-0700"></Usage>
    <RemoteDeviceManager>
       <UserDevices/>
    </RemoteDeviceManager>
