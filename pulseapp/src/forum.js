@@ -3,6 +3,8 @@ var CONTROL = require('mobile/control');
 var SCROLLER = require('mobile/scroller');
 var SCREEN = require('mobile/screen');
 var STYLE = require('styles');
+var DIALOG = require('mobile/dialog');
+var MODEL = require('mobile/model');
 
 var CONTROLS_THEME = require('themes/flat/theme');
 var THEME = require('themes/sample/theme');
@@ -13,9 +15,7 @@ for ( var i in THEME ){
 
 //MIO
 var fieldLabelSkin,
-var currentScreenSize;
 
-	
 var appName1 = new Style( { font:"bold 22px Arial, Gadget, sans-serif", color:"white", align: "left", lines: "1"} );
 var appName2 = new Style( { font:"16px Arial, Helvetica, sans-serif", color:"white", align: "left", lines: "1"} );
 var appName3 = new Style( { font:"bold 22px Arial, Gadget, sans-serif", color:"black", align: "left", lines: "1"} );
@@ -50,23 +50,27 @@ var sendButton = BUTTONS.Button.template(function($){ return{
     new Label({left:0, right:0, height:30, string:$.textForLabel, })
   ],
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
-	onTap: { value:  function(button){
+	onTap: { value:  function(button){		
 		KEYBOARD.hide();
-		showTabBar(true); 
-	  	var text = threadField.first.fieldLabel.string;
-		threadField.first.fieldLabel.string="";
-		threadField.first.hint.visible = true;
-      	var lineNew = {post_id:0, id: "thread" + threads.length, userName:"Bob Smith", title:text, date: "Now", picture:"mavatar2", link:""};
-      	var newThread = new Array();
-      	var newThread = [lineNew];
-     
-      	for (i=0; i<threads.length; i++){
-      		newThread[i+1] = threads[i];
+		showTabBar(true);
+		
+		var text = threadField.first.fieldLabel.string;
+		if (text == "") 
+			button.invoke(new Message("/alert?mesaage=You need to enter the thread information"));
+		else {
+			threadField.first.fieldLabel.string="";
+			threadField.first.hint.visible = true;
+      		var lineNew = {post_id:0, id: "thread" + threads.length, userName:"Bob Smith", title:text, date: "Now", picture:"mavatar2", link:""};
       		
-      	}
-      	
-      	threads = newThread;
-      	threadColumn.first.first.menu.add(new ThreadLine(lineNew));
+      		var newThread = new Array();
+      		var newThread = [lineNew];
+     
+      		for (i=0; i<threads.length; i++)
+      			newThread[i+1] = threads[i];      		   	
+      		
+      		threads = newThread;
+      		threadColumn.first.first.menu.add(new ThreadLine(lineNew));	
+		}
     }}
   })
 }});
@@ -82,18 +86,27 @@ var newPostButton = BUTTONS.Button.template(function($){ return{
     onTap: { value:  function(button){
     	KEYBOARD.hide(); 
     	showTabBar(true);
-		var text = newPostField.first.fieldLabel.string;
-		newPostField.first.fieldLabel.string="";
-		newPostField.first.hint.visible = true;
-      	var postNew = {id: "post" + forum_posts.length, userName:"Bob Smith", title:text, date: "Now", picture:"mavatar2", skin:whiteSkin, location: "Self",};
-      	var newForum = new Array();
-      	var newForum = [postNew];
+    	
+    	var text = newPostField.first.fieldLabel.string;    	
+    	if (text == "") 
+    		button.invoke(new Message("/alert?mesaage=You need to enter the post information"));
+    	else {    	 	   		
+			newPostField.first.fieldLabel.string="";
+			newPostField.first.hint.visible = true;
+      		var postNew = {id: "post" + forum_posts.length, userName:"Bob Smith", title:text, date: "Now", picture:"mavatar2", skin:whiteSkin, location: "Self",};
+      		
+      		var newForum = new Array();
+      		var newForum = [postNew];
      
-      	for (i=0; i<forum_posts.length; i++){
-      		newForum[i+1] = forum_posts[i];         		  
-      	}      	          	
-      	forum_posts = newForum;
-      	forumColumn.first.first.menu.insert(new PostLine(postNew), forumColumn.first.first.menu.first);
+    	  	for (i=0; i<forum_posts.length; i++)
+      			newForum[i+1] = forum_posts[i];         		  
+      		      	          	
+      		forum_posts = newForum;
+      		if(forumColumn.first.first.menu.length>=1)
+      			forumColumn.first.first.menu.insert(new PostLine(postNew), forumColumn.first.first.menu.first);
+      		else
+      			forumColumn.first.first.menu.add(new PostLine(postNew));
+      	}
     }}
   })
 }});
@@ -113,12 +126,12 @@ var post4 = {id: "post4", userName:"Maria Powell",  title:"What are your favorit
 var post5 = {id: "post5", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin, location: "Global",};
 var post6 = {id: "post6", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Local",};
 var post7 = {id: "post7", userName:"Jane Doe",  title:"Favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin, location: "Local",};
-var post7 = {id: "post7", userName:"Bob Smith",  title:"What diet do you follow?", date: "4 hr ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
+var post8 = {id: "post8", userName:"Bob Smith",  title:"What diet do you follow?", date: "4 hr ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
 
 
 
 //Initial forum
-var forum_posts = [post0, post1, post2, post3, post4, post5, post6, post7];
+var forum_posts = [post0, post1, post2, post3, post4, post5, post6, post7, post8];
 //How to add a post to the forum
 //forum_posts[forum_posts.length] = post4; 
 
@@ -126,12 +139,13 @@ var forum_posts = [post0, post1, post2, post3, post4, post5, post6, post7];
 var itemNameStyle = new Style({ font: '26px bold Tahoma, ', horizontal: 'null', vertical: 'null', lines: 1, color:"black", horizontal: 'left'});
 var timeStyle = new Style({ font: '14px bold Arial, ', horizontal: 'null', vertical: 'null', lines: 1, color:"black", horizontal: 'left'});
 var textStyle = new Style({ font: '16px bold Arial, ', horizontal: 'left', vertical: 'null', lines: 1, left: 10, color:"black", horizontal: 'left'});
+var deleteStyle = new Style({  font: 'bold 12px', horizontal: 'center', vertical: 'middle', left: 1, color: 'white' });
  
-
 var PostLine = Line.template(function($) { return { left: 0, right: 0, active: true, skin:$.skin, userName: $.userName, name: $.id,
     behavior: Object.create(Behavior.prototype, {
     	onTouchBegan: { value: function(container, id, x,  y, ticks) {
     		container.skin = lightBlueSkin;
+    		trace($.userName+"\n");
     	}},
     	onTouchEnded: { value: function(container, id, x,  y, ticks) {	
 			container.skin = whiteSkin;
@@ -150,7 +164,15 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
      			Line($, { left: 2, right: 2, height: 70, contents: [
 					Picture ($, { left:15, top:10, width:40, height:40, url: "assets/" + $.picture + ".png"}),
 					Label($, { left: 10, width:150 , top:18, style: itemNameStyle,  string: $.userName, }),	
-					Label($, { left: 40, right: 5, top:25, style: timeStyle,  string: $.date, }),	
+					Label($, { left: 35, right: 5, top:25, style: timeStyle,  string: $.date, }),
+					//Delete X
+					Label($, { right: 5, height: 15, width: 16, top: 5, style: deleteStyle, skin: orangeSkin, active: true, string: "X",
+     			    	behavior: Object.create(Behavior.prototype, {
+     			           	onTouchEnded: { value: function(label, id, x,  y, ticks) {		
+								label.invoke(new Message("/deleteAlert?mesaage=Do you really want to delete this post?&post_id="+$.id));							
+							}},							
+						})
+     				}), 	
 				],}),	
 				Line($, { left: 2, right: 10, top:55, height: 12, contents: [				
 					Label($, { left: 2, right: 10, height: 25, style: textStyle,  string: $.title }),
@@ -356,13 +378,14 @@ var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 function getLocations(posts, location) {
 	var local_posts = new Array();
 	var self_posts = new Array();
+
 	
 	for (i = 0; i<posts.length; i++) {
 		val = posts[i];
 		if (val.location == "Local" || val.location == "Self")
 			local_posts.push(val);
 		if (val.location == "Self")
-			self_posts.push(val);													
+			self_posts.push(val);										
 	}
 	
 	if(location=="Local")
@@ -458,3 +481,71 @@ exports.addForumContainer = function() {
 	}
 	switchScreens(forumContainer);
 }
+
+
+
+//Alert
+Handler.bind("/deleteAlert", Object.create(MODEL.DialogBehavior.prototype, {
+	onDescribe: { value: 
+		function(query) {
+			return {
+                    Dialog: DIALOG.Box,
+                    title: "Alert Message",
+                    action: "/deleteAlertResult",
+                    items: [
+                    	{
+                            // This item has not displayed in the dialog, but the value will be passed to the action.
+                            id: query.post_id,
+                        },
+                        {
+                            Item: DIALOG.Caption,
+                            string: query.mesaage
+                        },
+                    ],
+                    ok: "OK",
+                    cancel: "Cancel",
+                };
+		},
+	},
+}));
+
+Handler.bind("/deleteAlertResult", Object.create(MODEL.CommandBehavior.prototype, {
+	onQuery: { value: 
+		function(handler, query) {
+			var pos = 0;
+			for(i=0;i<forum_posts.length;i++){
+				if(forum_posts[i].id == query.post_id)
+					pos = i;
+			}
+			forum_posts.splice(pos,1);
+			forumColumn.first.first.menu.remove(forumColumn.first.first.menu[query.post_id]);
+		},
+	},
+}));
+
+
+Handler.bind("/alert", Object.create(MODEL.DialogBehavior.prototype, {
+	onDescribe: { value: 
+		function(query) {
+			return {
+                    Dialog: DIALOG.Box,
+                    title: "Alert Message",
+                    action: "/alertResult",
+                    items: [
+                        {
+                            Item: DIALOG.Caption,
+                            string: query.mesaage
+                        },
+                    ],
+                    ok: "OK",
+                };
+		},
+	},
+}));
+
+Handler.bind("/alertResult", Object.create(MODEL.CommandBehavior.prototype, {
+	onQuery: { value: 
+		function(handler, query) {		
+		},
+	},
+}));

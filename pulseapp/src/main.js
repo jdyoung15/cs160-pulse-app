@@ -11,6 +11,7 @@ var EDITSCHEDULE = require('editSchedule');
 var EDITGOAL = require('editGoal');
 var STYLE = require('styles');
 var PROGRESS = require('progress');
+var MODEL = require('mobile/model');
 
 deviceURL = "";
 
@@ -153,16 +154,6 @@ var mainColumn = new Column({
 PROGRESS.switchToProgressScreen();
 switchToProgress();
 
-
-var ApplicationBehavior = Behavior.template({
-	onDisplayed: function(application) {
-		application.discover("pulsedevice");
-	},
-	onQuit: function(application) {
-		application.forget("pulsedevice");
-	},
-})
-
 var showTabBar = function(boolean) {
 	if (boolean == true && mainColumn.last != bottomTabBar) {
 		mainColumn.add(bottomTabBar);
@@ -171,5 +162,19 @@ var showTabBar = function(boolean) {
 	}
 }
 
-application.behavior = new ApplicationBehavior();
+
+//uncoment these lines
+/*
+var ApplicationBehavior = Behavior.template({
+	onDisplayed: function(application) {
+		application.discover("pulsedevice");
+	},
+	onQuit: function(application) {
+		application.forget("pulsedevice");
+	},
+})
+application.behavior = new ApplicationBehavior();*/
+
+//comment line below
+application.behavior = new MODEL.ApplicationBehavior( application );   
 application.add(mainColumn);
