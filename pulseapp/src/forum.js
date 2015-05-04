@@ -163,22 +163,28 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
  	contents: [
      	Column($, { left: 0, right: 0, contents: [
      		Container($, { left: 0, right: 0, contents: [     	
+     			Line($, { left: 2,  height: 15, contents: [	
+						Label($, { left: 295, height: 15, width: 16, top: -25, style: deleteStyle, skin: orangeSkin, active: true, string: "X", name: $.userName,
+     			    		behavior: Object.create(Behavior.prototype, {
+     			           		onTouchEnded: { value: function(label, id, x,  y, ticks) {	
+									label.invoke(new Message("/deleteAlert?mesaage=Do you really want to delete this post?&post_id="+$.id));
+								}},	
+								onDisplayed: { value: function(label, id, x,  y, ticks) {
+									if($.userName != "Bob Smith")
+										forumColumn.first.first.menu[$.id].first.first.first.visible = false;						
+								}},												
+							})
+     					}),
+				],}),
+				
      			Line($, { left: 2, right: 2, height: 70, contents: [
 					Picture ($, { left:15, top:10, width:40, height:40, url: "assets/" + $.picture + ".png"}),
 					Label($, { left: 10, width:150 , top:18, style: itemNameStyle,  string: $.userName, }),	
 					Label($, { left: 35, right: 5, top:25, style: timeStyle,  string: $.date, }),
+				],}),
 					//Delete X
-					Label($, { right: 5, height: 15, width: 16, top: 5, style: deleteStyle, skin: orangeSkin, active: true, string: "X",
-     			    	behavior: Object.create(Behavior.prototype, {
-     			           	onTouchEnded: { value: function(label, id, x,  y, ticks) {	
-     			           		if($.userName == "Bob Smith")	
-									label.invoke(new Message("/deleteAlert?mesaage=Do you really want to delete this post?&post_id="+$.id));
-								else
-									label.invoke(new Message("/alert?mesaage=You are not the author of this post. You can't delete it"));						
-							}},							
-						})
-     				}), 	
-				],}),	
+				
+					
 				Line($, { left: 2, right: 10, top:55, height: 12, contents: [				
 					Label($, { left: 2, right: 10, height: 25, style: textStyle,  string: $.title }),
 				],}),	 			           
@@ -187,7 +193,12 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
      	], }),
      ], 
  }});
- 
+ /*
+ onDisplayed:  { value: function(this){
+							//	if($.userName != "Bob Smith")
+							//		this.visible = false;
+							}},
+ */
  
  var ThreadLine = Line.template(function($) { return { left: 0, right: 0, active: true, skin:$.skin, userName: $.userName, name: $.id,
   	behavior: Object.create(Behavior.prototype, {
