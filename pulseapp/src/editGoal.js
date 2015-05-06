@@ -46,7 +46,6 @@ var submitGoalButton = ButtonTemplate({height:50, width: 100,
 	onTap: { value:  function(button){
 	  PROGRESS.updateSensorGoals();
 	  PROGRESS.switchToProgressScreen();
-	  PROGRESS.updateProgressCircle();
     }}
   })
 });

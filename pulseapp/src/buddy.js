@@ -66,14 +66,6 @@ var deleteBuddyButton = new ButtonTemplate({
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
 	  button.invoke(new Message("/deleteBuddyAlert?mesaage=Do you really want to delete your buddy?"));
-	  /*
-	  hasCurrentBuddy = false;
-	  chatBox.string = "";
-	  var msg = new Message("/changeDeviceColor");
-      msg.requestText = JSON.stringify({target:"buddy", color:"white"});
-      application.invoke(msg);
-	  switchScreens(findBuddyScreen);
-	  */
     }}
   })
 });	
@@ -238,33 +230,6 @@ Handler.bind("/deleteBuddyAlertResult", Object.create(MODEL.CommandBehavior.prot
 	      msg.requestText = JSON.stringify({target:"buddy", color:"white"});
 	      application.invoke(msg);
 		  switchScreens(findBuddyScreen);
-		},
-	},
-}));
-
-
-Handler.bind("/alert", Object.create(MODEL.DialogBehavior.prototype, {
-	onDescribe: { value: 
-		function(query) {
-			return {
-                    Dialog: DIALOG.Box,
-                    title: "Alert Message",
-                    action: "/alertResult",
-                    items: [
-                        {
-                            Item: DIALOG.Caption,
-                            string: query.mesaage
-                        },
-                    ],
-                    ok: "OK",
-                };
-		},
-	},
-}));
-
-Handler.bind("/alertResult", Object.create(MODEL.CommandBehavior.prototype, {
-	onQuery: { value: 
-		function(handler, query) {		
 		},
 	},
 }));

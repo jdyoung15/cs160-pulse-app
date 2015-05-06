@@ -46,8 +46,11 @@ var submitScheduleButton = ButtonTemplate({height:50, width: 100,
 	  var msg = new Message("/changeDeviceColor");
 	  msg.requestText = JSON.stringify({target:"self", color:"red"});
 	  application.invoke(msg);
+	  var oldPercent = PROGRESS.calculatePercent();
 	  PROGRESS.updateSchedule({"duration":duration, "intensity":intensity, "frequency":frequency});
-	  PROGRESS.updateProgressCircle();
+	  
+	  var newPercent = PROGRESS.calculatePercent();
+	  PROGRESS.updateUserProgress(oldPercent, newPercent, true);
 	  PROGRESS.switchToProgressScreen();
     }}
   })

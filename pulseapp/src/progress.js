@@ -156,6 +156,7 @@ for (var i = 0; i < 7; i ++) {
 			new Picture({left:5, right:5, height:40, active: true, url:"assets/greyCircle.png",
 				behavior: Object.create(Behavior.prototype, {
 					onTouchEnded: { value: function(container, id, x, y, ticks){
+						var oldPercent = calculatePercent();
 						if (container.url.indexOf("greyCircle") > -1) {
 							container.url = "assets/greenCircle.png";
 							checkCount += 1;
@@ -164,23 +165,8 @@ for (var i = 0; i < 7; i ++) {
 							checkCount -= 1;
 						}
 						
-						var percent = calculatePercent();
-						
-						// Update progress circle
-						updateProgressCircle();
-						/*
-						var frequency = parseInt(frequencyLabel.string.split(" ")[0]);
-						var percent = Math.round(checkCount / frequency * 100);
-						if (percent > 100) { percent = 100; }
-						progressLabel.string = percent + "%";
-						progressCircle.empty();	// Necessary before replacing with new progress circle
-						progressCircle = new ProgressCircle({left:10, right:0, height:300, percent: percent, x: 150, y:150, r1:140, r2:124});
-						progressCircle.add(progressCircleContents);
-						scheduleSection.replace(scheduleSection.progressCircle, progressCircle);
-						*/
-						
-						// Update color on device
-
+						newPercent = calculatePercent();
+						updateUserProgress(oldPercent, newPercent, false);
 					}},
 				})
 			}),
@@ -213,18 +199,30 @@ var achievementsHeader = new Line({
 	contents: [
 		new Label({left:10, width:250, string:"Achievements", style:bigLabelStyle}),
 	]
-})
+});
+
+var totalHours = new Label({left:0, right:0, string:"1930", style:boldedMediumLabelStyle});
+var consecutiveWeeks = new Label({left:0, right:0, string:"30", style:boldedMediumLabelStyle});
+var numBuddies = new Label({left:0, right:0, string:"20", style:boldedMediumLabelStyle});
 
 var achievementsSection = new Column({
 	top:30, bottom: 30, left:0, right:0, 
 	contents: [ 
 		achievementsHeader,
+		
+		/*
+		new SensorContainer({ min:0, max:100, value:96, name:"levelProgress", readableName:"", position:4 };
+		new Line({
+			top: 10, left:0, right:0, height: 2, skin: lightGreySkin,
+		}),
+		*/
+		
 		new Line({
 			top: 10, left:10, right:10, height: 30,
 			contents: [
-				new Label({left:0, right:0, string:"1930", style:boldedMediumLabelStyle}),
-				new Label({left:0, right:0, string:"30", style:boldedMediumLabelStyle}),
-				new Label({left:0, right:0, string:"20", style:boldedMediumLabelStyle}),
+				totalHours,
+				consecutiveWeeks,
+				numBuddies,
 			]
 		}),
 		
@@ -307,7 +305,6 @@ var changeHeartBeat = function(value) {
 	heartBeatLabel.string = "Heart Rate: " + value + " BPM";
 }
 
-				
 // update user's measurements after manually adjusting sensors on device
 var updateSensorMeasurements = function(data){
 	EDITGOAL.SYSTOLIC.measuredValue = data.systolicVal;
@@ -331,38 +328,61 @@ var updateSchedule = function(data) {
 	durationLabel.string = data.duration + " minutes of";
 	intensityLabel.string = data.intensity + " exercise for";
 	frequencyLabel.string = data.frequency + " times/week";
-}
+};
 
-var updateProgressCircle = function() {
-	// Calculate new percent
-	var frequency = parseInt(frequencyLabel.string.split(" ")[0]);
-	var percent = Math.round(checkCount / frequency * 100);
-	if (percent > 100) { percent = 100; }
-	
-	// Update progress circle on Progress screen
+var updateProgressCircle = function(percent) {
 	progressLabel.string = percent + "%";
 	progressCircle.empty();	// Necessary before replacing with new progress circle
 	progressCircle = new ProgressCircle({left:10, right:0, height:300, percent: percent, x: 150, y:150, r1:140, r2:124});
 	progressCircle.add(progressCircleContents);
 	scheduleSection.replace(scheduleSection.progressCircle, progressCircle);
-	
-	// Update user's progress cicle on Buddy screen
-    BUDDY.updateMyProgressCircle(percent);
-    
-    // Update user's color on device
-	var deviceColor = (percent == 0) ? "red" : "yellow";
-	deviceColor = (percent >= 100) ? "green" : deviceColor;
+};
+
+var updateAchievements = function(oldPercent, newPercent, editSchedule) {
+	var numHours = parseFloat(totalHours.string);
+	var numWeeks = parseInt(consecutiveWeeks.string);
+	var durationAmt = durationLabel.string.split(" ")[0] / 60;
+	if (oldPercent < newPercent) {
+		if (!editSchedule) { numHours += durationAmt; }
+		if (newPercent == 100) { numWeeks += 1; }
+	} else if (oldPercent > newPercent) {
+		if (!editSchedule) { numHours -= durationAmt; }
+		if (oldPercent == 100) { numWeeks -= 1; }
+	}
+	totalHours.string = Math.round(numHours * 10) / 10;
+	consecutiveWeeks.string = numWeeks;
+};
+
+var updateDeviceColor = function(percent) {
+	var deviceColor;
+	if (percent == 0) {
+		deviceColor = "red";
+	} else if (percent == 100) {
+		deviceColor = "green";
+	} else {
+		deviceColor = "yellow";
+	}
 	var msg = new Message("/changeDeviceColor");
 	msg.requestText = JSON.stringify({target:"self", color:deviceColor});
 	application.invoke(msg);
-}
+};
+
+var updateUserProgress = function(oldPercent, newPercent, editSchedule) {
+	updateProgressCircle(newPercent);
+	updateAchievements(oldPercent, newPercent, editSchedule);
+	updateDeviceColor(newPercent);
+	BUDDY.updateMyProgressCircle(newPercent);
+	if (newPercent == 100 && oldPercent < 100) {
+		application.invoke(new Message("/alert?mesaage=Congratulations! You have achieved your goal for this week!"));
+	}
+};
 
 var calculatePercent = function() {
 	var frequency = parseInt(frequencyLabel.string.split(" ")[0]);
 	var percent = Math.round(checkCount / frequency * 100);
 	if (percent > 100) { percent = 100; }
 	return percent;
-}
+};
 
 updateProgressCircle(calculatePercent());
 
@@ -371,5 +391,5 @@ exports.changeHeartBeat = changeHeartBeat;
 exports.updateSensorMeasurements = updateSensorMeasurements;
 exports.updateSensorGoals = updateSensorGoals;
 exports.updateSchedule = updateSchedule;
-exports.updateProgressCircle = updateProgressCircle;
+exports.updateUserProgress = updateUserProgress;
 exports.calculatePercent = calculatePercent;
