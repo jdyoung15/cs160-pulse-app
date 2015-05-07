@@ -122,12 +122,12 @@ var fieldHintStyle = new Style({ color: 'gray', font: 'bold 15px Fira Sans', hor
 */
 var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin, location: "Local",};
 var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin, location: "Global",};
-var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Local",};
-var post3 = {id: "post3", userName:"Jane Doe",  title:"Favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin, location: "Local",};
-var post4 = {id: "post4", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin, location: "Local",};
-var post5 = {id: "post5", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin, location: "Global",};
-var post6 = {id: "post6", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Local",};
-var post7 = {id: "post7", userName:"Jane Doe",  title:"Favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin, location: "Local",};
+var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Global",};
+var post3 = {id: "post3", userName:"Jane Doe",  title:"What are your favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin, location: "Global",};
+var post4 = {id: "post4", userName:"Peg Addams",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar4", skin: whiteSkin, location: "Global",};
+var post5 = {id: "post5", userName:"Leia Organa", title:"Best route from south gate to north gate?", date: "2 hr ago", picture:"gavatar3",  skin: whiteSkin, location: "Local",};
+var post6 = {id: "post6", userName:"Han Solo",  title:"What lifestyle changes do you recommend?", date: "4 hr ago", picture:"mavatar6", skin: whiteSkin, location:"Local",};
+var post7 = {id: "post7", userName:"Luke Sky",  title:"Is it normal to feel so depressed?", date: "1 hr ago", picture:"mavatar4",  skin: whiteSkin, location: "Local",};
 var post8 = {id: "post8", userName:"Bob Smith",  title:"What diet do you follow?", date: "4 hr ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
 
 
