@@ -1,6 +1,7 @@
 var STYLE = require('styles');
 var BUTTONS = require('controls/buttons');
 
+// Promts user to create a new goal.
 var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0, 
@@ -36,6 +37,10 @@ var newGoalScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: wh
 });	
 
 
+//
+// Goal Section
+//
+
 var goalHeader = new Line({
 	left:0, right:0, top:0, height:40, skin: lightGreySkin,
 	contents: [
@@ -61,11 +66,12 @@ var SensorBar = Container.template(function($) { return {
 		Canvas($, { anchor:"CANVAS", left:10, width:290, top:0, height:25, active:true,
 			behavior: Object.create(Behavior.prototype, {
 				onCreate: {value: function(canvas, data) {
-					if (data.name == EDITGOAL.HDL.name) {
-						this.percent = data.measuredValue / data.value;
+					if (data.name == EDITGOAL.HDL.name || data.levelProgress) {
+						this.percent = data.measuredValue / data.value;	// measuredValue is the user's actual value, value is the user's goal
 					} else {
 						this.percent = data.value / data.measuredValue;
 					}
+					this.levelProgress = data.levelProgress;
 				}},
 				onDisplaying: {value: function(canvas) {
 					var ctx = canvas.getContext("2d");
@@ -73,7 +79,11 @@ var SensorBar = Container.template(function($) { return {
 					ctx.lineWidth = "1";
 					ctx.strokeStyle = greySkin.fillColors[0];
 					var amountToFill = this.percent;
-					if (this.percent == 1) {	// User has reached goal. Fully filled light green bar.
+					if (this.levelProgress) {
+						ctx.fillStyle = lightGreySkin.fillColors[0];
+						ctx.fillRect(0, 0, canvas.width, 25);
+						ctx.fillStyle = greenSkin.fillColors[0];
+					} else if (this.percent == 1) {	// User has reached goal. Fully filled light green bar.
 						ctx.fillStyle = greenSkin.fillColors[0];
 					} else if (this.percent > 1) {	// User has exceeded goal. Light green bar with dark green remnant.
 						amountToFill = 1 / this.percent;
@@ -95,7 +105,7 @@ var SensorBar = Container.template(function($) { return {
 }});
 
 
-// Contains the sensor name and associated progress bar.
+// Container for the sensor name, measured and goal values, and progress bar.
 var SensorContainer = Container.template(function($) { return {
 	left:0, right:0, top:25, height:45,
 	contents: [
@@ -126,6 +136,11 @@ var goalSection = new Column({
 	]
 });
 
+
+//
+// Suggested Schedule Section
+//
+
 var scheduleHeader = new Line({
 	left:0, right:0, top:0, height:40, skin: lightGreySkin,
 	contents: [
@@ -148,7 +163,7 @@ var weekProgress = new Line({
 	top: 0, left:10, right:0,
 });
 
-var checkCount = 0;
+var checkCount = 0;	// Count of how many day circles have been checked. Used to compute weekly progress percentage.
 
 for (var i = 0; i < 7; i ++) {
 	weekProgress.add(new Column({left:0, right:0, top:0, bottom:0, 
@@ -157,10 +172,11 @@ for (var i = 0; i < 7; i ++) {
 				behavior: Object.create(Behavior.prototype, {
 					onTouchEnded: { value: function(container, id, x, y, ticks){
 						var oldPercent = calculatePercent();
-						if (container.url.indexOf("greyCircle") > -1) {
+						if (container.url.indexOf("greyCircle") > -1) {	// User has completed exercise goal for this day
+							if (oldPercent == 100) { return; }
 							container.url = "assets/greenCircle.png";
 							checkCount += 1;
-						} else {
+						} else {	// User has not completed exercise goal for this day
 							container.url = "assets/greyCircle.png";
 							checkCount -= 1;
 						}
@@ -175,6 +191,8 @@ for (var i = 0; i < 7; i ++) {
 	}));
 }
 
+// Circle that serves as visual indicator of user's progress for the week. Contains percentage value of user's 
+// progress, as well as their suggested schedule.
 var progressCircle = new ProgressCircle({left:10, right:0, height:300, percent:0, x: 150, y:150, r1:140, r2:124});
 var progressCircleContents = new Column({left:0, right:0, top:-15, bottom:0,
 	contents: [
@@ -194,6 +212,11 @@ var scheduleSection = new Column({
 	]
 });
 
+
+//
+// Achivements Section
+//
+
 var achievementsHeader = new Line({
 	left:0, right:0, top:0, height:40, skin: lightGreySkin,
 	contents: [
@@ -205,19 +228,23 @@ var totalHours = new Label({left:0, right:0, string:"1930", style:boldedMediumLa
 var consecutiveWeeks = new Label({left:0, right:0, string:"30", style:boldedMediumLabelStyle});
 var numBuddies = new Label({left:0, right:0, string:"20", style:boldedMediumLabelStyle});
 
+var LevelProgressBar = function(level, measuredValue) {
+	return new SensorContainer({ min:0, max:100, value:100, measuredValue:measuredValue, levelProgress: true, name:"levelProgress", readableName:"Level " + level });
+}
+	
 var achievementsSection = new Column({
 	top:30, bottom: 30, left:0, right:0, 
 	contents: [ 
 		achievementsHeader,
 		
-		/*
-		new SensorContainer({ min:0, max:100, value:96, name:"levelProgress", readableName:"", position:4 };
-		new Line({
-			top: 10, left:0, right:0, height: 2, skin: lightGreySkin,
-		}),
-		*/
+		new LevelProgressBar(2, 60),	// User's overall progress, showing their current level
 		
 		new Line({
+			top: 30, left:0, right:0, height: 2, skin: lightGreySkin,
+		}),
+		
+		
+		new Line({	// User's stats since joining PULSE
 			top: 10, left:10, right:10, height: 30,
 			contents: [
 				totalHours,
@@ -240,6 +267,8 @@ var achievementsSection = new Column({
 		}),
 		
 		new Label({top: 10, left:0, right:0, string:"Consecutive Weeks", style:mediumLabelStyle}),
+		
+		// Stars denoting consecutive weeks will be added here
 	]
 });
 
@@ -247,6 +276,7 @@ NUMBER_OF_WEEKS = ["5", "10", "25", "50", "100", "250", "500", "1K+"];
 WEEK_ACHIEVEMENTS = [true, true, true, false, false, false, false, false];
 ACHIEVEMENTS_LABELS = ["Newbie", "Novice", "Rookie", "Beginner", "Skilled", "Proficient", " Advanced", "Expert"];
 
+// Add stars denoting user's consecutive weeks achieving their weekly goal to Achievements Section.
 for (var i = 0; i < 2; i++) {
 	var stars = new Line({
 		top: 20, left:10, right:10, height: 30,
@@ -273,6 +303,11 @@ for (var i = 0; i < 2; i++) {
 	achievementsSection.add(achievementLabels);
 }
 
+
+//
+// Scroller and main progress screen container
+//
+
 var scrollContainer = new ScrollContainer({left:0, right:0, top:0, bottom:0});
 var scrollItems = scrollContainer.first.menu;
 scrollItems.add(goalSection);
@@ -290,6 +325,11 @@ var progressScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: w
   ],
 });
 
+
+//
+// Exported functions
+//
+
 var createdGoal = false;
 
 // Switch to Progress screen from another section of the app
@@ -305,7 +345,7 @@ var changeHeartBeat = function(value) {
 	heartBeatLabel.string = "Heart Rate: " + value + " BPM";
 }
 
-// update user's measurements after manually adjusting sensors on device
+// Update user's measurements after reading sensors on device.
 var updateSensorMeasurements = function(data){
 	EDITGOAL.SYSTOLIC.measuredValue = data.systolicVal;
 	EDITGOAL.DIASTOLIC.measuredValue = data.diastolicVal;
@@ -316,6 +356,7 @@ var updateSensorMeasurements = function(data){
 	updateSensorGoals();
 };
 
+// Update the goal values of sensor progress bars.
 var updateSensorGoals = function(){
 	goalSection.replace(goalSection[EDITGOAL.SYSTOLIC.position], new SensorContainer(EDITGOAL.SYSTOLIC));
 	goalSection.replace(goalSection[EDITGOAL.DIASTOLIC.position], new SensorContainer(EDITGOAL.DIASTOLIC));
@@ -324,12 +365,14 @@ var updateSensorGoals = function(){
 	goalSection.replace(goalSection[EDITGOAL.BMI.position], new SensorContainer(EDITGOAL.BMI));
 };
 
+// Update values in suggested schedule.
 var updateSchedule = function(data) {
 	durationLabel.string = data.duration + " minutes of";
 	intensityLabel.string = data.intensity + " exercise for";
 	frequencyLabel.string = data.frequency + " times/week";
 };
 
+// Update fill and percentage (and color, if necessary) of progress circle. 
 var updateProgressCircle = function(percent) {
 	progressLabel.string = percent + "%";
 	progressCircle.empty();	// Necessary before replacing with new progress circle
@@ -338,21 +381,29 @@ var updateProgressCircle = function(percent) {
 	scheduleSection.replace(scheduleSection.progressCircle, progressCircle);
 };
 
+// Update overall progress level bar, hours, and consecutive weeks.
 var updateAchievements = function(oldPercent, newPercent, editSchedule) {
 	var numHours = parseFloat(totalHours.string);
 	var numWeeks = parseInt(consecutiveWeeks.string);
 	var durationAmt = durationLabel.string.split(" ")[0] / 60;
 	if (oldPercent < newPercent) {
 		if (!editSchedule) { numHours += durationAmt; }
-		if (newPercent == 100) { numWeeks += 1; }
+		if (newPercent == 100) { 
+			numWeeks += 1; 
+			achievementsSection.replace(achievementsSection[1], new LevelProgressBar(2, 70));
+		}
 	} else if (oldPercent > newPercent) {
 		if (!editSchedule) { numHours -= durationAmt; }
-		if (oldPercent == 100) { numWeeks -= 1; }
+		if (oldPercent == 100) { 
+			numWeeks -= 1;
+			achievementsSection.replace(achievementsSection[1], new LevelProgressBar(2, 60));
+		}
 	}
 	totalHours.string = Math.round(numHours * 10) / 10;
 	consecutiveWeeks.string = numWeeks;
 };
 
+// Update user's color on wristband
 var updateDeviceColor = function(percent) {
 	var deviceColor;
 	if (percent == 0) {
@@ -367,6 +418,7 @@ var updateDeviceColor = function(percent) {
 	application.invoke(msg);
 };
 
+// Called when user has made progress on goal or changed suggested schedule.
 var updateUserProgress = function(oldPercent, newPercent, editSchedule) {
 	updateProgressCircle(newPercent);
 	updateAchievements(oldPercent, newPercent, editSchedule);
@@ -377,6 +429,7 @@ var updateUserProgress = function(oldPercent, newPercent, editSchedule) {
 	}
 };
 
+// Calculates user's weekly progress as a percentage: number of days completed / number of days in suggested schedule
 var calculatePercent = function() {
 	var frequency = parseInt(frequencyLabel.string.split(" ")[0]);
 	var percent = Math.round(checkCount / frequency * 100);

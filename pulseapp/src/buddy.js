@@ -17,6 +17,10 @@ var boldedLabelStyle = new Style({ font: "bold 24px", color: "black", horizontal
 // True if user is currently assigned an exercise buddy.
 var hasCurrentBuddy = false;
 
+//
+// Finding a buddy screen
+//
+
 var findBuddyText = new Text({top: 0, left: 0, right:0,
   skin: lightGreySkin, 
   style: labelStyle,
@@ -40,7 +44,7 @@ var findBuddyButton = new ButtonTemplate({left:0, right:0, height:50,
   }), 
 });
 
-// The screen that appears if the user does not have a buddy.
+// Prompts user to enter partnership with randomly assigned buddy.
 var findBuddyScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
 	new Column({left:0, right:0, top:0, bottom:0, 
@@ -59,6 +63,11 @@ var findBuddyScreen = new Container({left:0, right: 0, top: 0, bottom: 0, skin: 
 	}),
   ],
 });
+
+
+//
+// Current buddy screen
+//
 
 var deleteBuddyButton = new ButtonTemplate({
   left:0, right:0, height:40, skin: orangeSkin, style: smallButtonStyle,
@@ -83,7 +92,7 @@ var buddyProgressCircle = function(percent) {
 
 var chatBox = new Text({
   left:5, right:10, top:5, skin: whiteSkin, style: labelStyle, string:
-  "Me: You're almost there, Jean-Paul!\n" + 
+  "Me: You're almost there, Jean-Paul!\n" +
   "Jean-Paul: I know! So close  :)\n"
  });
 
@@ -114,7 +123,7 @@ var chatSendButton = new ButtonTemplate({
   })
 });	
 			
-// The screen that appears after the user is assigned a buddy.
+// Screen displaying information about partnership between user and buddy. Also features a chatbox.
 var currentBuddyScreen = new Container({
   left:0, right: 0, top: 0, bottom: 0, skin: whiteSkin, active: true,
   contents: [
@@ -122,12 +131,14 @@ var currentBuddyScreen = new Container({
 	  left:0, right:0, top:0, bottom:0, name: "column",
 	  contents: [
 	  	new HeaderTemplate({title: "Buddy", leftItem: new Container({left:0, right:0, top:0, bottom:0})}),
+	  	
 	  	new Line({left:0, right:0, bottom:0, height: 40, skin: lightGreySkin,
 	  	  contents: [
 	    	new Label({left:10, width: 240, height: 40, string: "Countdown: 6 days left", style: labelStyle}),
 	    	deleteBuddyButton
 	  	  ]
 	  	}),
+	  	
 	  	new Line({
 		  left:0, right:0, bottom: 0, height: 30, skin: whiteSkin, 
 		  contents: [
@@ -135,6 +146,7 @@ var currentBuddyScreen = new Container({
 	    	new Label({left:20, right:0, height: 30, string: "Jean-Paul", style: buddyNameStyle}),
 		  ]
 		}),
+		
 		new Line({
 		  left:0, right:0, bottom: 0, height: 75, skin: whiteSkin, 
 		  contents: [
@@ -142,6 +154,7 @@ var currentBuddyScreen = new Container({
 		  	new Picture({left: 0, right: 0, height:75, url: "assets/mavatar1.png"}),
 		  ]
 		}),
+		
 	  	new Line({
 		  left:0, right:0, bottom: 0, height: 100, skin: whiteSkin, name: "progressCircles",
 		  contents: [
@@ -149,18 +162,21 @@ var currentBuddyScreen = new Container({
 		  	new buddyProgressCircle(85),	  	
 		  ]
 		}),
+		
 		new Container({left:0, right:0, top:20, bottom:0, skin: chatBoxSkin,
 	  	  contents: [
 			chatBoxScrollContainer,
 	  	  ]
 	  	}),
+	  	
 		new Line({
 		  left:0, right:0, bottom:0, height: 40, skin: whiteSkin,
 		  contents: [
 		  	chatField,
 		  	chatSendButton
 		  ]
-		})		
+		})
+				
 	  ],
 	}),
   ],
