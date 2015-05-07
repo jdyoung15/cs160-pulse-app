@@ -445,4 +445,5 @@ exports.updateSensorMeasurements = updateSensorMeasurements;
 exports.updateSensorGoals = updateSensorGoals;
 exports.updateSchedule = updateSchedule;
 exports.updateUserProgress = updateUserProgress;
+exports.updateDeviceColor = updateDeviceColor;
 exports.calculatePercent = calculatePercent;

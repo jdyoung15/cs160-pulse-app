@@ -45,6 +45,7 @@ var submitGoalButton = ButtonTemplate({height:50, width: 100,
   behavior: Object.create(BUTTONS.ButtonBehavior.prototype, {
 	onTap: { value:  function(button){
 	  PROGRESS.updateSensorGoals();
+	  PROGRESS.updateDeviceColor(PROGRESS.calculatePercent());
 	  PROGRESS.switchToProgressScreen();
     }}
   })
