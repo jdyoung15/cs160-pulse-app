@@ -425,7 +425,7 @@ var updateUserProgress = function(oldPercent, newPercent, editSchedule) {
 	updateDeviceColor(newPercent);
 	BUDDY.updateMyProgressCircle(newPercent);
 	if (newPercent == 100 && oldPercent < 100) {
-		application.invoke(new Message("/alert?mesaage=Congratulations! You have achieved your goal for this week!"));
+		application.invoke(new Message("/alert?mesaage=Congratulations! You have achieved your goal for this week and earned 10 points as a result!"));
 	}
 };
 

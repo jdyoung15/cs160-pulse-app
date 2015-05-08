@@ -8987,3 +8987,439 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/alice
 
 !ENTRY com.marvell.kinoma.ide 1 0 2015-05-03 14:14:42.450
 !MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-03 15:03:12.700
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-03 15:34:22.129
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-03 15:34:24.692
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-03 15:36:12.871
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-03 23:14:42.542
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-03 23:15:00.043
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-03 23:16:41.652
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-04 12:02:33.986
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Can't assign requested address
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:02:34.126
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:03:45.458
+!MESSAGE http://localhost:10002/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:03:46.505
+!MESSAGE http://localhost:10004/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-04 12:04:33.788
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Operation timed out
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-04 12:04:33.796
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-04 12:04:33.799
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Can't assign requested address
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:04:33.806
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:04:34.025
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-04 12:08:01.177
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Can't assign requested address
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:08:01.190
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:08:06.796
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-04 12:09:51.077
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Can't assign requested address
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:09:51.089
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:10:13.254
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-04 12:10:30.581
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:446)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.clearAllBreakpoints(KinomaDebugConnector.java:484)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:231)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-04 12:10:30.617
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Broken pipe
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:10:30.631
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:10:36.220
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:11:07.491
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:12:32.141
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:13:10.697
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:16:44.088
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:16:46.445
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:28:14.467
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-04 12:28:50.881
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-06 14:24:06.381
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-06 14:24:07.571
+!MESSAGE http://localhost:10002/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-06 22:29:44.996
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Can't assign requested address
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-06 22:29:45.091
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-06 22:29:45.891
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Can't assign requested address
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-06 22:29:45.912
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 11:12:16.202
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 11:12:35.522
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 11:14:34.332
+!MESSAGE http://localhost:10000/launch?id=pulseapp : OK (200) : /launch?id=pulseapp
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-07 12:23:02.934
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Can't assign requested address
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:23:02.957
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:23:12.727
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:29:15.989
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:29:29.084
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:32:32.585
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:32:34.983
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:34:40.067
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:34:44.617
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:46:58.475
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:47:04.197
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:56:15.281
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 12:56:20.462
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 13:04:00.148
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 13:04:02.937
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 13:21:28.496
+!MESSAGE Debug listener stopped...
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 13:21:33.744
+!MESSAGE http://localhost:10000/launch?id=pulsedevice : OK (200) : /launch?id=pulsedevice
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-07 16:24:38.914
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Can't assign requested address
+	at sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:93)
+	at sun.nio.ch.IOUtil.write(IOUtil.java:65)
+	at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:470)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:434)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.send(KinomaDebugConnector.java:424)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.resume(KinomaDebugConnector.java:509)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.disconnect(KinomaDebugConnector.java:232)
+	at com.marvell.kinoma.debug.core.model.KinomaMachine.handleDisconnect(KinomaMachine.java:134)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDisconnect(KinomaDebugTarget.java:612)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugTarget.handleDebugEvents(KinomaDebugTarget.java:772)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1151)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1187)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:431)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY com.marvell.kinoma.ide 4 0 2015-05-07 16:24:39.028
+!MESSAGE Unexpected Exception
+!STACK 0
+java.io.IOException: Can't assign requested address
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:379)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.read(KinomaDebugConnector.java:191)
+	at com.marvell.kinoma.debug.core.model.KinomaDebugConnector.run(KinomaDebugConnector.java:128)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+!ENTRY com.marvell.kinoma.ide 1 0 2015-05-07 16:24:39.048
+!MESSAGE Debug listener stopped...
+!SESSION 2015-05-07 18:36:53.770 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -keyring /Users/alicejliu/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/alicejliu/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2015-05-07 18:37:02.366
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
