@@ -122,18 +122,16 @@ var fieldHintStyle = new Style({ color: 'gray', font: 'bold 15px Fira Sans', hor
 */
 var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin, location: "Local",};
 var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin, location: "Global",};
-var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Global",};
-var post3 = {id: "post3", userName:"Jane Doe",  title:"What are your favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin, location: "Global",};
-var post4 = {id: "post4", userName:"Peg Addams",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar4", skin: whiteSkin, location: "Global",};
-var post5 = {id: "post5", userName:"Leia Organa", title:"Best route from south gate to north gate?", date: "2 hr ago", picture:"gavatar3",  skin: whiteSkin, location: "Local",};
-var post6 = {id: "post6", userName:"Han Solo",  title:"What lifestyle changes do you recommend?", date: "4 hr ago", picture:"mavatar6", skin: whiteSkin, location:"Local",};
-var post7 = {id: "post7", userName:"Luke Sky",  title:"Is it normal to feel so depressed?", date: "1 hr ago", picture:"mavatar4",  skin: whiteSkin, location: "Local",};
-var post8 = {id: "post8", userName:"Bob Smith",  title:"What diet do you follow?", date: "4 hr ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
+var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol?", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Global",};
+var post3 = {id: "post3", userName:"Jane Doe",  title:"What are your favorite walking shoes?", date: "1 day ago", picture:"gavatar2",  skin: whiteSkin, location: "Global",};
+var post4 = {id: "post4", userName:"Han Solo",  title:"Anyone in Berkeley want to meet up?", date: "4 days ago", picture:"mavatar6", skin: whiteSkin, location:"Local",};
+var post5 = {id: "post5", userName:"Luke Sky",  title:"Best rehab clinic?", date: "1 wk ago", picture:"mavatar4",  skin: whiteSkin, location: "Local",};
+var post6 = {id: "post6", userName:"Bob Smith",  title:"What diet do you follow?", date: "1 wk ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
 
 var currentPost = post0.id;
 
 //Initial forum
-var forum_posts = [post0, post1, post2, post3, post4, post5, post6, post7, post8];
+var forum_posts = [post0, post1, post2, post3, post4, post5, post6];
 
 var itemNameStyle = new Style({ font: '26px bold Tahoma, ', horizontal: 'null', vertical: 'null', lines: 1, color:"black", horizontal: 'left'});
 var timeStyle = new Style({ font: '14px bold Arial, ', horizontal: 'null', vertical: 'null', lines: 1, color:"black", horizontal: 'left'});
@@ -411,31 +409,56 @@ var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGrey
 	Thread Logic		   	
 */
 var thread0_0 = {post_id:"post0", id: "thread0", userName:"Maria Powell", title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin:whiteSkin,};
-var thread0_1 = {post_id:"post0", id: "thread1", userName:"Andy Lee", title:"I prefer the route to go to the Big C!", date: "3 hr ago", picture:"mavatar1", };
-var thread0_2 = {post_id:"post0", id: "thread2", userName:"Steve White", title:"The Fire Trail is great for beginners.", date: "2 hr ago", picture:"mavatar3", };
+var thread0_1 = {post_id:"post0", id: "thread1", userName:"Andy Lee", title:"I prefer the route to Big C!", date: "3 hr ago", picture:"mavatar1", };
+var thread0_2 = {post_id:"post0", id: "thread2", userName:"Steve White", title:"The Fire Trail is great for beginners.", date: "4 hr ago", picture:"mavatar3", };
 
 var thread1_0 = {post_id:"post1", id: "thread0", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1", skin:whiteSkin,};
-var thread1_1 = {post_id:"post1", id: "thread0", userName:"Peg Addams",  title:"I prefer to run without music", date: "1 hr ago", picture:"gavatar4",};
-var thread1_2 = {post_id:"post1", id: "thread1", userName:"Han Solo",  title:"Definitely I like classic music", date: "4 hr ago", picture:"mavatar6", };
-var thread1_3 = {post_id:"post1", id: "thread2", userName:"Luke Sky",  title:"I love to run listen the King, my loved Elvis", date: "1 hr ago", picture:"mavatar4", };
+var thread1_1 = {post_id:"post1", id: "thread0", userName:"Peggy Addams",  title:"I prefer to run without music...", date: "3 hr ago", picture:"gavatar4",};
+var thread1_2 = {post_id:"post1", id: "thread1", userName:"Han Solo",  title:"Classic music actually really helps me focus!", date: "3 hr ago", picture:"mavatar6", };
+var thread1_3 = {post_id:"post1", id: "thread2", userName:"Luke Sky",  title:"I love to run listen the King. I love Elvis.", date: "4 hr ago", picture:"mavatar4", };
 
+var thread2_0 = {post_id:"post2", id: "thread0", userName:"Tom Foster", title:"Anyone here have high cholesterol?", date: "4 hr ago", picture:"mavatar3", skin:whiteSkin,};
+var thread2_1 = {post_id:"post2", id: "thread0", userName:"Peggy Addams",  title:"I've had high cholesterol for years. :(", date: "4 hr ago", picture:"gavatar4",};
+var thread2_0 = {post_id:"post2", id: "thread0", userName:"Tom Foster", title:"What lifestyle changes have you made?", date: "4 hr ago", picture:"mavatar3", };
+var thread2_1 = {post_id:"post2", id: "thread0", userName:"Peggy Addams",  title:"Getting my family to eat healthier was a big one.", date: "4 hr ago", picture:"gavatar4",};
+
+var thread3_0 = {post_id:"post3", id: "thread0", userName:"Jane Doe", title:"What are your favorite walking shoes?", date: "1 day ago", picture:"gavatar2", skin:whiteSkin,};
+var thread3_1 = {post_id:"post3", id: "thread1", userName:"Han Solo",  title:"Have you tried Nike Airs?", date: "1 day ago", picture:"mavatar6", };
+var thread3_2 = {post_id:"post3", id: "thread2", userName:"Steve White", title:"Crocs are fashionable and comfortable.", date: "1 day ago", picture:"mavatar3", };
+var thread3_3 = {post_id:"post3", id: "thread0", userName:"Peggy Addams",  title:"Crocs 10/10 would recommend", date: "3 hr ago", picture:"gavatar4",};
+
+var thread4_0 = {post_id:"post4", id: "thread1", userName:"Han Solo",  title:"Anyone in Berkeley want to meet up?", date: "4 days ago", picture:"mavatar6", };
+var thread4_1 = {post_id:"post4", id: "thread2", userName:"Luke Sky",  title:"Want to join our Saturday hiking group?", date: "4 days ago", picture:"mavatar4", };
+var thread4_2 = {post_id:"post4", id: "thread1", userName:"Han Solo",  title:"That sounds awesome, I'd love to!", date: "4 days ago", picture:"mavatar6", };
+var thread4_3 = {post_id:"post4", id: "thread2", userName:"Luke Sky",  title:"Great! Meet at the entrance of Tilden Park.", date: "4 days ago", picture:"mavatar4", };
+
+var thread5_0 = {post_id:"post5", id: "thread2", userName:"Luke Sky",  title:"Best rehab clinic?", date: "1 wk ago", picture:"mavatar4", };
+var thread5_1 = {post_id:"post5", id: "thread0", userName:"Mike Jones", title:"There's one in Oakland that isn't bad.", date: "1 wk ago ago", picture:"avatar1", skin:whiteSkin,};
+var thread5_2 = {post_id:"post5", id: "thread1", userName:"Han Solo",  title:"Oh I go there and the nurses are super nice!", date: "1 wk ago", picture:"mavatar6", };
+var thread5_3 = {post_id:"post5", id: "thread2", userName:"Luke Sky",  title:"Thanks, I'll check it out!", date: "1 wk ago", picture:"mavatar4", };
+
+var thread6_0 = {post_id:"post6", id: "thread2", userName:"Bob Smith",  title:"What diet do you follow?", date: "1 wk ago", picture:"mavatar2", skin:whiteSkin };
+var thread6_1 = {post_id:"post6", id: "thread2", userName:"Luke Sky",  title:"Cutting out junk food has changed my life.", date: "1 wk ago", picture:"mavatar4", };
+var thread6_2 = {post_id:"post6", id: "thread2", userName:"Steve White", title:"I've been eating paleo for the last 3 months.", date: "1 wk ago", picture:"mavatar3", };
+var thread6_3 = {post_id:"post6", id: "thread2", userName:"Han Solo",  title:"I've lost 10 pounds by cutting out soda!", date: "1 wk ago", picture:"mavatar6", };
+var thread6_4 = {post_id:"post6", id: "thread2", userName:"Luke Sky",  title:"Just avoid refined sugars and fried foods.", date: "1 wk ago", picture:"mavatar4", };
 
 //Here you can add the data for the remaining posts posts 2-8
 
 /*
-DONE var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin, location: "Local",};
-DONE var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin, location: "Global",};
-var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Global",};
-var post3 = {id: "post3", userName:"Jane Doe",  title:"What are your favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin, location: "Global",};
-var post4 = {id: "post4", userName:"Peg Addams",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar4", skin: whiteSkin, location: "Global",};
-var post5 = {id: "post5", userName:"Leia Organa", title:"Best route from south gate to north gate?", date: "2 hr ago", picture:"gavatar3",  skin: whiteSkin, location: "Local",};
-var post6 = {id: "post6", userName:"Han Solo",  title:"What lifestyle changes do you recommend?", date: "4 hr ago", picture:"mavatar6", skin: whiteSkin, location:"Local",};
-var post7 = {id: "post7", userName:"Luke Sky",  title:"Is it normal to feel so depressed?", date: "1 hr ago", picture:"mavatar4",  skin: whiteSkin, location: "Local",};
-var post8 = {id: "post8", userName:"Bob Smith",  title:"What diet do you follow?", date: "4 hr ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
+var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin, location: "Local",};
+var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin, location: "Global",};
+var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol?", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Global",};
+var post3 = {id: "post3", userName:"Jane Doe",  title:"What are your favorite walking shoes?", date: "1 day ago", picture:"gavatar2",  skin: whiteSkin, location: "Global",};
+var post6 = {id: "post5", userName:"Han Solo",  title:"Anyone in Berkeley want to meet up?", date: "4 days ago", picture:"mavatar6", skin: whiteSkin, location:"Local",};
+var post7 = {id: "post6", userName:"Luke Sky",  title:"Best rehab clinic?", date: "1 wk ago", picture:"mavatar4",  skin: whiteSkin, location: "Local",};
+var post8 = {id: "post7", userName:"Bob Smith",  title:"What diet do you follow?", date: "1 wk ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
 */
 
 //Initial forum
-var threads = [thread0_0, thread0_1, thread0_2, thread1_0, thread1_1, thread1_2, thread1_3];
+var threads = [thread0_0, thread0_1, thread0_2, thread1_0, thread1_1, thread1_2, thread1_3, thread2_0, thread2_1,
+thread3_0, thread3_1, thread3_2, thread3_3, thread4_0, thread4_1, thread4_2, thread4_3, thread5_0, thread5_1, thread5_2, thread5_3,
+thread6_0, thread6_1, thread6_2, thread6_3, thread6_4];
 
 /* This simple function exists so we can call "forEach" on
  * our array of list entries (forum_posts).  It adds a new 
