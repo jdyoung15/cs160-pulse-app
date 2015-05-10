@@ -32,14 +32,14 @@ var thread0_1 = {post_id:"post0", id: "thread1", userName:"Andy Lee", title:"I p
 var thread0_2 = {post_id:"post0", id: "thread2", userName:"Steve White", title:"The Fire Trail is great for beginners.", date: "4 hr ago", picture:"mavatar3", };
 
 var thread1_0 = {post_id:"post1", id: "thread0", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1", skin:whiteSkin,};
-var thread1_1 = {post_id:"post1", id: "thread1", userName:"Peggy Addams",  title:"I prefer to run without music...", date: "3 hr ago", picture:"gavatar4",};
-var thread1_2 = {post_id:"post1", id: "thread2", userName:"Han Solo",  title:"Classic music actually really helps me focus!", date: "3 hr ago", picture:"mavatar6", };
+var thread1_1 = {post_id:"post1", id: "thread1", userName:"Peggy Addams",  title:"I prefer to run without music", date: "3 hr ago", picture:"gavatar4",};
+var thread1_2 = {post_id:"post1", id: "thread2", userName:"Han Solo",  title:"Classic music actually helps me focus!", date: "3 hr ago", picture:"mavatar6", };
 var thread1_3 = {post_id:"post1", id: "thread3", userName:"Luke Sky",  title:"I love to run listen the King. I love Elvis.", date: "4 hr ago", picture:"mavatar4", };
 
 var thread2_0 = {post_id:"post2", id: "thread0", userName:"Tom Foster", title:"Anyone here have high cholesterol?", date: "4 hr ago", picture:"mavatar3", skin:whiteSkin,};
 var thread2_1 = {post_id:"post2", id: "thread1", userName:"Peggy Addams",  title:"I've had high cholesterol for years. :(", date: "4 hr ago", picture:"gavatar4",};
 var thread2_2 = {post_id:"post2", id: "thread2", userName:"Tom Foster", title:"What lifestyle changes have you made?", date: "4 hr ago", picture:"mavatar3", };
-var thread2_3 = {post_id:"post2", id: "thread3", userName:"Peggy Addams",  title:"Getting my family to eat healthier was a big one.", date: "4 hr ago", picture:"gavatar4",};
+var thread2_3 = {post_id:"post2", id: "thread3", userName:"Peggy Addams",  title:"Getting my family to eat healthier!", date: "4 hr ago", picture:"gavatar4",};
 
 var thread3_0 = {post_id:"post3", id: "thread0", userName:"Jane Doe", title:"What are your favorite walking shoes?", date: "1 day ago", picture:"gavatar2", skin:whiteSkin,};
 var thread3_1 = {post_id:"post3", id: "thread1", userName:"Han Solo",  title:"Have you tried Nike Airs?", date: "1 day ago", picture:"mavatar6", };
@@ -53,19 +53,18 @@ var thread4_3 = {post_id:"post4", id: "thread3", userName:"Luke Sky",  title:"Gr
 
 var thread5_0 = {post_id:"post5", id: "thread0", userName:"Luke Sky",  title:"Best rehab clinic?", date: "1 wk ago", picture:"mavatar4",  skin:whiteSkin,};
 var thread5_1 = {post_id:"post5", id: "thread1", userName:"Mike Jones", title:"There's one in Oakland that isn't bad.", date: "1 wk ago ago", picture:"avatar1",};
-var thread5_2 = {post_id:"post5", id: "thread2", userName:"Han Solo",  title:"Oh I go there and the nurses are super nice!", date: "1 wk ago", picture:"mavatar6", };
+var thread5_2 = {post_id:"post5", id: "thread2", userName:"Han Solo",  title:"Ya the nurses are super nice there!", date: "1 wk ago", picture:"mavatar6", };
 var thread5_3 = {post_id:"post5", id: "thread3", userName:"Luke Sky",  title:"Thanks, I'll check it out!", date: "1 wk ago", picture:"mavatar4", };
 
 var thread6_0 = {post_id:"post6", id: "thread0", userName:"Bob Smith",  title:"What diet do you follow?", date: "1 wk ago", picture:"mavatar2", skin:whiteSkin };
-var thread6_1 = {post_id:"post6", id: "thread1", userName:"Luke Sky",  title:"Cutting out junk food has changed my life.", date: "1 wk ago", picture:"mavatar4", };
-var thread6_2 = {post_id:"post6", id: "thread2", userName:"Steve White", title:"I've been eating paleo for the last 3 months.", date: "1 wk ago", picture:"mavatar3", };
+var thread6_1 = {post_id:"post6", id: "thread4", userName:"Luke Sky",  title:"Avoid refined sugars and fried foods.", date: "1 wk ago", picture:"mavatar4", };
+var thread6_2 = {post_id:"post6", id: "thread2", userName:"Steve White", title:"I've been eating paleo!", date: "1 wk ago", picture:"mavatar3", };
 var thread6_3 = {post_id:"post6", id: "thread3", userName:"Han Solo",  title:"I've lost 10 pounds by cutting out soda!", date: "1 wk ago", picture:"mavatar6", };
-var thread6_4 = {post_id:"post6", id: "thread4", userName:"Luke Sky",  title:"Just avoid refined sugars and fried foods.", date: "1 wk ago", picture:"mavatar4", };
 
 //Initial Thread
 var threads = [thread0_0, thread0_1, thread0_2, thread1_0, thread1_1, thread1_2, thread1_3, thread2_0, thread2_1, thread2_2, thread2_3,
 thread3_0, thread3_1, thread3_2, thread3_3, thread4_0, thread4_1, thread4_2, thread4_3, thread5_0, thread5_1, thread5_2, thread5_3,
-thread6_0, thread6_1, thread6_2, thread6_3, thread6_4];
+thread6_0, thread6_1, thread6_2, thread6_3];
 
 
 var fieldLabelSkin,
@@ -210,7 +209,7 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
      			Line($, { left: 2, right: 2, height: 70, contents: [
 					Picture ($, { left:15, top:10, width:40, height:40, url: "assets/" + $.picture + ".png"}),
 					Label($, { left: 10, width:150 , top:18, style: itemNameStyle,  string: $.userName, }),	
-					Label($, { left: 35, right: 5, top:25, style: timeStyle,  string: $.date, }),
+					Label($, { left: 25, right: 5, top:25, style: timeStyle,  string: $.date, }),
 				],}),
 					//Delete X
 				
@@ -244,7 +243,7 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
      			Line($, { left: 2, right: 2, height: 70, contents: [
 					Picture ($, { left:15, top:10, width:40, height:40, url: "assets/" + $.picture + ".png"}),
 					Label($, { left: 10, width:150 , top:18, style: itemNameStyle,  string: $.userName, }),	
-					Label($, { left: 40, right: 5, top:25, style: timeStyle,  string: $.date, }),	
+					Label($, { left: 25, right: 5, top:25, style: timeStyle,  string: $.date, }),	
 				],}),	
 				Line($, { left: 2, right: 10, top:55, height: 12, contents: [				
 					Label($, { left: 2, right: 10, height: 25, style: textStyle,  string: $.title }),
