@@ -130,13 +130,10 @@ var post6 = {id: "post6", userName:"Han Solo",  title:"What lifestyle changes do
 var post7 = {id: "post7", userName:"Luke Sky",  title:"Is it normal to feel so depressed?", date: "1 hr ago", picture:"mavatar4",  skin: whiteSkin, location: "Local",};
 var post8 = {id: "post8", userName:"Bob Smith",  title:"What diet do you follow?", date: "4 hr ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
 
-
+var currentPost = post0.id;
 
 //Initial forum
 var forum_posts = [post0, post1, post2, post3, post4, post5, post6, post7, post8];
-//How to add a post to the forum
-//forum_posts[forum_posts.length] = post4; 
-
 
 var itemNameStyle = new Style({ font: '26px bold Tahoma, ', horizontal: 'null', vertical: 'null', lines: 1, color:"black", horizontal: 'left'});
 var timeStyle = new Style({ font: '14px bold Arial, ', horizontal: 'null', vertical: 'null', lines: 1, color:"black", horizontal: 'left'});
@@ -151,9 +148,8 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
     	}},
     	onTouchEnded: { value: function(container, id, x,  y, ticks) {	
 			container.skin = whiteSkin;
-			if($.id == "post0" && $.userName == "Maria Powell") {
-				switchScreens(threadContainer);
-			}
+			switchScreens(threadContainer);
+			currentPost = $.id;
 		}},
 		onTouchCancelled: { value: function(container, id, x,  y, ticks) {
     		container.skin = whiteSkin;
@@ -193,12 +189,7 @@ var PostLine = Line.template(function($) { return { left: 0, right: 0, active: t
      	], }),
      ], 
  }});
- /*
- onDisplayed:  { value: function(this){
-							//	if($.userName != "Bob Smith")
-							//		this.visible = false;
-							}},
- */
+
  
  var ThreadLine = Line.template(function($) { return { left: 0, right: 0, active: true, skin:$.skin, userName: $.userName, name: $.id,
   	behavior: Object.create(Behavior.prototype, {
@@ -261,9 +252,6 @@ function ListBuilder(element, index, array) {
 
 
 //Top Tab buttons
-var onceGlobalPost = true;  //load values only once
-var onceLocalPost = true;  //load values only once
-var onceSelfPost = true;  //load values only once
 var smallButtonLabel = new Style({font:"bold 16px", color:"black"});
 var smallButtonSelected = new Style({font:"bold 16px", color:"white"});
 
@@ -384,8 +372,7 @@ var forumContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteS
 				
 			]
 		}),	
-		new Line({ left: 0, right: 0, height: 3, skin: spaceSkin, }),
-		
+		new Line({ left: 0, right: 0, height: 3, skin: spaceSkin, }),		
 	]
 });
 
@@ -423,12 +410,32 @@ var forumColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGrey
 /*
 	Thread Logic		   	
 */
-var thread0_1 = {post_id:0, id: "thread0", userName:"Maria Powell", title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin:whiteSkin,};
-var thread0_2 = {post_id:0, id: "thread1", userName:"Andy Lee", title:"The view from Indian Rock is amazing!", date: "3 hr ago", picture:"mavatar1", };
-var thread0_3 = {post_id:0, id: "thread2", userName:"Steve White", title:"The Fire Trail is great for beginners.", date: "2 hr ago", picture:"mavatar3", };
+var thread0_0 = {post_id:"post0", id: "thread0", userName:"Maria Powell", title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin:whiteSkin,};
+var thread0_1 = {post_id:"post0", id: "thread1", userName:"Andy Lee", title:"I prefer the route to go to the Big C!", date: "3 hr ago", picture:"mavatar1", };
+var thread0_2 = {post_id:"post0", id: "thread2", userName:"Steve White", title:"The Fire Trail is great for beginners.", date: "2 hr ago", picture:"mavatar3", };
+
+var thread1_0 = {post_id:"post1", id: "thread0", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1", skin:whiteSkin,};
+var thread1_1 = {post_id:"post1", id: "thread0", userName:"Peg Addams",  title:"I prefer to run without music", date: "1 hr ago", picture:"gavatar4",};
+var thread1_2 = {post_id:"post1", id: "thread1", userName:"Han Solo",  title:"Definitely I like classic music", date: "4 hr ago", picture:"mavatar6", };
+var thread1_3 = {post_id:"post1", id: "thread2", userName:"Luke Sky",  title:"I love to run listen the King, my loved Elvis", date: "1 hr ago", picture:"mavatar4", };
+
+
+//Here you can add the data for the remaining posts posts 2-8
+
+/*
+DONE var post0 = {id: "post0", userName:"Maria Powell",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar1", skin: whiteSkin, location: "Local",};
+DONE var post1 = {id: "post1", userName:"Mike Jones", title:"Favorite music to listen to on a run?", date: "2 hr ago", picture:"avatar1",  skin: whiteSkin, location: "Global",};
+var post2 = {id: "post2", userName:"Tom Foster",  title:"Anyone here have high cholesterol? I have some questions.", date: "4 hr ago", picture:"mavatar3", skin: whiteSkin, location:"Global",};
+var post3 = {id: "post3", userName:"Jane Doe",  title:"What are your favorite walking shoes?", date: "1 hr ago", picture:"gavatar2",  skin: whiteSkin, location: "Global",};
+var post4 = {id: "post4", userName:"Peg Addams",  title:"What are your favorite hiking trails?", date: "1 hr ago", picture:"gavatar4", skin: whiteSkin, location: "Global",};
+var post5 = {id: "post5", userName:"Leia Organa", title:"Best route from south gate to north gate?", date: "2 hr ago", picture:"gavatar3",  skin: whiteSkin, location: "Local",};
+var post6 = {id: "post6", userName:"Han Solo",  title:"What lifestyle changes do you recommend?", date: "4 hr ago", picture:"mavatar6", skin: whiteSkin, location:"Local",};
+var post7 = {id: "post7", userName:"Luke Sky",  title:"Is it normal to feel so depressed?", date: "1 hr ago", picture:"mavatar4",  skin: whiteSkin, location: "Local",};
+var post8 = {id: "post8", userName:"Bob Smith",  title:"What diet do you follow?", date: "4 hr ago", picture:"mavatar2",  skin: whiteSkin, location: "Self",};
+*/
 
 //Initial forum
-var threads = [thread0_1, thread0_2, thread0_3, /*thread1_1, thread1_2, thread2_1, thread2_2*/];
+var threads = [thread0_0, thread0_1, thread0_2, thread1_0, thread1_1, thread1_2, thread1_3];
 
 /* This simple function exists so we can call "forEach" on
  * our array of list entries (forum_posts).  It adds a new 
@@ -438,49 +445,68 @@ function ThreadBuilder(element, index, array) {
 	threadColumn.first.first.menu.add(new ThreadLine(element));	
 }
 
+var loadThreads = function() {
+ 		
+  	//Remove content from Screen
+  	while(threadColumn.first.first.menu.length>=1)
+		threadColumn.first.first.menu.remove(threadColumn.first.first.menu.first);
+				
+	currentThreads = getThreads();
+	
+	//Add content	
+	currentThreads.forEach(ThreadBuilder);
+}
+
+//Get Thread for an specific post
+function getThreads() {
+	var new_threads = new Array();
+	
+	for (i = 0; i<threads.length; i++) {
+		val = threads[i];
+		if (val.post_id == currentPost)
+			new_threads.push(val);							
+	}
+	
+	return new_threads;
+}
+
 
 //Thread Container
-var onceThread = true;  //load values only once
-var threadContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, active:true,
+var threadContainer = new Column({ left:0, right:0, top:0, bottom:0, skin: whiteSkin, active: true,
 	behavior: Object.create(Container.prototype, {
 		onTouchEnded: { value: function(content){
 			KEYBOARD.hide();
 			content.focus();
 			showTabBar(true);
-		}}
+		}},
 	}), 
+	
 	contents:[
-		new Line({top:0, left:0, right: 0, height:60, skin: rowH,
-			contents:[
-				new HeaderTemplate({title: "Thread", rightItem: new Container({left:0, right:0, top:0, bottom:0}), leftItem: back}),
-			]
-		}),
+		new HeaderTemplate({title: "Thread", rightItem: new Container({left:0, right:0, top:0, bottom:0}), leftItem: back}),			
+		
+		new Line({left: 0, right: 0, height: 3, skin: spaceSkin,
+			behavior: Object.create(Container.prototype, {
+				onDisplayed: { value: function(content){
+					loadThreads();
+				}},
+			}),		
+		}),				
 	]
 });
 
-
 //ThreadColumn
 var threadColumn = new Column({ left:0, right:0, top:0, bottom:0, skin: lightGreySkin,
-	behavior: Object.create(Container.prototype, {
-		onDisplayed:  { value: function(content){
-				if (onceThread) {
-					threads.forEach(ThreadBuilder);
-					onceThread = false;
-				}
-		}}
-	}), 
 	contents:[	
-		new ScreenContainer(new Object()),	
-		      
-        new Line({left:0, right:0, bottom:0, skin: whiteSkin,
+		new ScreenContainer(new Object()),
+		
+		new Line({left:0, right:0, bottom:0, skin: whiteSkin,
 			contents:[				
 				threadField,
 				sendButton,
 			]
-		}),			
+		}),	
 	],
 });
-
 
 back.behavior.myButtonAction2  = function(){
     switchScreens(forumContainer);
